@@ -1,19 +1,13 @@
-﻿using System.IO;
+﻿using LambdaLauncher.Model;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace LambdaLauncher {
 	public partial class MainWindow : Window {
-		struct KeyData {
-			public char letter;
-			public string title;
-			public string command;
-			public string icon;
-		}
-
-		private KeyData[] keyDatas = new KeyData[27]; // 用于存放字母完全信息
-		private InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮空间
+		private KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息
+		private InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
 		private UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
 
 		private char currentActivedKey; // 上一次按下的字母
@@ -29,10 +23,10 @@ namespace LambdaLauncher {
 					// 根据子串新建keyData
 					char letter = char.Parse(line[0]);
 					keyDatas[letter - 'A'] = new KeyData {
-						letter = char.Parse(line[0]),
-						title = line[1],
-						command = line[2],
-						icon = line[3]
+						Letter = char.Parse(line[0]),
+						Title = line[1],
+						Command = line[2],
+						Icon = line[3]
 					};
 				}
 			}
@@ -51,7 +45,7 @@ namespace LambdaLauncher {
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(c, keyDatas[c - 'A'].title, keyDatas[c - 'A'].command, keyDatas[c - 'A'].icon);
+					keys[c - 'A'] = new InteractiveKey(keyDatas[c - 'A']);
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}
@@ -70,7 +64,7 @@ namespace LambdaLauncher {
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是第二次按下（确认），若是则执行命令内容
 				if (letter >= 'A' && letter <= 'Z' && isSameActive) {
-					Functions.RunCommand(keys[letter - 'A'].command);
+					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
 				}
 			}
 		}

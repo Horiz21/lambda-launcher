@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace LambdaLauncher {
-	internal static class Functions {
+	internal static class Utilities {
 		private static readonly string[] imageExtensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tif", ".ico" };//仅支持六种常见图像格式和一种图标格式
 
 		// 判断是否是存在的图片，若是，则返回这张图片

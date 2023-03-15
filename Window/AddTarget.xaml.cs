@@ -1,24 +1,21 @@
-﻿using System.Windows;
+﻿using LambdaLauncher.Model;
+using System.Windows;
 
 namespace LambdaLauncher {
 	public partial class AddTarget : Window {
 		private InteractiveKey interactiveKey;
-		private string title;
-		private string command;
-		private string iconSource;
-		public AddTarget(char letter, string title, string command, string iconSource) {
+		private KeyData keyData; // 本地KeyData变量
+		public AddTarget(KeyData keyData) {
 			// 为局部变量赋值
-			this.title = title;
-			this.command = command;
-			this.iconSource = iconSource;
+			this.keyData = keyData;
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
-			interactiveKey = new InteractiveKey(letter, title, command, iconSource);
+			interactiveKey = new InteractiveKey(keyData);
 			gridInteractiveKey.Children.Add(interactiveKey);
-			textTitle.Text = title;
-			textIcon.Text = iconSource;
-			textTarget.Text = command;
+			textTitle.Text = keyData.Title;
+			textIcon.Text = keyData.Icon;
+			textTarget.Text = keyData.Command;
 		}
 
 		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
@@ -32,8 +29,8 @@ namespace LambdaLauncher {
 
 		// 如果textIcon的内容更新，则尝试更新显示图标
 		private void UpdateIcon(object sender, System.Windows.Controls.TextChangedEventArgs e) {
-			iconSource=textIcon.Text;
-			interactiveKey.keyIcon.Source = Functions.GetImageFromPath(iconSource);
+			keyData.Icon = textIcon.Text;
+			interactiveKey.keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 		}
 
 		private void ButtonSelectIcon(object sender, RoutedEventArgs e) {
@@ -41,8 +38,8 @@ namespace LambdaLauncher {
 				Filter = "Image File|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				iconSource = openFileDialog.FileName; // 若存在则赋值给局部变量
-				interactiveKey.keyIcon.Source = Functions.GetImageFromPath(iconSource);
+				keyData.Icon = openFileDialog.FileName; // 若存在则赋值给局部变量
+				interactiveKey.keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 			}
 		}
 
@@ -51,12 +48,12 @@ namespace LambdaLauncher {
 				Filter = "Target|*.*"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				iconSource = openFileDialog.FileName; // 若存在则赋值给局部变量
+				keyData.Command = openFileDialog.FileName; // 若存在则赋值给局部变量
 			}
 		}
 
 		private void ButtonClear(object sender, RoutedEventArgs e) {
-
+			 
 		}
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {
