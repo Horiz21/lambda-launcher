@@ -1,0 +1,68 @@
+﻿<Window x:Class="LambdaLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Lambda Launcher"
+        Height="520" Width="1160"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource LightColorBrush}"
+        BorderBrush="{DynamicResource DarkColorBrush}"
+        BorderThickness="1"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        Topmost="True">
+    <Window.Resources>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+    </Window.Resources>
+    
+    <!--用于承载所有页面元素的总Gird-->
+    <Grid>
+        <!--用于实现页面拖拽的顶栏-->
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
+              Background="{DynamicResource LightColorBrush}" Height="94"
+              Margin="2.5" MouseLeftButtonDown="DragWindow"/>
+        <!--用于存放可显式页面元素的四行一列Grid-->
+        <Grid Margin="40,30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="132"/>
+                <RowDefinition Height="132"/>
+                <RowDefinition Height="132"/>
+            </Grid.RowDefinitions>
+            <Grid Name="gridPanel">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Lambda Launcher"
+                   FontSize="32"
+                   FontFamily="Rounded Mplus 1c Black"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="{DynamicResource DarkColorBrush}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="−" Height="48" Width="48"
+                    HorizontalAlignment="Right" Margin="8"
+                    FontSize="48" FontFamily="Noto Sans SC Black"
+                    Background="Transparent"
+                    Style="{DynamicResource ButtonConfirm}"
+                    Click="MinimizeWindow"/>
+                    <Button Content="×" Height="48" Width="48"
+                    HorizontalAlignment="Right" Margin="8"
+                    FontSize="48" FontFamily="Noto Sans SC Black"
+                    Background="Transparent"
+                    Style="{DynamicResource ButtonCancel}"
+                        Click="CloseWindow"/>
+                </StackPanel>
+            </Grid>
+            <UniformGrid Name="gridRow1" Grid.Row="1" Rows="1" Columns="10" Margin="0"/>
+            <UniformGrid Name="gridRow2" Grid.Row="2" Rows="1" Columns="9" Margin="54,0"/>
+            <UniformGrid Name="gridRow3" Grid.Row="3" Rows="1" Columns="8" Margin="108,0"/>
+        </Grid>
+    </Grid>
+</Window>

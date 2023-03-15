@@ -1,0 +1,20 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Media.Imaging;
+
+namespace LambdaLauncher {
+	internal static class Functions {
+		private static readonly string[] imageExtensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tif", ".ico" };//仅支持六种常见图像格式和一种图标格式
+
+		// 判断是否是存在的图片，若是，则返回这张图片
+		public static BitmapImage GetImageFromPath(string path) {
+			string lowerPath = path.ToLower();
+			bool isImage = imageExtensions.Any(suffix => lowerPath.EndsWith(suffix));
+			bool isExist = File.Exists(path);
+			if (isImage&&isExist)
+				return new BitmapImage(new Uri(path));
+			return new BitmapImage();
+		}
+	}
+}
