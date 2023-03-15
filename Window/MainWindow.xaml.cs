@@ -7,7 +7,6 @@ using System.Windows.Input;
 
 namespace LambdaLauncher {
 	public partial class MainWindow : Window {
-		private KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息
 		private InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
 		private UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
 
@@ -15,26 +14,12 @@ namespace LambdaLauncher {
 		private bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 
 		private void ReadCsvData(string filePath) {
-			using (var reader = new StreamReader(filePath)) {
-				reader.ReadLine(); //跳过首行（首行是用于控制格式）
-				while (!reader.EndOfStream) {
-					// 根据逗号，分割出四个子串
-					string[] line = reader.ReadLine().Split(',');
-
-					// 根据子串新建keyData
-					char letter = char.Parse(line[0]);
-					keyDatas[letter - 'A'] = new KeyData {
-						Letter = char.Parse(line[0]),
-						Title = line[1],
-						Command = line[2],
-						Icon = line[3]
-					};
-				}
-			}
+			
 		}
+
 		public MainWindow() {
 			string[] rows = { "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM[" }; // 按键盘顺序存储的三行按键
-			ReadCsvData("C:/Users/Frankie/source/repos/LambdaLauncher/resource/testfile.csv");
+			Data.Read();
 
 			InitializeComponent();
 
@@ -46,7 +31,7 @@ namespace LambdaLauncher {
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(keyDatas[c - 'A']);
+					keys[c - 'A'] = new InteractiveKey(Data.keyDatas[c - 'A']);
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}

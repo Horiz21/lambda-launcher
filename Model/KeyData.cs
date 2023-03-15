@@ -15,5 +15,10 @@ namespace LambdaLauncher.Model {
         //public string ViceCommand { get; set; }
         //public string ViceIcon { get; set; }
         //public string ViceTitle { get; set; }
+
+        public string GetCsvFormatData() {
+            string[] datas = new string[] { Letter.ToString(), Command, Icon, Title };
+            return string.Join(",", datas);
+        }
     }
 }
