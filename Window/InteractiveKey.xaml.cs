@@ -8,10 +8,8 @@ namespace LambdaLauncher {
 	public partial class InteractiveKey : UserControl {
 		private KeyData keyData;
 		public InteractiveKey(KeyData keyData) {
-			// 为局部变量赋值：特判，如果是'['（即ASCII码为'Z'+1的）就转换成符号Λ
+			// 为局部变量赋值
 			this.keyData = keyData;
-			if (this.keyData.Letter == '[')
-				this.keyData.Letter = 'Λ';
 
 			// 初始化窗口
 			InitializeComponent();
@@ -20,10 +18,7 @@ namespace LambdaLauncher {
 			if (keyData.Letter == 'F' || keyData.Letter == 'J')
 				keyUnderline.Content = "_";
 
-			// 为所有可调整的可显示元素赋值
-			keyLetter.Content = keyData.Letter;
-			keyTitle.Content = keyData.Title;
-			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
+			Refresh();
 		}
 
 		private void RuncontentCommand(object sender, RoutedEventArgs e) => Utilities.RunCommand(keyData.Command);
@@ -47,6 +42,17 @@ namespace LambdaLauncher {
 		private void AddTarget(object sender, RoutedEventArgs e) {
 			AddTarget childWindow = new AddTarget(keyData);
 			childWindow.ShowDialog();
+			Refresh();
+		}
+
+		private void Refresh() {
+			// 更新局部keyData信息
+			keyData = Data.keyDatas[keyData.Letter-'A'];
+
+			// 为所有可调整的可显示元素赋值
+			keyLetter.Content = keyData.Letter =='['? 'Λ' : keyData.Letter;
+			keyTitle.Content = keyData.Title;
+			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 		}
 
 		private void AddcontentCommandMenuItem_Click(object sender, RoutedEventArgs e) {

@@ -2,6 +2,8 @@
 using System.IO;
 using LambdaLauncher.Model;
 using System.Linq;
+using System.Windows;
+using System;
 
 namespace LambdaLauncher.Utility {
 	public static class Data {
@@ -14,14 +16,14 @@ namespace LambdaLauncher.Utility {
 		/// </summary>
 		public static void Read() {
 			keyCsvDatas = File.ReadAllLines(csvpath);
-			for (int i =1;i<28;++i) {
+			for (int i = 1; i < 28; ++i) {
 				// 根据逗号，分割出四个子串
 				string[] strs = keyCsvDatas[i].Split(',');
 
 				// 根据子串新建keyData
 				char letter = char.Parse(strs[0]);
 				keyDatas[letter - 'A'] = new KeyData {
-					Letter = char.Parse(strs[0]),
+					Letter = letter,
 					Title = strs[1],
 					Command = strs[2],
 					Icon = strs[3]

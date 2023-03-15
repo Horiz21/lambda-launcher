@@ -67,7 +67,16 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {
+			// 根据填充项修改信息
+			keyData.Title = textTitle.Text;
+			keyData.Command = textTarget.Text;
+			keyData.Icon = textIcon.Text;
 
+			// 将自己修改后的信息保存回csv文件
+			Data.ModifyAndWrite(keyData);
+
+			// 关闭当前页面
+			Close();
 		}
 	}
 }

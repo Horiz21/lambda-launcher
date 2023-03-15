@@ -14,11 +14,10 @@ namespace LambdaLauncher {
 		private bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 
 		private void ReadCsvData(string filePath) {
-			
+
 		}
 
 		public MainWindow() {
-			string[] rows = { "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM[" }; // 按键盘顺序存储的三行按键
 			Data.Read();
 
 			InitializeComponent();
@@ -27,6 +26,12 @@ namespace LambdaLauncher {
 			gridRows[0] = gridRow1;
 			gridRows[1] = gridRow2;
 			gridRows[2] = gridRow3;
+
+			Refresh();
+		}
+
+		public void Refresh() {
+			string[] rows = { "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM[" }; // 按键盘顺序存储的三行按键
 
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
