@@ -1,4 +1,5 @@
 ﻿using LambdaLauncher.Model;
+using LambdaLauncher.Utility;
 using System.Windows;
 
 namespace LambdaLauncher {
@@ -12,7 +13,10 @@ namespace LambdaLauncher {
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
 			interactiveKey = new InteractiveKey(keyData);
+			interactiveKey.keyButton.IsEnabled = false;
 			gridInteractiveKey.Children.Add(interactiveKey);
+
+			// 向输入框插入目前已有信息
 			textTitle.Text = keyData.Title;
 			textIcon.Text = keyData.Icon;
 			textTarget.Text = keyData.Command;

@@ -5,15 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Key Settings"
-        Height="194" Width="384"
-        WindowStartupLocation="CenterOwner"
-        Background="{DynamicResource LightColorBrush}"
-        BorderBrush="{DynamicResource DarkColorBrush}"
-        BorderThickness="1"
-        AllowsTransparency="True"
-        WindowStyle="None"
-        ResizeMode="NoResize"
-        Topmost="True">
+        Height="194" Width="512"
+        WindowStartupLocation="CenterScreen"
+        Style="{DynamicResource WindowNormal}">
     <Window.Resources>
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="8"/>
@@ -104,7 +98,7 @@
                     </TextBox>
                     <Button x:Name="iconButton" Grid.Row="1" Grid.Column="2"
                         Style="{DynamicResource ButtonNormal}"
-                        Content="Select" Width="48" Height="24"
+                        Content="Select" Height="24" Margin="4,0"
                         Click="ButtonSelectIcon">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -128,7 +122,7 @@
                     </TextBox>
                     <Button x:Name="addressButton" Grid.Row="2" Grid.Column="2"
                         Style="{DynamicResource ButtonNormal}"
-                        Content="Select" Width="48" Height="24"
+                        Content="Select" Height="24" Margin="4,0"
                         Click="ButtonSelectTarget">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -138,7 +132,7 @@
                     </Button>
 
                     <!--Row=3为确认键和取消键的Grid-->
-                    <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>

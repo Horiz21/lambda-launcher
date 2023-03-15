@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
 
-namespace LambdaLauncher {
+namespace LambdaLauncher.Utility {
 	internal static class Utilities {
 		private static readonly string[] imageExtensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tif", ".ico" };//仅支持六种常见图像格式和一种图标格式
 

@@ -1,4 +1,5 @@
 ﻿using LambdaLauncher.Model;
+using LambdaLauncher.Utility;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,8 +21,8 @@ namespace LambdaLauncher {
 				keyUnderline.Content = "_";
 
 			// 为所有可调整的可显示元素赋值
-			keyName.Content = keyData.Letter;
-			keyTitle.Content = keyData.Letter;
+			keyLetter.Content = keyData.Letter;
+			keyTitle.Content = keyData.Title;
 			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 		}
 

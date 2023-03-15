@@ -51,7 +51,7 @@
             </Button.Resources>
             <Grid>
                 <Image x:Name="keyIcon" Margin="8"/>
-                <Label x:Name="keyName"
+                <Label x:Name="keyLetter"
                    Padding="0"
                    Content="Λ"
                    VerticalContentAlignment="Center"
