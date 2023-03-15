@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
@@ -14,8 +12,7 @@ namespace LambdaLauncher {
 			public string icon;
 		}
 
-		private Dictionary<char, KeyData> keyDataDictionary = new(); // 字母、按键信息的结构体
-		private string[] commands = new string[26]; // 用于存放字母命令
+		private KeyData[] keyDatas = new KeyData[27]; // 用于存放字母完全信息
 		private InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮空间
 		private UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
 
@@ -24,23 +21,24 @@ namespace LambdaLauncher {
 
 		private void ReadCsvData(string filePath) {
 			using (var reader = new StreamReader(filePath)) {
-				reader.ReadLine(); //跳过首行
+				reader.ReadLine(); //跳过首行（首行是用于控制格式）
 				while (!reader.EndOfStream) {
-					var line = reader.ReadLine();
-					var values = line.Split(',');
+					// 根据逗号，分割出四个子串
+					string[] line = reader.ReadLine().Split(',');
 
-					KeyData keyData = new KeyData {
-						letter = char.Parse(values[0]),
-						title = values[1],
-						command = values[2],
-						icon = values[3]
+					// 根据子串新建keyData
+					char letter = char.Parse(line[0]);
+					keyDatas[letter - 'A'] = new KeyData {
+						letter = char.Parse(line[0]),
+						title = line[1],
+						command = line[2],
+						icon = line[3]
 					};
-					keyDataDictionary.Add(keyData.letter, keyData);
 				}
 			}
 		}
 		public MainWindow() {
-			string[] rows = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM["};
+			string[] rows = { "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM[" };
 			ReadCsvData("C:/Users/Frankie/source/repos/LambdaLauncher/resource/testfile.csv");
 
 			InitializeComponent();
@@ -51,9 +49,9 @@ namespace LambdaLauncher {
 			gridRows[2] = gridRow3;
 
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
-			for (int i=0;i<3;++i) {
+			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(c, keyDataDictionary[c].title, keyDataDictionary[c].command, keyDataDictionary[c].icon);
+					keys[c - 'A'] = new InteractiveKey(c, keyDatas[c - 'A'].title, keyDatas[c - 'A'].command, keyDatas[c - 'A'].icon);
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}
@@ -63,28 +61,27 @@ namespace LambdaLauncher {
 			this.Close();
 		}
 
-		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+		private void DragWindow(object sender, MouseButtonEventArgs e) {
 			this.DragMove();
 		}
 
-		private void MinimizeWindow(object sender, RoutedEventArgs e)
-		{
+		private void MinimizeWindow(object sender, RoutedEventArgs e) {
 			this.WindowState = WindowState.Minimized;
 		}
 
 		// 键盘按键的（按下并）抬起，相当于按下了某一按钮
-		private void KeyUpEvent(object sender, System.Windows.Input.KeyEventArgs e) {
+		private new void KeyUpEvent(object sender, KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
-				// 判断是否是字母，若是字母，则执行该按钮的功能
+				// 判断是否是字母，若是字母则判断是否是第二次按下（确认），若是则执行命令内容
 				if (letter >= 'A' && letter <= 'Z' && last_active_same) {
 					Functions.RunCommand(keys[letter - 'A'].contentCommand);
 				}
 			}
 		}
 
-		private void KeyDownEvent(object sender, System.Windows.Input.KeyEventArgs e) {
+		private new void KeyDownEvent(object sender, KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
