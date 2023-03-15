@@ -2,7 +2,6 @@
 
 namespace LambdaLauncher {
 	public partial class AddProgramWindow : Window {
-
 		private InteractiveKey interactiveKey;
 		private string contentTitle;
 		private string contentCommand;

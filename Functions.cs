@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
@@ -12,9 +13,21 @@ namespace LambdaLauncher {
 			string lowerPath = path.ToLower();
 			bool isImage = imageExtensions.Any(suffix => lowerPath.EndsWith(suffix));
 			bool isExist = File.Exists(path);
-			if (isImage&&isExist)
+			if (isImage && isExist)
 				return new BitmapImage(new Uri(path));
 			return new BitmapImage();
+		}
+
+		public static void RunCommand(string command) {
+			ProcessStartInfo startInfo = new ProcessStartInfo();
+			startInfo.FileName = "cmd.exe";
+			startInfo.Arguments = "/C " + command;
+			startInfo.CreateNoWindow = true;
+			startInfo.UseShellExecute = false;
+
+			Process process = new Process();
+			process.StartInfo = startInfo;
+			process.Start();
 		}
 	}
 }

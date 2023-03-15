@@ -10,14 +10,11 @@ namespace LambdaLauncher {
 	public partial class InteractiveKey : UserControl {
 		private char character;
 		private string contentTitle;
-		private string contentCommand;
+		public string contentCommand; // 命令可以被外部获取
 		private string iconSource;
 		public InteractiveKey(char character, string contentTitle = "", string contentCommand = "", string iconSource = "") {
-			// 为局部变量赋值
-			if (character == '^')
-				this.character = 'Λ';
-			else
-				this.character = character;
+			// 为局部变量赋值：特判，如果是[（即Z+1）就转换成符号Λ
+			this.character = character == '['? 'Λ':character;
 			this.contentTitle = contentTitle;
 			this.contentCommand = contentCommand;
 			this.iconSource = iconSource;
@@ -36,15 +33,7 @@ namespace LambdaLauncher {
 		}
 
 		private void RuncontentCommand(object sender, RoutedEventArgs e) {
-			ProcessStartInfo startInfo = new ProcessStartInfo();
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/C " + contentCommand;
-			startInfo.CreateNoWindow = true;
-			startInfo.UseShellExecute = false;
-
-			Process process = new Process();
-			process.StartInfo = startInfo;
-			process.Start();
+			Functions.RunCommand(contentCommand);
 		}
 
 		private void keyButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {

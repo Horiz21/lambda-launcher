@@ -13,7 +13,8 @@
         AllowsTransparency="True"
         WindowStyle="None"
         ResizeMode="CanMinimize"
-        Topmost="True">
+        Topmost="True"
+        KeyUp="KeyUpEvent" KeyDown="KeyDownEvent">
     <Window.Resources>
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="8"/>
