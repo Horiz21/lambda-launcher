@@ -42,7 +42,7 @@ namespace LambdaLauncher {
 				Filter = "Image File|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				keyData.Icon = openFileDialog.FileName; // 若存在则赋值给局部变量
+				textIcon.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
 				interactiveKey.keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 			}
 		}
@@ -52,7 +52,7 @@ namespace LambdaLauncher {
 				Filter = "Target|*.*"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				keyData.Command = openFileDialog.FileName; // 若存在则赋值给局部变量
+				textTarget.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
 			}
 		}
 
