@@ -57,7 +57,13 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonClear(object sender, RoutedEventArgs e) {
-			 
+			// 清空信息
+			textTitle.Clear();
+			textIcon.Clear();
+			textTarget.Clear();
+
+			// 清空左侧显示区
+			interactiveKey.Clear();
 		}
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {

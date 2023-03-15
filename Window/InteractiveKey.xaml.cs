@@ -55,5 +55,13 @@ namespace LambdaLauncher {
 		}
 
 		public string GetCommand() => keyData.Command;
+
+		/// <summary>
+		/// 清空一个InteractiveKey除了键盘字母外的所有内容
+		/// </summary>
+		public void Clear() {
+			keyTitle.Content = string.Empty;
+			keyIcon.Source = Utilities.GetEmptyImage();
+		}
 	}
 }
