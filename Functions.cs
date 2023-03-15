@@ -18,6 +18,7 @@ namespace LambdaLauncher {
 			return new BitmapImage();
 		}
 
+		// 运行一条cmd命令
 		public static void RunCommand(string command) {
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = "cmd.exe";

@@ -1,34 +1,29 @@
 ﻿using System.Windows;
 
 namespace LambdaLauncher {
-	public partial class AddProgramWindow : Window {
+	public partial class AddTarget : Window {
 		private InteractiveKey interactiveKey;
-		private string contentTitle;
-		private string contentCommand;
+		private string title;
+		private string command;
 		private string iconSource;
-		public AddProgramWindow(char character, string contentTitle, string contentCommand, string iconSource) {
+		public AddTarget(char letter, string title, string command, string iconSource) {
 			// 为局部变量赋值
-			this.contentTitle = contentTitle;
-			this.contentCommand = contentCommand;
+			this.title = title;
+			this.command = command;
 			this.iconSource = iconSource;
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
-			interactiveKey = new InteractiveKey(character, contentTitle, contentCommand, iconSource);
-			//interactiveKey.keyButton.IsEnabled = false;
+			interactiveKey = new InteractiveKey(letter, title, command, iconSource);
 			gridInteractiveKey.Children.Add(interactiveKey);
-			textTitle.Text = contentTitle;
+			textTitle.Text = title;
 			textIcon.Text = iconSource;
-			textTarget.Text = contentCommand;
+			textTarget.Text = command;
 		}
 
-		private void CloseWindow(object sender, RoutedEventArgs e) {
-			this.Close();
-		}
+		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
 
-		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-			this.DragMove();
-		}
+		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 
 		// 如果textTitle的内容更新，则实时更新预览窗口的keyTitle
 		private void UpdateTitle(object sender, System.Windows.Controls.TextChangedEventArgs e) {
@@ -52,7 +47,12 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonSelectTarget(object sender, RoutedEventArgs e) {
-
+			var openFileDialog = new Microsoft.Win32.OpenFileDialog() {
+				Filter = "Target|*.*"
+			};
+			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
+				iconSource = openFileDialog.FileName; // 若存在则赋值给局部变量
+			}
 		}
 
 		private void ButtonClear(object sender, RoutedEventArgs e) {
