@@ -1,6 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--按键设置窗口-->
+    <sys:String x:Key="KeySettings">按键设置</sys:String>
+    <sys:String x:Key="KeyTitle">标题</sys:String>
+    <sys:String x:Key="KeyIcon">图标</sys:String>
+    <sys:String x:Key="KeyTarget">目标</sys:String>
+    <sys:String x:Key="Select">选择</sys:String>
+    <sys:String x:Key="Confirm">确认</sys:String>
+    <sys:String x:Key="Clear">清空</sys:String>
+    
+    <!--主题窗口-->
     <sys:String x:Key="ThemePrimaryColor">主题色</sys:String>
     <sys:String x:Key="ThemeAccentColor">强调色</sys:String>
     <sys:String x:Key="ThemeDarkColor">文字色</sys:String>
