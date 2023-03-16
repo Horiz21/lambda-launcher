@@ -1,28 +1,11 @@
-﻿using LambdaLauncher.Utility;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml.Linq;
 
 namespace LambdaLauncher {
-	public partial class Option : Window {
-		public Option() {
+	public partial class Setting : Window {
+		public Setting() {
 			InitializeComponent();
-			ResourceDictionary appResources = Application.Current.Resources;
-
-			//appResources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("zh_cn.xaml", UriKind.RelativeOrAbsolute) });
-			//appResources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("en_us.xaml", UriKind.RelativeOrAbsolute) });
 		}
 
 		private void ChangeLanguage(object sender, RoutedEventArgs e) {
