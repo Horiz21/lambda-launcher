@@ -19,4 +19,11 @@
     <Content Include="Resource\icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Language\en_us.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

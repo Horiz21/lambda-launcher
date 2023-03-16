@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--按键设置窗口-->
+    <sys:String x:Key="KeySettings">Key Settings</sys:String>
+    <sys:String x:Key="KeyTitle">Title</sys:String>
+    <sys:String x:Key="KeyIcon">Icon</sys:String>
+    <sys:String x:Key="KeyTarget">Target</sys:String>
+    <sys:String x:Key="Select">Select</sys:String>
+    <sys:String x:Key="Confirm">Confirm</sys:String>
+    <sys:String x:Key="Clear">Clear</sys:String>
+    
+    <!--主题窗口-->
+    <sys:String x:Key="ThemePrimaryColor">Primary Color</sys:String>
+    <sys:String x:Key="ThemeAccentColor">Accent Color</sys:String>
+    <sys:String x:Key="ThemeDarkColor">Text Color</sys:String>
+    <sys:String x:Key="ThemeLightColor">Background Color</sys:String>
+    <sys:String x:Key="ThemeSuccessColor">Success Indicator Color</sys:String>
+    <sys:String x:Key="ThemeWarningColor">Warning Indicator Color</sys:String>
+    <sys:String x:Key="ThemeErrorColor">Error Indicator Color</sys:String>
+</ResourceDictionary>

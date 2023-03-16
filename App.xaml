@@ -6,11 +6,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resource/Themes/GlobalColors.xaml"/>
-                <ResourceDictionary Source="/Resource/Themes/ThemeSpring.xaml"/>
                 <ResourceDictionary Source="/Resource/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Resource/Styles/Windows.xaml"/>
                 <ResourceDictionary Source="/Resource/Styles/Borders.xaml"/>
-                <ResourceDictionary Source="/Language/zh_cn.xaml"/>
+                <ResourceDictionary x:Name="CurrentTheme" Source="/Resource/Themes/ThemeSpring.xaml"/>
+                <ResourceDictionary x:Name="CurrentLanguage" Source="/Language/zh_cn.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
