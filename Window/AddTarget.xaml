@@ -4,16 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Key Settings"
+        Title="{DynamicResource KeySettings}"
         Height="194" Width="512"
         WindowStartupLocation="CenterScreen"
         Style="{DynamicResource WindowNormal}">
-    <Window.Resources>
-        <Style TargetType="Border">
-            <Setter Property="CornerRadius" Value="8"/>
-        </Style>
-    </Window.Resources>
-
     <!--用于承载所有页面元素的总Gird-->
     <Grid>
         <!--用于实现页面拖拽的顶栏-->
@@ -21,7 +15,7 @@
               Margin="2.5" MouseLeftButtonDown="DragWindow"
               Background="{DynamicResource LightColorBrush}"/>
 
-        <!--用于存放可显式页面元素的两行Grid-->
+        <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
@@ -55,7 +49,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="gridInteractiveKey"/>
-                <Grid x:Name="gridInput" Grid.Column="2">
+                <Grid x:Name="gridInput" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
                         <RowDefinition Height="32"/>

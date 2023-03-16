@@ -1,5 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--黑白-->
+    <Color x:Key="Black">#000</Color>
+    <Color x:Key="White">#FFF</Color>
+
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
+    
     <!--亮色为背景，暗色为文字；中间灰度级为普通按钮的三个状态-->
     <Color x:Key="DarkColor">#292929</Color>
     <Color x:Key="LightColor">#F7F7F7</Color>

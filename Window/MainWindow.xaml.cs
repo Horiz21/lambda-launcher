@@ -13,10 +13,6 @@ namespace LambdaLauncher {
 		private char currentActivedKey; // 上一次按下的字母
 		private bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 
-		private void ReadCsvData(string filePath) {
-
-		}
-
 		public MainWindow() {
 			Data.LoadData();
 

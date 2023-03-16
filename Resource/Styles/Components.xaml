@@ -110,4 +110,28 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--下拉框-->
+    <Style x:Key="ComboBoxNormal" TargetType="ComboBox">
+        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="Noto Sans SC"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="FontSize" Value="12"/>
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="4">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
 </ResourceDictionary>

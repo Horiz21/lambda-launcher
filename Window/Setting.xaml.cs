@@ -28,5 +28,9 @@ namespace LambdaLauncher {
 			}
 			appXaml.Save(appXamlPath);
 		}
+
+		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
+
+		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
 	}
 }
