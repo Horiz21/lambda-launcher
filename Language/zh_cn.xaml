@@ -5,7 +5,7 @@
     <sys:String x:Key="Settings">全局设置</sys:String>
     <sys:String x:Key="Language">语言</sys:String>
     <sys:String x:Key="Theme">主题</sys:String>
-    <sys:String x:Key="DarkMode">夜间模式</sys:String>
+    <sys:String x:Key="DarkMode">显示模式</sys:String>
     <sys:String x:Key="KeyboardDouble">键盘触发</sys:String>
     <sys:String x:Key="MouseDouble">鼠标触发</sys:String>
     <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
@@ -14,8 +14,8 @@
     <sys:String x:Key="DarkModeOff">日间模式</sys:String>
     <sys:String x:Key="KeyboardDoubleOn">双击键盘触发</sys:String>
     <sys:String x:Key="KeyboardDoubleOff">单击键盘触发</sys:String>
-    <sys:String x:Key="MouseDoubleOn">双击鼠标主键触发</sys:String>
-    <sys:String x:Key="MouseDoubleOff">单击鼠标主键触发</sys:String>
+    <sys:String x:Key="MouseDoubleOn">双击主键触发</sys:String>
+    <sys:String x:Key="MouseDoubleOff">单击主键触发</sys:String>
     <sys:String x:Key="LambdaFunction1">切换主题</sys:String>
     <sys:String x:Key="LambdaFunction2">切换日/夜间模式</sys:String>
     <sys:String x:Key="LambdaFunction3">按下时，切换为副按键策略组</sys:String>

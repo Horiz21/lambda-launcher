@@ -1,6 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--全局设置-->
+    <sys:String x:Key="Settings">Launcher Settings</sys:String>
+    <sys:String x:Key="Language">Language</sys:String>
+    <sys:String x:Key="Theme">Theme</sys:String>
+    <sys:String x:Key="DarkMode">Display</sys:String>
+    <sys:String x:Key="KeyboardDouble">Keyboard</sys:String>
+    <sys:String x:Key="MouseDouble">Mouse</sys:String>
+    <sys:String x:Key="LambdaFunction">Lambda Function</sys:String>
+
+    <sys:String x:Key="DarkModeOn">Dark Mode</sys:String>
+    <sys:String x:Key="DarkModeOff">Light Mode</sys:String>
+    <sys:String x:Key="KeyboardDoubleOn">Double Click</sys:String>
+    <sys:String x:Key="KeyboardDoubleOff">Single Click</sys:String>
+    <sys:String x:Key="MouseDoubleOn">Double Click</sys:String>
+    <sys:String x:Key="MouseDoubleOff">Single Click</sys:String>
+    <sys:String x:Key="LambdaFunction1">Change Theme</sys:String>
+    <sys:String x:Key="LambdaFunction2">Switch Dark/Light Mode</sys:String>
+    <sys:String x:Key="LambdaFunction3">Switch to the Vice-Keys</sys:String>
+    <sys:String x:Key="LambdaFunction4">Switch to instant click</sys:String>
+    <sys:String x:Key="LambdaFunction5">Open this window</sys:String>
+    
     <!--按键设置窗口-->
     <sys:String x:Key="KeySettings">Key Settings</sys:String>
     <sys:String x:Key="KeyTitle">Title</sys:String>
@@ -18,4 +39,12 @@
     <sys:String x:Key="ThemeSuccessColor">Success Indicator Color</sys:String>
     <sys:String x:Key="ThemeWarningColor">Warning Indicator Color</sys:String>
     <sys:String x:Key="ThemeErrorColor">Error Indicator Color</sys:String>
+
+    <!--主题-->
+    <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
+    <sys:String x:Key="ThemeCyberpunk">Cyberpunk</sys:String>
+
+    <!--其他-->
+    <sys:String x:Key="On">On</sys:String>
+    <sys:String x:Key="Off">Off</sys:String>
 </ResourceDictionary>

@@ -80,8 +80,8 @@
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <UniformGrid Grid.Row="2" Grid.Column="1">
-                        <RadioButton GroupName="DarkMode" Content="{DynamicResource DarkModeOn}"/>
-                        <RadioButton GroupName="DarkMode" Content="{DynamicResource DarkModeOff}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}"/>
                     </UniformGrid>
 
                     <!--键盘模式设定-->
@@ -89,8 +89,8 @@
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <UniformGrid Grid.Row="3" Grid.Column="1">
-                        <RadioButton GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOn}"/>
-                        <RadioButton GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOff}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOn}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOff}"/>
                     </UniformGrid>
 
                     <!--鼠标模式设定-->
@@ -98,8 +98,8 @@
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <UniformGrid Grid.Row="4" Grid.Column="1">
-                        <RadioButton GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOn}"/>
-                        <RadioButton GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOff}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOn}"/>
+                        <RadioButton Style="{DynamicResource DefaultRadioButton}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOff}"/>
                     </UniformGrid>
 
                     <!--Lambda功能设定-->
