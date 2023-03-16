@@ -1,0 +1,18 @@
+﻿<Window x:Class="LambdaLauncher.Option"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LambdaLauncher"
+        mc:Ignorable="d"
+        Title="Option" Height="450" Width="800"
+        Style="{DynamicResource WindowNormal}">
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="337,148,0,0" VerticalAlignment="Top" Click="ChangeLanguage"/>
+        <ComboBox HorizontalAlignment="Left" Margin="158,148,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem IsSelected="True">中文</ComboBoxItem>
+            <ComboBoxItem>英语</ComboBoxItem>
+        </ComboBox>
+        <Label Content="{DynamicResource Select}" HorizontalAlignment="Left" Margin="158,199,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

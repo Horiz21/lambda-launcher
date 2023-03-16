@@ -4,18 +4,39 @@ using LambdaLauncher.Model;
 using System.Linq;
 using System.Windows;
 using System;
+using System.Diagnostics;
 
 namespace LambdaLauncher.Utility {
 	public static class Data {
-		private static readonly string csvpath = @"C:\Users\Frankie\source\repos\LambdaLauncher\Resource\testfile.csv";
+		private static readonly string csvpath = @"..\..\..\Settings\setting.lls";
+		// 按键信息
 		private static string[] keyCsvDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
 		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
+
+		// 设置信息
+		public static string Language { get; set; }
+		public static string Theme { get; set; }
+		public static bool DarkMode { get; set; }
+		public static bool KeyboardDouble { get; set; }
+		public static bool MouseDouble { get; set; }
+		public static int LambdaFunction { get; set; }
 
 		/// <summary>
 		/// 从固定的位置读取数据，产生单行信息和对象信息
 		/// </summary>
 		public static void Read() {
 			keyCsvDatas = File.ReadAllLines(csvpath);
+
+			// 写入设置相关信息
+			string[] settings = keyCsvDatas[0].Split(new char[] { ',', '&' });
+			Language = settings[0];
+			Theme = settings[1];
+			DarkMode = settings[2] == "1";
+			KeyboardDouble = settings[3] == "1";
+			MouseDouble = settings[4] == "1";
+			LambdaFunction = int.Parse(settings[5]);
+
+			// 写入字母的相关信息
 			for (int i = 1; i < 28; ++i) {
 				// 根据逗号，分割出四个子串
 				string[] strs = keyCsvDatas[i].Split(',');
