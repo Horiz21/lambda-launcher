@@ -24,7 +24,7 @@ namespace LambdaLauncher.Utility {
 		/// <summary>
 		/// 从固定的位置读取数据，产生单行信息和对象信息
 		/// </summary>
-		public static void Read() {
+		public static void LoadData() {
 			keyCsvDatas = File.ReadAllLines(csvpath);
 
 			// 写入设置相关信息
@@ -35,6 +35,8 @@ namespace LambdaLauncher.Utility {
 			KeyboardDouble = settings[3] == "1";
 			MouseDouble = settings[4] == "1";
 			LambdaFunction = int.Parse(settings[5]);
+
+			LoadLlsSettings();
 
 			// 写入字母的相关信息
 			for (int i = 1; i < 28; ++i) {
@@ -50,6 +52,15 @@ namespace LambdaLauncher.Utility {
 					Icon = strs[3]
 				};
 			}
+		}
+
+		/// <summary>
+		/// 加载.lls文件中的设置项
+		/// </summary>
+		public static void LoadLlsSettings() {
+			string head = @"pack://application:,,,/";
+			App.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Data.Language + ".xaml");
+			App.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.Theme + ".xaml");
 		}
 
 		/// <summary>

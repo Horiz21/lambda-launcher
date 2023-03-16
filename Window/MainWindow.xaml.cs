@@ -18,7 +18,7 @@ namespace LambdaLauncher {
 		}
 
 		public MainWindow() {
-			Data.Read();
+			Data.LoadData();
 
 			InitializeComponent();
 
