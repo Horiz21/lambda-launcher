@@ -1,7 +1,7 @@
 ﻿<Application x:Class="LambdaLauncher.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Window/MainWindow.xaml">
+             StartupUri="Component/ThemeDisplayer.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="/Resource/Themes/ThemeSpring.xaml"/>
                 <ResourceDictionary Source="/Resource/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Resource/Styles/Windows.xaml"/>
+                <ResourceDictionary Source="/Resource/Styles/Borders.xaml"/>
+                <ResourceDictionary Source="/Language/zh_cn.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="LambdaLauncher.Component.ThemeDisplayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LambdaLauncher.Component"
+        mc:Ignorable="d"
+        Height="152" Width="128"
+        Background="Transparent"
+        ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None"
+        >
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="keyTitle"
+                   Padding="0"
+                   Content="Theme"
+                   VerticalContentAlignment="Bottom"
+                   HorizontalContentAlignment="Center"
+                   FontFamily="Noto Sans SC"
+                   Foreground="{DynamicResource DarkColorBrush}"/>
+        <Grid Grid.Row="1"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--首行显示主题色、强调色-->
+            <Border x:Name="borderPrimaryColor" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="8,0,0,0"
+                    ToolTip="{DynamicResource ThemePrimaryColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource PrimaryColorBrush}"/>
+            <Border x:Name="borderAccentColor" Grid.Row="0" Grid.Column="2" CornerRadius="0,8,0,0"
+                    ToolTip="{DynamicResource ThemeAccentColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource AccentColorBrush}"/>
+            <!--次行显示背景色、文字色-->
+            <Border x:Name="borderLightColor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                    ToolTip="{DynamicResource ThemeLightColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource LightColorBrush}"/>
+            <Border x:Name="borderDarkColor" Grid.Row="1" Grid.Column="2"
+                    ToolTip="{DynamicResource ThemeDarkColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource DarkColorBrush}"/>
+            <Border x:Name="borderSuccessColor" Grid.Row="2" Grid.Column="0" CornerRadius="0,0,0,8"
+                    ToolTip="{DynamicResource ThemeSuccessColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource SuccessColorBrush}"/>
+            <Border x:Name="borderWarningColor" Grid.Row="2" Grid.Column="1"
+                    ToolTip="{DynamicResource ThemeWarningColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource WarningColorBrush}"/>
+            <Border x:Name="borderErrorColor" Grid.Row="2" Grid.Column="2" CornerRadius="0,0,8,0"
+                    ToolTip="{DynamicResource ThemeErrorColor}" Style="{StaticResource BorderThemeDisplay}"
+                    Background="{DynamicResource ErrorColorBrush}"/>
+        </Grid>
+        <Rectangle HorizontalAlignment="Left" Height="331" Margin="186,93,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="156"/>
+    </Grid>
+</Window>
