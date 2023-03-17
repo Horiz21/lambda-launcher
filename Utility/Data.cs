@@ -87,7 +87,7 @@ namespace LambdaLauncher.Utility {
 			Data.KeyboardDouble = KeyboardDouble;
 			Data.MouseDouble = MouseDouble;
 			Data.LambdaFunction = LambdaFunction;
-			keyLlsDatas[27] = Data.Language + "\t" + Data.Theme + "\t" + (DarkMode ? "0" : "1") + "\t" + (KeyboardDouble ? "0" : "1") + "\t" + (MouseDouble ? "0" : "1") + "\t" + LambdaFunction;
+			keyLlsDatas[27] = Data.Language + "\t" + Data.Theme + "\t" + (DarkMode ? "1" : "0") + "\t" + (KeyboardDouble ? "0" : "1") + "\t" + (MouseDouble ? "0" : "1") + "\t" + LambdaFunction;
 			File.WriteAllLines(LlsPath, keyLlsDatas);
 		}
 

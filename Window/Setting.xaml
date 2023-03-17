@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LambdaLauncher"
         mc:Ignorable="d"
         Title="Setting" Height="290" Width="384"
-        Style="{DynamicResource WindowNormal}">
+        Style="{DynamicResource WindowNormal}"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
