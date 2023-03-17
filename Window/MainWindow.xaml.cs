@@ -2,6 +2,7 @@
 using LambdaLauncher.Utility;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
@@ -68,6 +69,23 @@ namespace LambdaLauncher {
 					currentActivedKey = letter;
 				}
 			}
+		}
+
+		private void WindowContextMenu(object sender, MouseButtonEventArgs e) {
+			ContextMenu contextMenu = new ContextMenu();
+
+			MenuItem settingMenuItem = new MenuItem();
+			settingMenuItem.Header = "设置";
+			settingMenuItem.Click += LauncherSettings;
+			contextMenu.Items.Add(settingMenuItem);
+
+			ContextMenuService.SetContextMenu(this, contextMenu);
+		}
+
+		private void LauncherSettings(object sender, RoutedEventArgs e) {
+			Setting childWindow = new Setting();
+			childWindow.ShowDialog();
+			//Refresh();
 		}
 	}
 }

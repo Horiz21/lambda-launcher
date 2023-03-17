@@ -43,8 +43,8 @@
     <sys:String x:Key="ThemeErrorColor">错误指示色</sys:String>
 
     <!--主题-->
-    <sys:String x:Key="ThemeBamboo">竹青</sys:String>
-    <sys:String x:Key="ThemeCyberpunk">赛博朋克</sys:String>
+    <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
+    <sys:String x:Key="ThemeCyberpunk">CyberPunk</sys:String>
 
     <!--其他-->
     <sys:String x:Key="On">开启</sys:String>

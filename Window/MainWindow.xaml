@@ -8,7 +8,8 @@
         Height="520" Width="1160"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource WindowNormal}"
-        KeyUp="KeyUpEvent" KeyDown="KeyDownEvent">
+        KeyUp="KeyUpEvent" KeyDown="KeyDownEvent"
+        MouseRightButtonUp="WindowContextMenu">
     <!--用于承载所有页面元素的总Gird-->
     <Grid>
         <!--用于实现页面拖拽的顶栏-->

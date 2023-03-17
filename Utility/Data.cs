@@ -5,12 +5,27 @@ using System.Linq;
 using System.Windows;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace LambdaLauncher.Utility {
 	public static class Data {
-		private static readonly string csvpath = @"..\..\..\Settings\setting.lls";
+		// 语言字典
+		public static Dictionary<string, string> LanguageDictionary = new Dictionary<string, string> {
+			{"中文","zh_cn"},
+			{"English","en_us"},
+		};
+
+		// 主题字典
+		public static Dictionary<string, string> ThemeDictionary = new Dictionary<string, string> {
+			{"Bamboo","bamboo"},
+			{"Cyberpunk","cyberpunk"},
+		};
+
+		// 设置文件（.lls)
+		private static readonly string LlsPath = @"..\..\..\Settings\setting.lls";
+		
 		// 按键信息
-		private static string[] keyCsvDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
+		private static string[] keyLlsDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
 		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
 
 		// 设置信息
@@ -25,10 +40,10 @@ namespace LambdaLauncher.Utility {
 		/// 从固定的位置读取数据，产生单行信息和对象信息
 		/// </summary>
 		public static void LoadData() {
-			keyCsvDatas = File.ReadAllLines(csvpath);
+			keyLlsDatas = File.ReadAllLines(LlsPath);
 
-			// 写入设置相关信息
-			string[] settings = keyCsvDatas[0].Split(new char[] { ',', '&' });
+			// 读出设置相关信息
+			string[] settings = keyLlsDatas[27].Split('\t');
 			Language = settings[0];
 			Theme = settings[1];
 			DarkMode = settings[2] == "1";
@@ -39,9 +54,9 @@ namespace LambdaLauncher.Utility {
 			LoadLlsSettings();
 
 			// 写入字母的相关信息
-			for (int i = 1; i < 28; ++i) {
+			for (int i = 0; i < 27; ++i) {
 				// 根据逗号，分割出四个子串
-				string[] strs = keyCsvDatas[i].Split(',');
+				string[] strs = keyLlsDatas[i].Split('\t');
 
 				// 根据子串新建keyData
 				char letter = char.Parse(strs[0]);
@@ -59,8 +74,20 @@ namespace LambdaLauncher.Utility {
 		/// </summary>
 		public static void LoadLlsSettings() {
 			string head = @"pack://application:,,,/";
-			App.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Data.Language + ".xaml");
-			App.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.Theme + ".xaml");
+			Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Language + ".xaml");
+			Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Theme + ".xaml");
+		}
+
+		public static void SaveLlsSettings(string Language, string Theme, bool DarkMode, bool KeyboardDouble, bool MouseDouble, int LambdaFunction) {
+			// 更新本地数据
+			if(Language!=null) Data.Language = LanguageDictionary[Language];
+			if(Theme!=null) Data.Theme = ThemeDictionary[Theme];
+			Data.DarkMode = DarkMode;
+			Data.KeyboardDouble = KeyboardDouble;
+			Data.MouseDouble = MouseDouble;
+			Data.LambdaFunction = LambdaFunction;
+			keyLlsDatas[27] = Language + "\t" + Theme + "\t" + (DarkMode ? "0" : "1") + "\t" + (KeyboardDouble ? "0" : "1") + "\t" + (MouseDouble ? "0" : "1") + "\t" + LambdaFunction;
+			File.WriteAllLines(LlsPath, keyLlsDatas);
 		}
 
 		/// <summary>
@@ -68,8 +95,8 @@ namespace LambdaLauncher.Utility {
 		/// </summary>
 		/// <param name="keyData">含修改后信息的KeyData对象</param>
 		public static void ModifyAndWrite(KeyData keyData) {
-			keyCsvDatas[keyData.Letter - 'A' + 1] = keyData.GetCsvFormatData();
-			File.WriteAllLines(csvpath, keyCsvDatas);
+			keyLlsDatas[keyData.Letter - 'A' + 1] = keyData.GetLlsFormatData();
+			File.WriteAllLines(LlsPath, keyLlsDatas);
 		}
 	}
 }

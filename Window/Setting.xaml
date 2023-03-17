@@ -64,7 +64,7 @@
                     <ComboBox x:Name="boxLanguage"
                               Grid.Row="0" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeLanguage">
-                        <ComboBoxItem IsSelected="True">中文(中国)</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">中文</ComboBoxItem>
                         <ComboBoxItem>English</ComboBoxItem>
                     </ComboBox>
 
@@ -74,7 +74,7 @@
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}">
                         <ComboBoxItem IsSelected="True" Content="{DynamicResource ThemeBamboo}"/>
-                        <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}"/>
+                        <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}" Tag=""/>
                     </ComboBox>
 
                     <!--夜间模式设定-->
@@ -140,7 +140,7 @@
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
                                 Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1"
-                                Click="ChangeLanguage"/>
+                                Click="Confirm"/>
                     </Grid>
                 </Grid>
             </Grid>
