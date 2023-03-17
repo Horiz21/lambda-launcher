@@ -20,7 +20,7 @@
                    VerticalContentAlignment="Bottom"
                    HorizontalContentAlignment="Center"
                    FontFamily="Noto Sans SC"
-                   Foreground="{DynamicResource DarkColorBrush}"/>
+                   Foreground="{DynamicResource Foreground}"/>
         <Grid Grid.Row="1"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -43,10 +43,10 @@
             <!--次行显示背景色、文字色-->
             <Border x:Name="borderLightColor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                     ToolTip="{DynamicResource ThemeLightColor}" Style="{StaticResource BorderThemeDisplay}"
-                    Background="{DynamicResource LightColorBrush}"/>
+                    Background="{DynamicResource Background}"/>
             <Border x:Name="borderDarkColor" Grid.Row="1" Grid.Column="2"
                     ToolTip="{DynamicResource ThemeDarkColor}" Style="{StaticResource BorderThemeDisplay}"
-                    Background="{DynamicResource DarkColorBrush}"/>
+                    Background="{DynamicResource Foreground}"/>
             <Border x:Name="borderSuccessColor" Grid.Row="2" Grid.Column="0" CornerRadius="0,0,0,8"
                     ToolTip="{DynamicResource ThemeSuccessColor}" Style="{StaticResource BorderThemeDisplay}"
                     Background="{DynamicResource SuccessColorBrush}"/>

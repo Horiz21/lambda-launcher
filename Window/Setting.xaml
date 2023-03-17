@@ -11,7 +11,7 @@
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
               Margin="2.5" MouseLeftButtonDown="DragWindow"
-              Background="{DynamicResource LightColorBrush}"/>
+              Background="{DynamicResource Background}"/>
         <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">
             <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
                    FontFamily="Noto Sans SC Black"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Left"
-                   Foreground="{DynamicResource DarkColorBrush}"/>
+                   Foreground="{DynamicResource Foreground}"/>
                 <Button Content="×" Height="24" Width="24"
                     HorizontalAlignment="Left" Margin="204,4,0,4"
                     FontSize="24" FontFamily="Noto Sans SC Black"
@@ -72,9 +72,11 @@
                     <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0"
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}">
+                    <ComboBox x:Name="boxTheme"
+                              Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
+                              SelectionChanged="TempChangeTheme">
                         <ComboBoxItem IsSelected="True" Content="{DynamicResource ThemeBamboo}"/>
-                        <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}" Tag=""/>
+                        <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}"/>
                     </ComboBox>
 
                     <!--夜间模式设定-->

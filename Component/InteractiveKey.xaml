@@ -58,7 +58,7 @@
                    HorizontalContentAlignment="Center"
                    FontSize="16" Width="24" Height="24"
                    FontFamily="Rounded Mplus 1c Black"
-                   Foreground="{DynamicResource DarkColorBrush}"
+                   Foreground="{DynamicResource Foreground}"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="Left"/>
                 <Label x:Name="keyUnderline"
@@ -68,7 +68,7 @@
                    HorizontalContentAlignment="Center"
                    FontSize="16" Width="24" Height="24"
                    FontFamily="Rounded Mplus 1c Black"
-                   Foreground="{DynamicResource DarkColorBrush}"/>
+                   Foreground="{DynamicResource Foreground}"/>
             </Grid>
         </Button>
 
@@ -81,6 +81,6 @@
                VerticalContentAlignment="Top"
                HorizontalContentAlignment="Center"
                FontFamily="Noto Sans SC"
-               Foreground="{DynamicResource DarkColorBrush}"/>
+               Foreground="{DynamicResource Foreground}"/>
     </Grid>
 </UserControl>

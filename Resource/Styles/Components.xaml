@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--确认按钮-->
     <Style x:Key="ButtonConfirm" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Noto Sans SC"/>
 
@@ -39,7 +39,7 @@
 
     <!--取消按钮-->
     <Style x:Key="ButtonCancel" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Noto Sans SC"/>
 
@@ -76,7 +76,7 @@
 
     <!--普通按钮-->
     <Style x:Key="ButtonNormal" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Noto Sans SC"/>
 
@@ -113,7 +113,7 @@
 
     <!--下拉框-->
     <Style x:Key="ComboBoxNormal" TargetType="ComboBox">
-        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Noto Sans SC"/>
@@ -124,7 +124,7 @@
 
     <!--单选框-->
     <Style x:Key="RadioButtonNormal" TargetType="RadioButton">
-        <Setter Property="Foreground" Value="{DynamicResource DarkColorBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">

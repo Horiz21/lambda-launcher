@@ -41,5 +41,16 @@ namespace LambdaLauncher {
 				}
 			}
 		}
+
+		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
+			int index = boxTheme.SelectedValue.ToString().IndexOf(' ');
+			if (index != -1) {
+				Theme = boxTheme.SelectedValue.ToString().Substring(index + 1);
+				if (Theme != string.Empty) {
+					string head = @"pack://application:,,,/";
+					Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.ThemeDictionary[Theme] + ".xaml");
+				}
+			}
+		}
 	}
 }

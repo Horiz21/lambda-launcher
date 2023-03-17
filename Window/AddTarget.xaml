@@ -13,7 +13,7 @@
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
               Margin="2.5" MouseLeftButtonDown="DragWindow"
-              Background="{DynamicResource LightColorBrush}"/>
+              Background="{DynamicResource Background}"/>
 
         <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">
@@ -33,7 +33,7 @@
                    FontFamily="Noto Sans SC Black"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Left"
-                   Foreground="{DynamicResource DarkColorBrush}"/>
+                   Foreground="{DynamicResource Foreground}"/>
                 <Button Content="×" Height="24" Width="24"
                     HorizontalAlignment="Right" Margin="4"
                     FontSize="24" FontFamily="Noto Sans SC Black"

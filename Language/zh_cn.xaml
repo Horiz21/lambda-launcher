@@ -36,7 +36,7 @@
     <!--主题颜色-->
     <sys:String x:Key="ThemePrimaryColor">主题色</sys:String>
     <sys:String x:Key="ThemeAccentColor">强调色</sys:String>
-    <sys:String x:Key="ThemeDarkColor">文字色</sys:String>
+    <sys:String x:Key="ThemeDarkColor">前景色</sys:String>
     <sys:String x:Key="ThemeLightColor">背景色</sys:String>
     <sys:String x:Key="ThemeSuccessColor">成功指示色</sys:String>
     <sys:String x:Key="ThemeWarningColor">警告指示色</sys:String>
@@ -44,7 +44,7 @@
 
     <!--主题-->
     <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
-    <sys:String x:Key="ThemeCyberpunk">CyberPunk</sys:String>
+    <sys:String x:Key="ThemeCyberpunk">Cyberpunk</sys:String>
 
     <!--其他-->
     <sys:String x:Key="On">开启</sys:String>

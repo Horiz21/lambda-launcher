@@ -14,7 +14,7 @@
     <Grid>
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
-              Background="{DynamicResource LightColorBrush}" Height="94"
+              Background="{DynamicResource Background}" Height="94"
               Margin="2.5" MouseLeftButtonDown="DragWindow"/>
         <!--用于存放可显式页面元素的四行一列Grid-->
         <Grid Margin="40,30">
@@ -34,7 +34,7 @@
                    FontFamily="Rounded Mplus 1c Black"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Left"
-                   Foreground="{DynamicResource DarkColorBrush}"/>
+                   Foreground="{DynamicResource Foreground}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="−" Height="48" Width="48"
                     HorizontalAlignment="Right" Margin="8"
