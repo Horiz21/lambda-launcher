@@ -40,6 +40,7 @@ namespace LambdaLauncher {
 		private void Confirm(object sender, RoutedEventArgs e) {
 			Data.SaveLlsSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
 			Data.LoadLlsSettings();
+			Close();
 		}
 
 		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
@@ -67,8 +68,14 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) => Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/DarkMode.xaml");
+		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) {
+			DarkMode = true;
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/DarkMode.xaml");
+		}
 
-		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) => Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
+		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) {
+			DarkMode = false;
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
+		}
 	}
 }
