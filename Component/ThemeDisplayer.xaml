@@ -57,6 +57,5 @@
                     ToolTip="{DynamicResource ThemeErrorColor}" Style="{StaticResource BorderThemeDisplay}"
                     Background="{DynamicResource ErrorColorBrush}"/>
         </Grid>
-        <Rectangle HorizontalAlignment="Left" Height="331" Margin="186,93,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="156"/>
     </Grid>
 </Window>
