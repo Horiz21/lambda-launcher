@@ -23,7 +23,7 @@ namespace LambdaLauncher.Utility {
 
 		// 设置文件（.lls)
 		private static readonly string LlsPath = @"..\..\..\Settings\setting.lls";
-		
+
 		// 按键信息
 		private static string[] keyLlsDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
 		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
@@ -76,12 +76,13 @@ namespace LambdaLauncher.Utility {
 			string head = @"pack://application:,,,/";
 			Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Language + ".xaml");
 			Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Theme + ".xaml");
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
 		}
 
 		public static void SaveLlsSettings(string Language, string Theme, bool DarkMode, bool KeyboardDouble, bool MouseDouble, int LambdaFunction) {
 			// 更新本地数据
-			if(Language!=null) Data.Language = LanguageDictionary[Language];
-			if(Theme!=null) Data.Theme = ThemeDictionary[Theme];
+			if (Language != null) Data.Language = LanguageDictionary[Language];
+			if (Theme != null) Data.Theme = ThemeDictionary[Theme];
 			Data.DarkMode = DarkMode;
 			Data.KeyboardDouble = KeyboardDouble;
 			Data.MouseDouble = MouseDouble;
