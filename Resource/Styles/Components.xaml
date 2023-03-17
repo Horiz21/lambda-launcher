@@ -34,11 +34,11 @@
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Success2ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessLightColorBrush}"/>
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Success3ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessDarkColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -71,11 +71,11 @@
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Error2ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorLightColorBrush}"/>
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Error3ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorDarkColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -90,7 +90,7 @@
         <Setter Property="FontFamily" Value="Noto Sans SC"/>
 
         <!--静置背景颜色-->
-        <Setter Property="Background" Value="{DynamicResource GrayColorBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayLightColorBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -108,11 +108,11 @@
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Gray2ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayColorBrush}"/>
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Gray3ColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayDarkColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
