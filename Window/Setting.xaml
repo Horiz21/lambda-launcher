@@ -58,9 +58,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--语言设定-->
-                    <Label Content="{DynamicResource Language}" Grid.Row="0" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource Language}" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox x:Name="boxLanguage"
                               Grid.Row="0" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeLanguage">
@@ -69,9 +67,7 @@
                     </ComboBox>
 
                     <!--主题设定-->
-                    <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox x:Name="boxTheme"
                               Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeTheme">
@@ -80,48 +76,46 @@
                     </ComboBox>
 
                     <!--夜间模式设定-->
-                    <Label Content="{DynamicResource DarkMode}" Grid.Row="2" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource DarkMode}" Grid.Row="2" Grid.Column="0"  Style="{DynamicResource LabelRight}"/>
                     <Grid Grid.Row="2" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}"/>
-                        <RadioButton Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}"/>
+                        <RadioButton x:Name="DarkModeOn"
+                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}" Checked="TempChangeDarkModeOn"/>
+                        <RadioButton x:Name="DarkModeOff"
+                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}" Checked="TempChangeDarkModeOff"/>
                     </Grid>
 
                     <!--键盘模式设定-->
-                    <Label Content="{DynamicResource KeyboardDouble}" Grid.Row="3" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource KeyboardDouble}" Grid.Row="3" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <Grid Grid.Row="3" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOn}"/>
-                        <RadioButton Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOff}"/>
+                        <RadioButton x:Name="KeyboardDoubleOn"
+                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOn}"/>
+                        <RadioButton x:Name="KeyboardDoubleOff"
+                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOff}"/>
                     </Grid>
 
                     <!--鼠标模式设定-->
-                    <Label Content="{DynamicResource MouseDouble}" Grid.Row="4" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource MouseDouble}" Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <Grid Grid.Row="4" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOn}"/>
-                        <RadioButton Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOff}"/>
+                        <RadioButton x:Name="MouseDoubleOn"
+                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOn}"/>
+                        <RadioButton x:Name="MouseDoubleOff"
+                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOff}"/>
                     </Grid>
 
                     <!--Lambda功能设定-->
-                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}">
                         <ComboBoxItem Content="{DynamicResource LambdaFunction1}"/>
                         <ComboBoxItem Content="{DynamicResource LambdaFunction2}"/>

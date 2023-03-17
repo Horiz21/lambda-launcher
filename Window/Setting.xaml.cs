@@ -15,8 +15,23 @@ namespace LambdaLauncher {
 		private bool MouseDouble;
 		private int LambdaFunction;
 
+		// 一个工具而已，无需在意
+		string head = @"pack://application:,,,/";
+
 		public Setting() {
+			DarkMode = Data.DarkMode;
+			KeyboardDouble = Data.KeyboardDouble;
+			MouseDouble = Data.MouseDouble;
+			LambdaFunction = Data.LambdaFunction;
 			InitializeComponent();
+
+			// 在设置页面显示当前设置
+			if (DarkMode == true) DarkModeOn.IsChecked = true;
+			else DarkModeOff.IsChecked = true;
+			if(KeyboardDouble==true) KeyboardDoubleOn.IsChecked=true;
+			else KeyboardDoubleOff.IsChecked=true;
+			if (MouseDouble == true) MouseDoubleOn.IsChecked = true;
+			else MouseDoubleOff.IsChecked = true;
 		}
 
 		/// <summary>
@@ -36,7 +51,6 @@ namespace LambdaLauncher {
 			if (index != -1) {
 				Language = boxLanguage.SelectedValue.ToString().Substring(index+1);
 				if (Language != string.Empty) {
-					string head = @"pack://application:,,,/";
 					Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Data.LanguageDictionary[Language] + ".xaml");
 				}
 			}
@@ -47,10 +61,13 @@ namespace LambdaLauncher {
 			if (index != -1) {
 				Theme = boxTheme.SelectedValue.ToString().Substring(index + 1);
 				if (Theme != string.Empty) {
-					string head = @"pack://application:,,,/";
 					Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.ThemeDictionary[Theme] + ".xaml");
 				}
 			}
 		}
+
+		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) => Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/DarkMode.xaml");
+		
+		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) => Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
 	}
 }
