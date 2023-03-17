@@ -44,6 +44,7 @@
     <!--主题-->
     <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
     <sys:String x:Key="ThemeCyberpunk">Cyberpunk</sys:String>
+    <sys:String x:Key="ThemeDoodle">Doodle</sys:String>
 
     <!--其他-->
     <sys:String x:Key="On">On</sys:String>

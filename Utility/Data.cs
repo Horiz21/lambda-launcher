@@ -19,6 +19,7 @@ namespace LambdaLauncher.Utility {
 		public static Dictionary<string, string> ThemeDictionary = new Dictionary<string, string> {
 			{"Bamboo","bamboo"},
 			{"Cyberpunk","cyberpunk"},
+			{"Doodle","doodle"},
 		};
 
 		// 设置文件（.lls)

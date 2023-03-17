@@ -74,6 +74,7 @@
                               SelectionChanged="TempChangeTheme">
                         <ComboBoxItem IsSelected="True" Content="{DynamicResource ThemeBamboo}"/>
                         <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}"/>
+                        <ComboBoxItem Content="{DynamicResource ThemeDoodle}"/>
                     </ComboBox>
 
                     <!--夜间模式设定-->
