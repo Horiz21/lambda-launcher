@@ -30,6 +30,7 @@
     <sys:String x:Key="Select">Select</sys:String>
     <sys:String x:Key="Confirm">Confirm</sys:String>
     <sys:String x:Key="Clear">Clear</sys:String>
+    <sys:String x:Key="Cancle">Cancle</sys:String>
     
     <!--主题窗口-->
     <sys:String x:Key="ThemePrimaryColor">Primary Color</sys:String>

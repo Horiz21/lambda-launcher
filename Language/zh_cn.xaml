@@ -31,6 +31,7 @@
     <sys:String x:Key="Select">选择</sys:String>
     <sys:String x:Key="Confirm">确认</sys:String>
     <sys:String x:Key="Clear">清空</sys:String>
+    <sys:String x:Key="Cancle">取消</sys:String>
     
     <!--主题颜色-->
     <sys:String x:Key="ThemePrimaryColor">主题色</sys:String>
