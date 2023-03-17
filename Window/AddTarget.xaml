@@ -26,15 +26,16 @@
             <Grid x:Name="gridPanel">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="32"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="{DynamicResource KeySettings}"
                    FontSize="16"
                    FontFamily="Noto Sans SC Black"
                    VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
+                   HorizontalAlignment="Stretch"
                    Foreground="{DynamicResource Foreground}"/>
-                <Button Content="×" Height="24" Width="24"
+                <Button Grid.Column="1"
+                    Content="×" Height="24" Width="24"
                     HorizontalAlignment="Right" Margin="4"
                     FontSize="24" FontFamily="Noto Sans SC Black"
                     Background="Transparent"
