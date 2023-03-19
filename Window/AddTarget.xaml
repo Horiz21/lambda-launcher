@@ -33,7 +33,8 @@
                    FontFamily="Noto Sans SC Black"
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Stretch"
-                   Foreground="{DynamicResource Foreground}"/>
+                   Foreground="{DynamicResource Foreground}"
+                   MouseLeftButtonDown="DragWindow"/>
                 <Button Grid.Column="1"
                     Content="×" Height="24" Width="24"
                     HorizontalAlignment="Right" Margin="4"

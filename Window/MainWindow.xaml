@@ -33,8 +33,9 @@
                    FontSize="32"
                    FontFamily="Rounded Mplus 1c Black"
                    VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Foreground="{DynamicResource Foreground}"/>
+                   HorizontalAlignment="Stretch"
+                   Foreground="{DynamicResource Foreground}"
+                   MouseLeftButtonDown="DragWindow"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="−" Height="48" Width="48"
                     HorizontalAlignment="Right" Margin="8"

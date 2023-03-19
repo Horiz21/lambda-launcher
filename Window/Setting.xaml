@@ -27,17 +27,18 @@
                     <ColumnDefinition Width="32"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="{DynamicResource Settings}"
-                   FontSize="16"
-                   FontFamily="Noto Sans SC Black"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Stretch"
-                   Foreground="{DynamicResource Foreground}"/>
+                       FontSize="16"
+                       FontFamily="Noto Sans SC Black"
+                       VerticalContentAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Foreground="{DynamicResource Foreground}"
+                       MouseLeftButtonDown="DragWindow"/>
                 <Button Content="×" Height="24" Width="24"
-                    HorizontalAlignment="Left" Margin="4"
-                    FontSize="24" FontFamily="Noto Sans SC Black"
-                    Background="Transparent"
-                    Style="{DynamicResource ButtonCancel}"
-                    Click="CloseWindow" Grid.Column="1"/>
+                        HorizontalAlignment="Left" Margin="4"
+                        FontSize="24" FontFamily="Noto Sans SC Black"
+                        Background="Transparent"
+                        Style="{DynamicResource ButtonCancel}"
+                        Click="CloseWindow" Grid.Column="1"/>
             </Grid>
 
             <!--第二行为显示和编辑区域-->
