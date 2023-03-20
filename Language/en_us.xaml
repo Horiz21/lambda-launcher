@@ -26,12 +26,16 @@
     <sys:String x:Key="KeySettings">Key Settings</sys:String>
     <sys:String x:Key="KeyTitle">Title</sys:String>
     <sys:String x:Key="KeyIcon">Icon</sys:String>
-    <sys:String x:Key="KeyTarget">Target</sys:String>
     <sys:String x:Key="Select">Select</sys:String>
     <sys:String x:Key="Confirm">Confirm</sys:String>
     <sys:String x:Key="Clear">Clear</sys:String>
     <sys:String x:Key="Cancle">Cancle</sys:String>
-    
+
+    <sys:String x:Key="AddTarget">Target</sys:String>
+    <sys:String x:Key="AddFolder">Folder</sys:String>
+    <sys:String x:Key="AddWebsite">Website</sys:String>
+    <sys:String x:Key="PureCommand">Command</sys:String>
+
     <!--主题窗口-->
     <sys:String x:Key="ThemePrimaryColor">Primary Color</sys:String>
     <sys:String x:Key="ThemeAccentColor">Accent Color</sys:String>

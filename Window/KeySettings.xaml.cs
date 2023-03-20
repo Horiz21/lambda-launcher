@@ -1,14 +1,16 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace LambdaLauncher {
-	public partial class AddTarget : Window {
+	public partial class KeySettings : Window {
 		private InteractiveKey interactiveKey;
 		private KeyData keyData; // 本地KeyData变量
-		public AddTarget(KeyData keyData) {
+		public KeySettings(char Letter) {
 			// 为局部变量赋值
-			this.keyData = keyData;
+			this.keyData = Data.keyDatas[Letter-'A'];
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
@@ -19,7 +21,7 @@ namespace LambdaLauncher {
 			// 向输入框插入目前已有信息
 			textTitle.Text = keyData.Title;
 			textIcon.Text = keyData.Icon;
-			textTarget.Text = keyData.Command;
+			textLink.Text = keyData.Command;
 		}
 
 		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
@@ -52,7 +54,7 @@ namespace LambdaLauncher {
 				Filter = "Target|*.*"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				textTarget.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
+				textLink.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
 			}
 		}
 
@@ -60,7 +62,7 @@ namespace LambdaLauncher {
 			// 清空信息
 			textTitle.Clear();
 			textIcon.Clear();
-			textTarget.Clear();
+			textLink.Clear();
 
 			// 清空左侧显示区
 			interactiveKey.Clear();
@@ -69,7 +71,7 @@ namespace LambdaLauncher {
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {
 			// 根据填充项修改信息
 			keyData.Title = textTitle.Text;
-			keyData.Command = textTarget.Text;
+			keyData.Command = textLink.Text;
 			keyData.Icon = textIcon.Text;
 
 			// 将自己修改后的信息保存回csv文件
@@ -77,6 +79,30 @@ namespace LambdaLauncher {
 
 			// 关闭当前页面
 			Close();
+		}
+
+		private void CheckedAddTarget(object sender, RoutedEventArgs e) {
+			labelLink.SetResourceReference(ContentProperty, "AddTarget");
+			textLink.SetValue(Grid.ColumnSpanProperty, 1);
+			linkButton.Visibility = Visibility.Visible;
+		}
+
+		private void CheckedAddFolder(object sender, RoutedEventArgs e) {
+			labelLink.SetResourceReference(ContentProperty, "AddFolder");
+			textLink.SetValue(Grid.ColumnSpanProperty, 1);
+			linkButton.Visibility = Visibility.Visible;
+		}
+
+		private void CheckedAddWebsite(object sender, RoutedEventArgs e) {
+			labelLink.SetResourceReference(ContentProperty, "AddWebsite");
+			textLink.SetValue(Grid.ColumnSpanProperty, 2);
+			linkButton.Visibility = Visibility.Collapsed;
+		}
+
+		private void CheckedPureCommand(object sender, RoutedEventArgs e) {
+			labelLink.SetResourceReference(ContentProperty, "PureCommand");
+			textLink.SetValue(Grid.ColumnSpanProperty, 2);
+			linkButton.Visibility = Visibility.Collapsed;
 		}
 	}
 }

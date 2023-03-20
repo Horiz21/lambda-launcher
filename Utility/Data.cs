@@ -56,16 +56,17 @@ namespace LambdaLauncher.Utility {
 
 			// 写入字母的相关信息
 			for (int i = 0; i < 27; ++i) {
-				// 根据逗号，分割出四个子串
+				// 根据制表符，分割出四个子串
 				string[] strs = keyLlsDatas[i].Split('\t');
 
 				// 根据子串新建keyData
 				char letter = char.Parse(strs[0]);
 				keyDatas[letter - 'A'] = new KeyData {
 					Letter = letter,
-					Title = strs[1],
-					Command = strs[2],
-					Icon = strs[3]
+					LinkType = int.Parse(strs[1]),
+					Title = strs[2],
+					Command = strs[3],
+					Icon = strs[4]
 				};
 			}
 		}

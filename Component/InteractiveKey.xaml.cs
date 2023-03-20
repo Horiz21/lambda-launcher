@@ -40,7 +40,7 @@ namespace LambdaLauncher {
 		}
 
 		private void AddTarget(object sender, RoutedEventArgs e) {
-			AddTarget childWindow = new AddTarget(keyData);
+			KeySettings childWindow = new KeySettings(keyData.Letter);
 			childWindow.ShowDialog();
 			Refresh();
 		}

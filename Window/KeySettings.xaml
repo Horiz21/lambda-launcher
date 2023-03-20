@@ -1,11 +1,11 @@
-﻿<Window x:Class="LambdaLauncher.AddTarget"
+﻿<Window x:Class="LambdaLauncher.KeySettings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="{DynamicResource KeySettings}"
-        Height="194" Width="512"
+        Height="214" Width="512"
         WindowStartupLocation="CenterScreen"
         Style="{DynamicResource WindowNormal}">
     <!--用于承载所有页面元素的总Gird-->
@@ -19,7 +19,7 @@
         <Grid Margin="20,15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
-                <RowDefinition Height="132"/>
+                <RowDefinition Height="152"/>
             </Grid.RowDefinitions>
             
             <!--标题和关闭按钮（操作区域）-->
@@ -53,22 +53,48 @@
                 <Grid x:Name="gridInteractiveKey"/>
                 <Grid x:Name="gridInput" Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="54"/>
+                        <ColumnDefinition Width="64"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="64"/>
                     </Grid.ColumnDefinitions>
 
-                    <!--输入框Row=0为名称设定-->
-                    <Label Content="{DynamicResource KeyTitle}" Grid.Row="0" Grid.Column="0"
+                    <Grid Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="AddTarget"
+                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyType" Content="{DynamicResource AddTarget}"
+                                     Checked="CheckedAddTarget"/>
+                        <RadioButton x:Name="AddFolder"
+                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyType" Content="{DynamicResource AddFolder}"
+                                     Checked="CheckedAddFolder"/>
+                        <RadioButton x:Name="AddWebsite"
+                                     Grid.Column="2" Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyType" Content="{DynamicResource AddWebsite}"
+                                     Checked="CheckedAddWebsite"/>
+                        <RadioButton x:Name="PureCommand"
+                                     Grid.Column="3" Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyType" Content="{DynamicResource PureCommand}"
+                                     Checked="CheckedPureCommand"/>
+                    </Grid>
+                    
+                    <!--输入框Row=1为名称设定-->
+                    <Label Content="{DynamicResource KeyTitle}" Grid.Row="1" Grid.Column="0"
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox x:Name="textTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                    <TextBox x:Name="textTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
                          TextChanged="UpdateTitle">
@@ -78,11 +104,12 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <!--输入框Row=1为图标设定-->
-                    <Label Content="{DynamicResource KeyIcon}" Grid.Row="1" Grid.Column="0"
+                    
+                    <!--输入框Row=2为图标设定-->
+                    <Label Content="{DynamicResource KeyIcon}" Grid.Row="3" Grid.Column="0"
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox x:Name="textIcon" Grid.Row="1" Grid.Column="1"
+                    <TextBox x:Name="textIcon" Grid.Row="3" Grid.Column="1"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
                          TextChanged="UpdateIcon">
@@ -92,7 +119,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <Button x:Name="iconButton" Grid.Row="1" Grid.Column="2"
+                    <Button x:Name="iconButton" Grid.Row="3" Grid.Column="2"
                         Style="{DynamicResource ButtonNormal}"
                         Content="{DynamicResource Select}" Height="24" Margin="4,0"
                         Click="ButtonSelectIcon">
@@ -103,11 +130,11 @@
                         </Button.Resources>
                     </Button>
 
-                    <!--输入框Row=2为地址设定-->
-                    <Label Content="{DynamicResource KeyTarget}" Grid.Row="2" Grid.Column="0"
+                    <!--输入框Row=3为地址设定-->
+                    <Label x:Name="labelLink"  Content="{DynamicResource AddTarget}" Grid.Row="2" Grid.Column="0"
                        FontFamily="Noto Sans SC" Padding="0" FontSize="14"
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox x:Name="textTarget" Grid.Row="2" Grid.Column="1"
+                    <TextBox x:Name="textLink" Grid.Row="2" Grid.Column="1"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center">
                         <TextBox.Resources>
@@ -116,7 +143,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <Button x:Name="addressButton" Grid.Row="2" Grid.Column="2"
+                    <Button x:Name="linkButton" Grid.Row="2" Grid.Column="2"
                         Style="{DynamicResource ButtonNormal}"
                         Content="{DynamicResource Select}" Height="24" Margin="4,0"
                         Click="ButtonSelectTarget">
@@ -127,8 +154,8 @@
                         </Button.Resources>
                     </Button>
 
-                    <!--Row=3为确认键和取消键的Grid-->
-                    <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                    <!--Row=4为确认键和取消键的Grid-->
+                    <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
