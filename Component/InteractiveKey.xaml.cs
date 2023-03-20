@@ -46,8 +46,8 @@ namespace LambdaLauncher {
 		}
 
 		private void ClearKeySettings(object sender, RoutedEventArgs e) {
-
-			Clear();
+			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 清空保存数据
+			Clear(); // 清空显示内容
 		}
 
 		private void Refresh() {
