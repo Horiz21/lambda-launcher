@@ -31,10 +31,10 @@ namespace LambdaLauncher.Utility {
 		}
 
 		// 运行一条cmd命令
-		public static void RunCommand(string command) {
+		public static void RunCommand(string target) {
 			ProcessStartInfo startInfo = new ProcessStartInfo();
 			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/C " + command;
+			startInfo.Arguments = "/C start \"\" \"" + target + "\"";
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 

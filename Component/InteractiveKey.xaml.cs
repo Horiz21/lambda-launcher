@@ -45,8 +45,14 @@ namespace LambdaLauncher {
 			Refresh();
 		}
 
+		/// <summary>
+		/// 清空数据并清空按键显示内容
+		/// </summary>
 		private void ClearKeySettings(object sender, RoutedEventArgs e) => Clear();
 
+		/// <summary>
+		/// 保存设置的内容并刷新显示
+		/// </summary>
 		private void Refresh() {
 			// 更新局部keyData信息
 			keyData = Data.keyDatas[keyData.Letter-'A'];
