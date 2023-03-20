@@ -98,7 +98,7 @@ namespace LambdaLauncher.Utility {
 		/// </summary>
 		/// <param name="keyData">含修改后信息的KeyData对象</param>
 		public static void ModifyAndWrite(KeyData keyData) {
-			keyLlsDatas[keyData.Letter - 'A' + 1] = keyData.GetLlsFormatData();
+			keyLlsDatas[keyData.Letter - 'A'] = keyData.GetLlsFormatData();
 			File.WriteAllLines(LlsPath, keyLlsDatas);
 		}
 	}

@@ -8,9 +8,10 @@ namespace LambdaLauncher {
 	public partial class KeySettings : Window {
 		private InteractiveKey interactiveKey;
 		private KeyData keyData; // 本地KeyData变量
+		private int localLinkType = 0;
 		public KeySettings(char Letter) {
 			// 为局部变量赋值
-			this.keyData = Data.keyDatas[Letter-'A'];
+			this.keyData = Data.keyDatas[Letter - 'A'];
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
@@ -22,6 +23,20 @@ namespace LambdaLauncher {
 			textTitle.Text = keyData.Title;
 			textIcon.Text = keyData.Icon;
 			textLink.Text = keyData.Command;
+			localLinkType = keyData.LinkType;
+
+			if (localLinkType == 1) {
+				AddTarget.IsChecked = true;
+			}
+			else if (localLinkType == 2) {
+				AddFolder.IsChecked = true;
+			}
+			else if (localLinkType == 3) {
+				AddWebsite.IsChecked = true;
+			}
+			else if (localLinkType == 4) {
+				PureCommand.IsChecked = true;
+			}
 		}
 
 		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
@@ -64,12 +79,20 @@ namespace LambdaLauncher {
 			textIcon.Clear();
 			textLink.Clear();
 
+			// 取消选择
+			AddTarget.IsChecked = false;
+			AddFolder.IsChecked = false;
+			AddWebsite.IsChecked = false;
+			PureCommand.IsChecked = false;
+			localLinkType = 0;
+
 			// 清空左侧显示区
 			interactiveKey.Clear();
 		}
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {
 			// 根据填充项修改信息
+			keyData.LinkType = localLinkType;
 			keyData.Title = textTitle.Text;
 			keyData.Command = textLink.Text;
 			keyData.Icon = textIcon.Text;
@@ -85,24 +108,28 @@ namespace LambdaLauncher {
 			labelLink.SetResourceReference(ContentProperty, "AddTarget");
 			textLink.SetValue(Grid.ColumnSpanProperty, 1);
 			linkButton.Visibility = Visibility.Visible;
+			localLinkType = 1;
 		}
 
 		private void CheckedAddFolder(object sender, RoutedEventArgs e) {
 			labelLink.SetResourceReference(ContentProperty, "AddFolder");
 			textLink.SetValue(Grid.ColumnSpanProperty, 1);
 			linkButton.Visibility = Visibility.Visible;
+			localLinkType = 2;
 		}
 
 		private void CheckedAddWebsite(object sender, RoutedEventArgs e) {
 			labelLink.SetResourceReference(ContentProperty, "AddWebsite");
 			textLink.SetValue(Grid.ColumnSpanProperty, 2);
 			linkButton.Visibility = Visibility.Collapsed;
+			localLinkType = 3;
 		}
 
 		private void CheckedPureCommand(object sender, RoutedEventArgs e) {
 			labelLink.SetResourceReference(ContentProperty, "PureCommand");
 			textLink.SetValue(Grid.ColumnSpanProperty, 2);
 			linkButton.Visibility = Visibility.Collapsed;
+			localLinkType = 4;
 		}
 	}
 }
