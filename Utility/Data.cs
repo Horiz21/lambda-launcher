@@ -30,8 +30,8 @@ namespace LambdaLauncher.Utility {
 		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
 
 		// 设置信息
-		public static string Language { get; set; }
-		public static string Theme { get; set; }
+		public static string Language { get; set; } = string.Empty;
+		public static string Theme { get; set; } = string.Empty;
 		public static bool DarkMode { get; set; }
 		public static bool KeyboardDouble { get; set; }
 		public static bool MouseDouble { get; set; }
