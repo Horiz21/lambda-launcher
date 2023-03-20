@@ -3,7 +3,6 @@ using LambdaLauncher.Utility;
 using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace LambdaLauncher {
 	public partial class KeySettings : Window {
@@ -45,7 +44,7 @@ namespace LambdaLauncher {
 		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 
 		// 如果textTitle的内容更新，则实时更新预览窗口的keyTitle
-		private void UpdateTitle(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+		private void UpdateTitle(object sender, TextChangedEventArgs e) {
 			interactiveKey.keyTitle.Content = this.textTitle.Text;
 		}
 
@@ -56,7 +55,7 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonSelectIcon(object sender, RoutedEventArgs e) {
-			var openFileDialog = new Microsoft.Win32.OpenFileDialog() {
+			OpenFileDialog? openFileDialog = new OpenFileDialog() {
 				Filter = "Image File|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
@@ -66,11 +65,19 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonSelectTarget(object sender, RoutedEventArgs e) {
-			var openFileDialog = new OpenFileDialog() {
-				Filter = "Target|*.*"
-			};
-			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
-				textLink.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
+			if (AddTarget.IsChecked == true) {
+				OpenFileDialog? openFileDialog = new OpenFileDialog() {
+					Filter = "Target|*.*"
+				};
+				if (openFileDialog.ShowDialog() == true) { // 需要显式转换为bool类型
+					textLink.Text = openFileDialog.FileName; // 若存在则赋值给局部变量
+				}
+			}
+			else if (AddFolder.IsChecked == true) { // 此处使用WinForm内容
+				var folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+				if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+					textLink.Text = folderBrowserDialog.SelectedPath;
+				}
 			}
 		}
 
