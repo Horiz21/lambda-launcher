@@ -1,5 +1,6 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -65,7 +66,7 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonSelectTarget(object sender, RoutedEventArgs e) {
-			var openFileDialog = new Microsoft.Win32.OpenFileDialog() {
+			var openFileDialog = new OpenFileDialog() {
 				Filter = "Target|*.*"
 			};
 			if (openFileDialog.ShowDialog() == true) { //需要显式转换为bool类型
@@ -74,6 +75,9 @@ namespace LambdaLauncher {
 		}
 
 		private void ButtonClear(object sender, RoutedEventArgs e) {
+			// 清空本地keyData的信息
+			keyData.Clear();
+			
 			// 清空信息
 			textTitle.Clear();
 			textIcon.Clear();

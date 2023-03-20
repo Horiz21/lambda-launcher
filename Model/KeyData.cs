@@ -4,7 +4,7 @@ namespace LambdaLauncher.Model {
     [Serializable]
     public class KeyData {
         public char Letter { get; set; }
-        public int LinkType { get; set; }
+        public int LinkType { get; set; } = 0;
         public string Title { get; set; }
         public string Command { get; set; }
         public string Icon { get; set; }
@@ -17,5 +17,15 @@ namespace LambdaLauncher.Model {
             string[] datas = new string[] { Letter.ToString(), LinkType.ToString(), Title, Command, Icon};
             return string.Join("\t", datas);
         }
+
+        /// <summary>
+        /// 清空一个KeyData除了字母以外的所有内容
+        /// </summary>
+        public void Clear() {
+            LinkType = 0;
+            Title = string.Empty;
+            Command = string.Empty;
+            Icon = string.Empty;
+		}
     }
 }

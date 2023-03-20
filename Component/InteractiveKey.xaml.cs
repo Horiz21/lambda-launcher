@@ -26,23 +26,28 @@ namespace LambdaLauncher {
 		private void keyButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
 			ContextMenu contextMenu = new ContextMenu();
 
-			MenuItem addProgramMenuItem = new MenuItem();
-			addProgramMenuItem.Header = "编辑启动程序";
-			addProgramMenuItem.Click += AddTarget;
-			contextMenu.Items.Add(addProgramMenuItem);
+			MenuItem modifyKeySettings = new MenuItem();
+			modifyKeySettings.Header = "编辑启动程序";
+			modifyKeySettings.Click += ModifyKeySettings;
+			contextMenu.Items.Add(modifyKeySettings);
 
-			MenuItem addcontentCommandMenuItem = new MenuItem();
-			addcontentCommandMenuItem.Header = "编辑执行命令";
-			addcontentCommandMenuItem.Click += AddcontentCommandMenuItem_Click;
-			contextMenu.Items.Add(addcontentCommandMenuItem);
+			MenuItem clearKeySettings = new MenuItem();
+			clearKeySettings.Header = "清空按键内容";
+			clearKeySettings.Click += ClearKeySettings;
+			contextMenu.Items.Add(clearKeySettings);
 
 			keyButton.ContextMenu = contextMenu;
 		}
 
-		private void AddTarget(object sender, RoutedEventArgs e) {
+		private void ModifyKeySettings(object sender, RoutedEventArgs e) {
 			KeySettings childWindow = new KeySettings(keyData.Letter);
 			childWindow.ShowDialog();
 			Refresh();
+		}
+
+		private void ClearKeySettings(object sender, RoutedEventArgs e) {
+
+			Clear();
 		}
 
 		private void Refresh() {
@@ -53,11 +58,6 @@ namespace LambdaLauncher {
 			keyLetter.Content = keyData.Letter =='['? 'Λ' : keyData.Letter;
 			keyTitle.Content = keyData.Title;
 			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
-		}
-
-		private void AddcontentCommandMenuItem_Click(object sender, RoutedEventArgs e) {
-			//AddcontentCommandWindow addcontentCommandWindow = new AddcontentCommandWindow();
-			//addcontentCommandWindow.ShowDialog();
 		}
 
 		public string GetCommand() => keyData.Command;

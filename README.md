@@ -9,7 +9,7 @@ Lambda Launcher is a WPF application inspired by MaxLauncher, and is dedicated t
 - Light Mode and Dark Mode! Interchangeable foreground and background colors, more friendly to your eyes.
 - Internationalization! Currently supports Simplified Chinese and English.
 - Native development! No need to use Electron - no more installing another Chrome on your computer, use WPF to make an elegant and modern interface.
-- Apps, files, web pages or cmd commands! Coming soon (it will take at least a week) a more freely configurable Key Setting solution!
+- Apps/files, folders, websites or cmd commands! Coming soon (it will take at least a week) a more freely configurable Key Setting solution!
 
 ## Screenshots
 
