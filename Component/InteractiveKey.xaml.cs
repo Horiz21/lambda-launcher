@@ -45,10 +45,7 @@ namespace LambdaLauncher {
 			Refresh();
 		}
 
-		private void ClearKeySettings(object sender, RoutedEventArgs e) {
-			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 清空保存数据
-			Clear(); // 清空显示内容
-		}
+		private void ClearKeySettings(object sender, RoutedEventArgs e) => Clear();
 
 		private void Refresh() {
 			// 更新局部keyData信息
@@ -66,6 +63,12 @@ namespace LambdaLauncher {
 		/// 清空一个InteractiveKey除了键盘字母外的所有内容
 		/// </summary>
 		public void Clear() {
+			// 1. 清空实际数据
+			keyData.Clear(); // 本地数据
+			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
+			Data.ModifyAndWrite(keyData); // 写回设置
+
+			// 2. 清空显示数据
 			keyTitle.Content = string.Empty;
 			keyIcon.Source = Utilities.GetEmptyImage();
 		}
