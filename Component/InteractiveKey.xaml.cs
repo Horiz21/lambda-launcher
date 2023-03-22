@@ -69,12 +69,19 @@ namespace LambdaLauncher {
 		/// 清空一个InteractiveKey除了键盘字母外的所有内容
 		/// </summary>
 		public void Clear() {
-			// 1. 清空实际数据
+			// 1. 清空实际数据   
 			keyData.Clear(); // 本地数据
 			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
 			Data.ModifyAndWrite(keyData); // 写回设置
 
-			// 2. 清空显示数据
+			// 2. 清空显示内容
+			ClearContent();
+		}
+
+		/// <summary>
+		/// 清空一个InteractiveKey的显示内容
+		/// </summary>
+		public void ClearContent() {
 			keyTitle.Content = string.Empty;
 			keyIcon.Source = Utilities.GetEmptyImage();
 		}

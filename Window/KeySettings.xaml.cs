@@ -14,7 +14,7 @@ namespace LambdaLauncher {
 
 		public KeySettings(char Letter) {
 			// 为局部变量赋值
-			keyData = Data.keyDatas[Letter - 'A'];
+			keyData = Data.keyDatas[Letter - 'A'].DeepCopy();
 			localLink = keyData.Command;
 			localLinkType = keyData.LinkType;
 
@@ -88,7 +88,7 @@ namespace LambdaLauncher {
 		private void ButtonClear(object sender, RoutedEventArgs e) {
 			// 清空本地keyData的信息
 			keyData.Clear();
-			
+
 			// 清空信息
 			textTitle.Clear();
 			textIcon.Clear();
@@ -102,7 +102,7 @@ namespace LambdaLauncher {
 			localLinkType = 0;
 
 			// 清空左侧显示区
-			interactiveKey.Clear();
+			interactiveKey.ClearContent();
 		}
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {

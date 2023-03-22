@@ -61,13 +61,7 @@ namespace LambdaLauncher.Utility {
 
 				// 根据子串新建keyData
 				char letter = char.Parse(strs[0]);
-				keyDatas[letter - 'A'] = new KeyData {
-					Letter = letter,
-					LinkType = int.Parse(strs[1]),
-					Title = strs[2],
-					Command = strs[3],
-					Icon = strs[4]
-				};
+				keyDatas[letter - 'A'] = new KeyData (letter,int.Parse(strs[1]),strs[2],strs[3],strs[4]);
 			}
 		}
 
