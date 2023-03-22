@@ -1,6 +1,7 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
 using Microsoft.Win32;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,9 +10,13 @@ namespace LambdaLauncher {
 		private InteractiveKey interactiveKey;
 		private KeyData keyData; // 本地KeyData变量
 		private int localLinkType = 0;
+		private string localLink = string.Empty; // 暂时记录原始的链接，使得标签切换走、切换回来该链接仍然暂存着
+
 		public KeySettings(char Letter) {
 			// 为局部变量赋值
-			this.keyData = Data.keyDatas[Letter - 'A'];
+			keyData = Data.keyDatas[Letter - 'A'];
+			localLink = keyData.Command;
+			localLinkType = keyData.LinkType;
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
@@ -20,10 +25,9 @@ namespace LambdaLauncher {
 			gridInteractiveKey.Children.Add(interactiveKey);
 
 			// 向输入框插入目前已有信息
-			textTitle.Text = keyData.Title;
 			textIcon.Text = keyData.Icon;
 			textLink.Text = keyData.Command;
-			localLinkType = keyData.LinkType;
+			textTitle.Text = keyData.Title;
 
 			if (localLinkType == 1) {
 				AddTarget.IsChecked = true;
@@ -45,11 +49,11 @@ namespace LambdaLauncher {
 
 		// 如果textTitle的内容更新，则实时更新预览窗口的keyTitle
 		private void UpdateTitle(object sender, TextChangedEventArgs e) {
-			interactiveKey.keyTitle.Content = this.textTitle.Text;
+			interactiveKey.keyTitle.Content = textTitle.Text;
 		}
 
 		// 如果textIcon的内容更新，则尝试更新显示图标
-		private void UpdateIcon(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+		private void UpdateIcon(object sender, TextChangedEventArgs e) {
 			keyData.Icon = textIcon.Text;
 			interactiveKey.keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 		}
@@ -116,31 +120,43 @@ namespace LambdaLauncher {
 		}
 
 		private void CheckedAddTarget(object sender, RoutedEventArgs e) {
-			labelLink.SetResourceReference(ContentProperty, "AddTarget");
-			textLink.SetValue(Grid.ColumnSpanProperty, 1);
-			linkButton.Visibility = Visibility.Visible;
-			localLinkType = 1;
+			ChangeTextLinkAttribute("AddTarget", 1, true);
 		}
 
 		private void CheckedAddFolder(object sender, RoutedEventArgs e) {
-			labelLink.SetResourceReference(ContentProperty, "AddFolder");
-			textLink.SetValue(Grid.ColumnSpanProperty, 1);
-			linkButton.Visibility = Visibility.Visible;
-			localLinkType = 2;
+			ChangeTextLinkAttribute("AddFolder", 2, true);
 		}
 
 		private void CheckedAddWebsite(object sender, RoutedEventArgs e) {
-			labelLink.SetResourceReference(ContentProperty, "AddWebsite");
-			textLink.SetValue(Grid.ColumnSpanProperty, 2);
-			linkButton.Visibility = Visibility.Collapsed;
-			localLinkType = 3;
+			ChangeTextLinkAttribute("AddWebsite", 3,false);
 		}
 
 		private void CheckedPureCommand(object sender, RoutedEventArgs e) {
-			labelLink.SetResourceReference(ContentProperty, "PureCommand");
-			textLink.SetValue(Grid.ColumnSpanProperty, 2);
-			linkButton.Visibility = Visibility.Collapsed;
-			localLinkType = 4;
+			ChangeTextLinkAttribute("PureCommand", 4,false);
+		}
+
+		private void ChangeTextLinkAttribute(string reference, int linkType, bool isLongTextBox) {
+			Debug.WriteLine("检测到选项卡切换到" + linkType.ToString());
+			labelLink.SetResourceReference(ContentProperty, reference);
+			if (isLongTextBox) {
+				textLink.SetValue(Grid.ColumnSpanProperty, 1);
+				linkButton.Visibility = Visibility.Visible;
+			}
+			else {
+				textLink.SetValue(Grid.ColumnSpanProperty, 2);
+				linkButton.Visibility = Visibility.Collapsed;
+			}
+			// 如果目前的类型和历史记录类型一致，则恢复该历史记录
+			if (linkType == keyData.LinkType)
+				textLink.Text = localLink;
+			else
+				textLink.Text = string.Empty;
+			localLinkType = linkType;
+			NowInfoWriteLine();
+		}
+		
+		private void NowInfoWriteLine() {
+			Debug.WriteLine("现在是选项卡" + localLinkType.ToString() + "，有记录的是选项卡"+keyData.LinkType.ToString()+"，内容为："+localLink);
 		}
 	}
 }

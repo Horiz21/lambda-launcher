@@ -92,8 +92,7 @@
                     
                     <!--输入框Row=1为名称设定-->
                     <Label Content="{DynamicResource KeyTitle}" Grid.Row="1" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                           Style="{DynamicResource LabelRight}"/>
                     <TextBox x:Name="textTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
@@ -107,8 +106,7 @@
                     
                     <!--输入框Row=2为图标设定-->
                     <Label Content="{DynamicResource KeyIcon}" Grid.Row="3" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                           Style="{DynamicResource LabelRight}"/>
                     <TextBox x:Name="textIcon" Grid.Row="3" Grid.Column="1"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
@@ -132,11 +130,10 @@
 
                     <!--输入框Row=3为地址设定-->
                     <Label x:Name="labelLink"  Content="{DynamicResource AddTarget}" Grid.Row="2" Grid.Column="0"
-                       FontFamily="Noto Sans SC" Padding="0" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                           Style="{DynamicResource LabelRight}"/>
                     <TextBox x:Name="textLink" Grid.Row="2" Grid.Column="1"
-                         FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
-                         VerticalAlignment="Center">
+                             FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
+                             VerticalAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="4"/>
