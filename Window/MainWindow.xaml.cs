@@ -1,5 +1,6 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,7 @@ namespace LambdaLauncher {
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
 					keys[c - 'A'] = new InteractiveKey(Data.keyDatas[c - 'A']);
+					if (c == '[') keys[c - 'A'].Enable(false); // 禁止Lambda键响应鼠标
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}
@@ -56,6 +58,9 @@ namespace LambdaLauncher {
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
 				}
 			}
+			else if (key == "LeftShift" || key == "RightShift") {
+				ActiveLambdaFunction(false);
+			}
 		}
 
 		// 键盘的按下，此时将焦点聚焦在一个按钮上，并调整二次访问标记（用于判断是"对打开动作的确认"还是"新切换到一个键"）
@@ -69,6 +74,9 @@ namespace LambdaLauncher {
 					isSameActive = currentActivedKey == letter;
 					currentActivedKey = letter;
 				}
+			}
+			else if (key == "LeftShift" || key == "RightShift") { // 执行Lambda功能
+				ActiveLambdaFunction();
 			}
 		}
 
@@ -87,6 +95,19 @@ namespace LambdaLauncher {
 			Setting childWindow = new Setting();
 			childWindow.ShowDialog();
 			//Refresh();
+		}
+
+		/// <summary>
+		/// 启动Lambda功能（部分功能是按下才执行的，另一部分功能是长期的）
+		/// </summary>
+		/// <param name="start">是否是启动功能的开始阶段</param>
+		private void ActiveLambdaFunction(bool start = true) {
+			if (start) {
+				
+			}
+			else {
+
+			}
 		}
 	}
 }

@@ -89,7 +89,6 @@ namespace LambdaLauncher {
 		/// 单击鼠标执行命令
 		/// </summary>
 		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
-			Debug.WriteLine("正在尝试左键单击启动。要求双击吗：" + Data.MouseDouble);
 			if (Data.MouseDouble == false)
 				Utilities.RunCommand(keyData.Command);
 		}
@@ -100,6 +99,10 @@ namespace LambdaLauncher {
 		private void DoubleClickToRunContentCommand(object sender, RoutedEventArgs e) {
 			if (Data.MouseDouble == true)
 				Utilities.RunCommand(keyData.Command);
+		}
+
+		public void Enable(bool isEnabled) {
+			keyButton.IsEnabled = isEnabled;
 		}
 	}
 }
