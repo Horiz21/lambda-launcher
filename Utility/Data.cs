@@ -2,6 +2,7 @@
 using LambdaLauncher.Model;
 using System.Windows;
 using System;
+using System.Diagnostics;
 
 namespace LambdaLauncher.Utility {
 	public static class Data {
@@ -56,8 +57,12 @@ namespace LambdaLauncher.Utility {
 				string[] strs = keyLlsDatas[i].Split('\t');
 
 				// 根据子串新建keyData
-				char letter = char.Parse(strs[0]);
-				keyDatas[letter - 'A'] = new KeyData(letter, int.Parse(strs[1]), strs[2], strs[3], strs[4]);
+				char letter = (char)('A' + i);
+				keyDatas[letter - 'A'] = new KeyData(
+					letter,
+					int.Parse(strs[0]), strs[1], strs[2], strs[3],
+					int.Parse(strs[4]), strs[5], strs[6], strs[7]
+				);
 			}
 		}
 
@@ -71,6 +76,9 @@ namespace LambdaLauncher.Utility {
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
 		}
 
+		/// <summary>
+		/// 储存由Settings类给出的新设置项到文件里
+		/// </summary>
 		public static void SaveLlsSettings(int Language, int Theme, bool DarkMode, bool KeyboardDouble, bool MouseDouble, int LambdaFunction) {
 			// 更新本地数据
 			Data.Language = Language;
@@ -96,6 +104,9 @@ namespace LambdaLauncher.Utility {
 			File.WriteAllLines(LlsPath, keyLlsDatas);
 		}
 
+		/// <summary>
+		/// 切换当前显示模式（日间/夜间）为另一个（夜间/日间）
+		/// </summary>
 		public static void SwitchDarkMode() {
 			string head = @"pack://application:,,,/";
 			if (DarkMode) {
