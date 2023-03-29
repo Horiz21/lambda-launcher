@@ -16,7 +16,8 @@
                 Padding="0"
                 Margin="4"
                 BorderThickness="4"
-                Click="RuncontentCommand"
+                Click="SingleClickToRunContentCommand"
+                MouseDoubleClick="DoubleClickToRunContentCommand"
                 HorizontalContentAlignment="Left"
                 VerticalContentAlignment="Bottom"
                 MouseRightButtonDown="keyButton_MouseRightButtonDown">

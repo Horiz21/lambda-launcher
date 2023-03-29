@@ -21,8 +21,6 @@ namespace LambdaLauncher {
 			Refresh();
 		}
 
-		private void RuncontentCommand(object sender, RoutedEventArgs e) => Utilities.RunCommand(keyData.Command);
-
 		private void keyButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
 			ContextMenu contextMenu = new ContextMenu();
 
@@ -55,10 +53,10 @@ namespace LambdaLauncher {
 		/// </summary>
 		private void Refresh() {
 			// 更新局部keyData信息
-			keyData = Data.keyDatas[keyData.Letter-'A'];
+			keyData = Data.keyDatas[keyData.Letter - 'A'];
 
 			// 为所有可调整的可显示元素赋值
-			keyLetter.Content = keyData.Letter =='['? 'Λ' : keyData.Letter;
+			keyLetter.Content = keyData.Letter == '[' ? 'Λ' : keyData.Letter;
 			keyTitle.Content = keyData.Title;
 			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 		}
@@ -84,6 +82,22 @@ namespace LambdaLauncher {
 		public void ClearContent() {
 			keyTitle.Content = string.Empty;
 			keyIcon.Source = Utilities.GetEmptyImage();
+		}
+
+		/// <summary>
+		/// 单击鼠标执行命令
+		/// </summary>
+		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
+			if (Data.MouseDouble == false)
+				Utilities.RunCommand(keyData.Command);
+		}
+
+		/// <summary>
+		/// 双击鼠标执行命令
+		/// </summary>
+		private void DoubleClickToRunContentCommand(object sender, RoutedEventArgs e) {
+			if (Data.MouseDouble == true)
+				Utilities.RunCommand(keyData.Command);
 		}
 	}
 }
