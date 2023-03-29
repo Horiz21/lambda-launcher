@@ -62,20 +62,25 @@
                     <!--语言设定-->
                     <Label Content="{DynamicResource Language}" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox x:Name="boxLanguage"
-                              Grid.Row="0" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
+                              Grid.Row="0"
+                              Grid.Column="1"
+                              Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeLanguage">
-                        <ComboBoxItem IsSelected="True">中文</ComboBoxItem>
-                        <ComboBoxItem>English</ComboBoxItem>
+                        <ComboBoxItem Content="{DynamicResource zh_Hans}"/>
+                        <ComboBoxItem Content="{DynamicResource zh_Hant}"/>
+                        <ComboBoxItem Content="{DynamicResource en}"/>
                     </ComboBox>
 
                     <!--主题设定-->
                     <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox x:Name="boxTheme"
-                              Grid.Row="1" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeTheme">
-                        <ComboBoxItem IsSelected="True" Content="{DynamicResource ThemeBamboo}"/>
-                        <ComboBoxItem Content="{DynamicResource ThemeCyberpunk}"/>
-                        <ComboBoxItem Content="{DynamicResource ThemeDoodle}"/>
+                        <ComboBoxItem Content="{DynamicResource bmbo}"/>
+                        <ComboBoxItem Content="{DynamicResource cbpk}"/>
+                        <ComboBoxItem Content="{DynamicResource dodl}"/>
                     </ComboBox>
 
                     <!--夜间模式设定-->
@@ -136,11 +141,12 @@
                     <!--Lambda功能设定-->
                     <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
                     <ComboBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}">
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction1}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction2}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction3}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction4}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction5}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-None}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SwitchDarkMode}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKey}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKeyTemp}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SingleClick}"/>
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SettingsMenu}"/>
                     </ComboBox>
 
                     <!--Row=3为确认键和取消键的Grid-->

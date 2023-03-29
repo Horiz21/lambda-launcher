@@ -16,11 +16,19 @@
     <sys:String x:Key="KeyboardDoubleOff">Single Click</sys:String>
     <sys:String x:Key="MouseDoubleOn">Double Click</sys:String>
     <sys:String x:Key="MouseDoubleOff">Single Click</sys:String>
-    <sys:String x:Key="LambdaFunction1">Change Theme</sys:String>
-    <sys:String x:Key="LambdaFunction2">Switch Dark/Light Mode</sys:String>
-    <sys:String x:Key="LambdaFunction3">Switch to the Vice-Keys</sys:String>
-    <sys:String x:Key="LambdaFunction4">Switch to instant click</sys:String>
-    <sys:String x:Key="LambdaFunction5">Open this window</sys:String>
+
+    <!--Lambda功能-->
+    <sys:String x:Key="LambdaFunction-None">None</sys:String>
+    <sys:String x:Key="LambdaFunction-SwitchDarkMode">Switch between Dark Mode and Light Mode</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKey">Switch between Primary Keys and Secondary Keys</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKeyTemp">Temporarily switch to Secondary Keys and trigger the key by single click</sys:String>
+    <sys:String x:Key="LambdaFunction-SingleClick">Trigger key by single click</sys:String>
+    <sys:String x:Key="LambdaFunction-SettingsMenu">Open settings menu</sys:String>
+
+    <!--语言-->
+    <sys:String x:Key="zh_Hans">Chinese (Simplied)</sys:String>
+    <sys:String x:Key="zh_Hant">Chinese (Traditional)</sys:String>
+    <sys:String x:Key="en">English</sys:String>
     
     <!--按键设置窗口-->
     <sys:String x:Key="KeySettings">Key Settings</sys:String>
@@ -46,9 +54,9 @@
     <sys:String x:Key="ThemeErrorColor">Error Indicator Color</sys:String>
 
     <!--主题-->
-    <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
-    <sys:String x:Key="ThemeCyberpunk">Cyberpunk</sys:String>
-    <sys:String x:Key="ThemeDoodle">Doodle</sys:String>
+    <sys:String x:Key="bmbo">Bamboo</sys:String>
+    <sys:String x:Key="cbpk">Cyberpunk</sys:String>
+    <sys:String x:Key="dodl">Doodle</sys:String>
 
     <!--其他-->
     <sys:String x:Key="On">On</sys:String>

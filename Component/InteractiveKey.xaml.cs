@@ -89,7 +89,7 @@ namespace LambdaLauncher {
 		/// 单击鼠标执行命令
 		/// </summary>
 		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
-			if (Data.MouseDouble == false)
+			if (Data.InstantAvtice || Data.MouseDouble == false)
 				Utilities.RunCommand(keyData.Command);
 		}
 

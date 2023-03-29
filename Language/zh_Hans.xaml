@@ -16,11 +16,19 @@
     <sys:String x:Key="KeyboardDoubleOff">单击键盘触发</sys:String>
     <sys:String x:Key="MouseDoubleOn">双击主键触发</sys:String>
     <sys:String x:Key="MouseDoubleOff">单击主键触发</sys:String>
-    <sys:String x:Key="LambdaFunction1">切换主题</sys:String>
-    <sys:String x:Key="LambdaFunction2">切换日/夜间模式</sys:String>
-    <sys:String x:Key="LambdaFunction3">按下时，切换为副按键策略组</sys:String>
-    <sys:String x:Key="LambdaFunction4">按下时，改为单击触发</sys:String>
-    <sys:String x:Key="LambdaFunction5">打开设置界面</sys:String>
+
+    <!--Lambda功能-->
+    <sys:String x:Key="LambdaFunction-None">不开启</sys:String>
+    <sys:String x:Key="LambdaFunction-SwitchDarkMode">切换日间模式与夜间模式</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKey">切换主按键策略组与副按键策略组</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKeyTemp">暂时切换为副按键策略组并单击触发按键</sys:String>
+    <sys:String x:Key="LambdaFunction-SingleClick">单击触发按键</sys:String>
+    <sys:String x:Key="LambdaFunction-SettingsMenu">打开设置界面</sys:String>
+
+    <!--语言-->
+    <sys:String x:Key="zh_Hans">中文（简体）</sys:String>
+    <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
+    <sys:String x:Key="en">英文（English）</sys:String>
 
     <!--按键设置窗口-->
     <sys:String x:Key="KeySettings">按键设置</sys:String>
@@ -46,9 +54,9 @@
     <sys:String x:Key="ThemeErrorColor">错误指示色</sys:String>
 
     <!--主题-->
-    <sys:String x:Key="ThemeBamboo">Bamboo</sys:String>
-    <sys:String x:Key="ThemeCyberpunk">Cyberpunk</sys:String>
-    <sys:String x:Key="ThemeDoodle">Doodle</sys:String>
+    <sys:String x:Key="bmbo">绿竹</sys:String>
+    <sys:String x:Key="cbpk">赛博朋克</sys:String>
+    <sys:String x:Key="dodl">涂鸦</sys:String>
 
     <!--其他-->
     <sys:String x:Key="On">开启</sys:String>

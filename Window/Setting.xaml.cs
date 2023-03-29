@@ -8,8 +8,8 @@ using System.Xml.Linq;
 
 namespace LambdaLauncher {
 	public partial class Setting : Window {
-		private string Language;
-		private string Theme;
+		private new int Language = Data.Language;
+		private int Theme = Data.Theme;
 		private bool DarkMode = Data.DarkMode;
 		private bool KeyboardDouble = Data.KeyboardDouble;
 		private bool MouseDouble = Data.MouseDouble;
@@ -22,6 +22,9 @@ namespace LambdaLauncher {
 			InitializeComponent();
 
 			// 在设置页面复原当前设置
+			boxLanguage.SelectedIndex = Language;
+			boxTheme.SelectedIndex = Theme;
+
 			if (DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
 
@@ -46,24 +49,14 @@ namespace LambdaLauncher {
 		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
 
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
-			int index = boxLanguage.SelectedValue.ToString().IndexOf(' ');
-			if (index != -1) {
-				Language = boxLanguage.SelectedValue.ToString().Substring(index + 1);
-				if (Language != string.Empty) {
-					Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Data.LanguageDictionary[Language] + ".xaml");
-				}
-			}
+			Language = boxLanguage.SelectedIndex;
+			Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Data.Languages[Language] + ".xaml");
 		}
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
-			int index = boxTheme.SelectedValue.ToString().IndexOf(' ');
-			if (index != -1) {
-				Theme = boxTheme.SelectedValue.ToString().Substring(index + 1);
-				if (Theme != string.Empty) {
-					Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.ThemeDictionary[Theme] + ".xaml");
-					Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
-				}
-			}
+			Theme = boxTheme.SelectedIndex;
+			Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Data.Themes[Theme] + ".xaml");
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
 		}
 
 		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) {

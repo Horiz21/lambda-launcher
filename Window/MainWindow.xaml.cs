@@ -53,8 +53,8 @@ namespace LambdaLauncher {
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是……
-				// 一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (!Data.KeyboardDouble || letter >= 'A' && letter <= 'Z' && isSameActive) {
+				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
+				if (Data.InstantAvtice || !Data.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
 				}
 			}
@@ -81,10 +81,11 @@ namespace LambdaLauncher {
 		}
 
 		private void WindowContextMenu(object sender, MouseButtonEventArgs e) {
-			ContextMenu contextMenu = new ContextMenu();
+			ContextMenu contextMenu = new();
 
-			MenuItem settingMenuItem = new MenuItem();
-			settingMenuItem.Header = "设置";
+			MenuItem settingMenuItem = new() {
+				Header = "设置"
+			};
 			settingMenuItem.Click += LauncherSettings;
 			contextMenu.Items.Add(settingMenuItem);
 
@@ -92,21 +93,48 @@ namespace LambdaLauncher {
 		}
 
 		private void LauncherSettings(object sender, RoutedEventArgs e) {
-			Setting childWindow = new Setting();
+			Setting childWindow = new();
 			childWindow.ShowDialog();
 			//Refresh();
 		}
 
 		/// <summary>
-		/// 启动Lambda功能（部分功能是按下才执行的，另一部分功能是长期的）
+		/// 启动Lambda功能（部分功能是按下抬起才执行的，另一部分功能是长期的）
 		/// </summary>
 		/// <param name="start">是否是启动功能的开始阶段</param>
 		private void ActiveLambdaFunction(bool start = true) {
 			if (start) {
-				
+				switch (Data.LambdaFunction) {
+					case 3:
+						// 立即响应
+						Data.InstantAvtice = true;
+						break;
+					default:
+						break;
+				}
 			}
 			else {
-
+				switch (Data.LambdaFunction) {
+					case 1:
+						// 切换日/夜间模式
+						Data.SwitchDarkMode();
+						break;
+					case 2:
+						// 切换为副策略组
+						Debug.WriteLine("切换到副策略组了！");
+						break;
+					case 3:
+						// 立即响应
+						Data.InstantAvtice = false;
+						break;
+					case 4:
+						// 打开设置界面
+						Setting childWindow = new();
+						childWindow.ShowDialog();
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}
