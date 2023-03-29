@@ -3,12 +3,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Diagnostics;
+using Forms = System.Windows.Forms;
 
 namespace LambdaLauncher {
 	public partial class MainWindow : Window {
 		private static InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
 		private static UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
 
+		private Forms.NotifyIcon notifyIcon;
 		private static char currentActivedKey; // 上一次按下的字母
 		private static bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 
@@ -16,6 +19,16 @@ namespace LambdaLauncher {
 			Data.LoadData();
 
 			InitializeComponent();
+
+			// 托盘图标初始化
+			notifyIcon = new Forms.NotifyIcon();
+			notifyIcon.Icon = new System.Drawing.Icon("Resource/icon.ico");
+			notifyIcon.Visible = true;
+			notifyIcon.DoubleClick += NotifyIcon_Click;
+			notifyIcon.Text = "Lambda Launcher";
+			notifyIcon.ContextMenuStrip = new Forms.ContextMenuStrip();
+			notifyIcon.ContextMenuStrip.Items.Add("Website", System.Drawing.Image.FromFile("Resource/icon.ico"), Menu_OpenWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add("Exit", System.Drawing.Image.FromFile("Resource/icon.ico"), Menu_Exit);
 
 			// 将三行记录在gridRows数组中
 			gridRows[0] = gridRow1;
@@ -145,16 +158,17 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
+		private void CloseWindow(object sender, RoutedEventArgs e) => Hide();
 
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
-		private void Menu_OpenWebsite(object sender, RoutedEventArgs e) {
+		private void Menu_OpenWebsite(object sender, System.EventArgs e) => Process.Start("explorer.exe", "https://github.com/Horiz21/lambda-launcher");
 
+		private void Menu_Exit(object sender, System.EventArgs e) {
+			notifyIcon.Dispose();
+			Application.Current.Shutdown();
 		}
 
-		private void Menu_Exit(object sender, RoutedEventArgs e) {
-
-		}
+		private void NotifyIcon_Click(object sender, System.EventArgs e) => Show();
 	}
 }

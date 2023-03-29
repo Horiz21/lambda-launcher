@@ -13,7 +13,7 @@
         MouseRightButtonUp="WindowContextMenu"
         ShowInTaskbar="True">
     <Window.ContextMenu>
-        <ContextMenu>
+        <ContextMenu x:Name="TrayIconContextMenu">
             <MenuItem Header="打开官网" Click="Menu_OpenWebsite"/>
             <MenuItem Header="退出" Click="Menu_Exit"/>
         </ContextMenu>
