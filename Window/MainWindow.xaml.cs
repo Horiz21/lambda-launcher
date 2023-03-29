@@ -27,8 +27,8 @@ namespace LambdaLauncher {
 			notifyIcon.DoubleClick += NotifyIcon_Click;
 			notifyIcon.Text = "Lambda Launcher";
 			notifyIcon.ContextMenuStrip = new Forms.ContextMenuStrip();
-			notifyIcon.ContextMenuStrip.Items.Add("Website", System.Drawing.Image.FromFile("Resource/icon.ico"), Menu_OpenWebsite);
-			notifyIcon.ContextMenuStrip.Items.Add("Exit", System.Drawing.Image.FromFile("Resource/icon.ico"), Menu_Exit);
+			notifyIcon.ContextMenuStrip.Items.Add("Website", System.Drawing.Image.FromFile("Resource/Images/link.ico"), Menu_OpenWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add("Exit", System.Drawing.Image.FromFile("Resource/Images/exit.ico"), Menu_Exit);
 
 			// 将三行记录在gridRows数组中
 			gridRows[0] = gridRow1;

@@ -76,4 +76,13 @@
     <Folder Include="Screenshots\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resource\Images\exit.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resource\Images\link.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
