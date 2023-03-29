@@ -100,6 +100,7 @@ namespace LambdaLauncher {
 			if (Data.InstantAvtice || Data.MouseDouble == false)
 				if (Data.Vice) Utilities.RunCommand(keyData.ViceCommand);
 				else Utilities.RunCommand(keyData.Command);
+			Data.InstantAvtice = false; // 在立即响应情况下启动了一条命令，则视为Lambda键已弹起，防止按键卡死
 		}
 
 		/// <summary>

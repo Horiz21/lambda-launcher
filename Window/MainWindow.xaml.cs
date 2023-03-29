@@ -105,7 +105,15 @@ namespace LambdaLauncher {
 		private void ActiveLambdaFunction(bool start = true) {
 			if (start) {
 				switch (Data.LambdaFunction) {
+					case 2:
+						// 切换主/副策略组
+						Debug.WriteLine("切换到副策略组了！");
+						break;
 					case 3:
+						// 暂切副策略组并暂开立即响应
+						Data.InstantAvtice = Data.Vice = true;
+						break;
+					case 4:
 						// 立即响应
 						Data.InstantAvtice = true;
 						break;
@@ -120,14 +128,18 @@ namespace LambdaLauncher {
 						Data.SwitchDarkMode();
 						break;
 					case 2:
-						// 切换为副策略组
-						Debug.WriteLine("切换到副策略组了！");
+						// 切换到副策略组
+						Debug.WriteLine("切换回主策略组了！");
 						break;
 					case 3:
+						// 暂切副策略组并暂开立即响应
+						Data.InstantAvtice = Data.Vice = false;
+						break;
+					case 4:
 						// 立即响应
 						Data.InstantAvtice = false;
 						break;
-					case 4:
+					case 5:
 						// 打开设置界面
 						Setting childWindow = new();
 						childWindow.ShowDialog();
