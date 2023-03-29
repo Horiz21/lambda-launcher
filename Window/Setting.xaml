@@ -160,7 +160,8 @@
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
                         <Button x:Name="buttonCancel" Content="{DynamicResource Cancle}" FontSize="14"
-                                 Style="{DynamicResource ButtonNormal}" Width="80" Height="24"/>
+                                Style="{DynamicResource ButtonNormal}" Width="80" Height="24"
+                                Click="Cancel"/>
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
                                 Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1"

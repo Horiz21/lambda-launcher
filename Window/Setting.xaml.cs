@@ -45,9 +45,10 @@ namespace LambdaLauncher {
 			Close();
 		}
 
-		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
-
-		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
+		private void Cancel(object sender, RoutedEventArgs e) {
+			Data.LoadLlsSettings();
+			Close();
+		}
 
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Language = boxLanguage.SelectedIndex;
@@ -79,5 +80,9 @@ namespace LambdaLauncher {
 			Data.KeyboardDouble = KeyboardDouble = true;
 		private void KeyboardDoubleOff(object sender, RoutedEventArgs e) =>
 			Data.KeyboardDouble = KeyboardDouble = false;
+
+		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
+
+		private void CloseWindow(object sender, RoutedEventArgs e) => Cancel(sender, e);
 	}
 }
