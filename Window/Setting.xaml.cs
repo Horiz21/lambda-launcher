@@ -10,28 +10,26 @@ namespace LambdaLauncher {
 	public partial class Setting : Window {
 		private string Language;
 		private string Theme;
-		private bool DarkMode;
-		private bool KeyboardDouble;
-		private bool MouseDouble;
-		private int LambdaFunction;
+		private bool DarkMode = Data.DarkMode;
+		private bool KeyboardDouble = Data.KeyboardDouble;
+		private bool MouseDouble = Data.MouseDouble;
+		private int LambdaFunction = Data.LambdaFunction;
 
 		// 一个工具而已，无需在意
 		string head = @"pack://application:,,,/";
 
 		public Setting() {
-			DarkMode = Data.DarkMode;
-			KeyboardDouble = Data.KeyboardDouble;
-			MouseDouble = Data.MouseDouble;
-			LambdaFunction = Data.LambdaFunction;
 			InitializeComponent();
 
-			// 在设置页面显示当前设置
-			if (DarkMode == true) DarkModeOn.IsChecked = true;
-			else DarkModeOff.IsChecked = true;
-			if (KeyboardDouble == true) KeyboardDoubleOn.IsChecked = true;
-			else KeyboardDoubleOff.IsChecked = true;
-			if (MouseDouble == true) MouseDoubleOn.IsChecked = true;
-			else MouseDoubleOff.IsChecked = true;
+			// 在设置页面复原当前设置
+			if (DarkMode) radioDarkModeOn.IsChecked = true;
+			else radioDarkModeOff.IsChecked = true;
+
+			if (KeyboardDouble) radioKeyboardDoubleOn.IsChecked = true;
+			else radioKeyboardDoubleOff.IsChecked = true;
+
+			if (MouseDouble) radioMouseDoubleOn.IsChecked = true;
+			else radioMouseDoubleOff.IsChecked = true;
 		}
 
 		/// <summary>
@@ -77,5 +75,16 @@ namespace LambdaLauncher {
 			DarkMode = false;
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
 		}
+
+
+		/* 设置鼠标或键盘是单击启用还是双击启用 */
+		private void MouseDoubleOn(object sender, RoutedEventArgs e) =>
+			Data.MouseDouble = MouseDouble = true;
+		private void MouseDoubleOff(object sender, RoutedEventArgs e) =>
+			Data.MouseDouble = MouseDouble = false;
+		private void KeyboardDoubleOn(object sender, RoutedEventArgs e) =>
+			Data.KeyboardDouble = KeyboardDouble = true;
+		private void KeyboardDoubleOff(object sender, RoutedEventArgs e) =>
+			Data.KeyboardDouble = KeyboardDouble = false;
 	}
 }

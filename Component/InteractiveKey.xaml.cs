@@ -1,5 +1,6 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,7 +22,7 @@ namespace LambdaLauncher {
 			Refresh();
 		}
 
-		private void keyButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
+		private void MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
 			ContextMenu contextMenu = new ContextMenu();
 
 			MenuItem modifyKeySettings = new MenuItem();
@@ -88,6 +89,7 @@ namespace LambdaLauncher {
 		/// 单击鼠标执行命令
 		/// </summary>
 		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
+			Debug.WriteLine("正在尝试左键单击启动。要求双击吗：" + Data.MouseDouble);
 			if (Data.MouseDouble == false)
 				Utilities.RunCommand(keyData.Command);
 		}

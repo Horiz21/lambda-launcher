@@ -50,8 +50,9 @@ namespace LambdaLauncher {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
-				// 判断是否是字母，若是字母则判断是否是第二次按下（确认），若是则执行命令内容
-				if (letter >= 'A' && letter <= 'Z' && isSameActive) {
+				// 判断是否是字母，若是字母则判断是否是……
+				// 一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
+				if (!Data.KeyboardDouble || letter >= 'A' && letter <= 'Z' && isSameActive) {
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
 				}
 			}

@@ -85,9 +85,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton x:Name="DarkModeOn"
+                        <RadioButton x:Name="radioDarkModeOn"
                                      Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}" Checked="TempChangeDarkModeOn"/>
-                        <RadioButton x:Name="DarkModeOff"
+                        <RadioButton x:Name="radioDarkModeOff"
                                      Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}" Checked="TempChangeDarkModeOff"/>
                     </Grid>
 
@@ -98,10 +98,18 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton x:Name="KeyboardDoubleOn"
-                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOn}"/>
-                        <RadioButton x:Name="KeyboardDoubleOff"
-                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="KeyboardDouble" Content="{DynamicResource KeyboardDoubleOff}"/>
+                        <RadioButton x:Name="radioKeyboardDoubleOn"
+                                     Grid.Column="0"
+                                     Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyboardDouble"
+                                     Content="{DynamicResource KeyboardDoubleOn}"
+                                     Checked="KeyboardDoubleOn"/>
+                        <RadioButton x:Name="radioKeyboardDoubleOff"
+                                     Grid.Column="1"
+                                     Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="KeyboardDouble"
+                                     Content="{DynamicResource KeyboardDoubleOff}"
+                                     Checked="KeyboardDoubleOff"/>
                     </Grid>
 
                     <!--鼠标模式设定-->
@@ -111,10 +119,18 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <RadioButton x:Name="MouseDoubleOn"
-                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOn}"/>
-                        <RadioButton x:Name="MouseDoubleOff"
-                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="MouseDouble" Content="{DynamicResource MouseDoubleOff}"/>
+                        <RadioButton x:Name="radioMouseDoubleOn"
+                                     Grid.Column="0"
+                                     Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="MouseDouble"
+                                     Content="{DynamicResource MouseDoubleOn}"
+                                     Checked="MouseDoubleOn"/>
+                        <RadioButton x:Name="radioMouseDoubleOff"
+                                     Grid.Column="1"
+                                     Style="{DynamicResource RadioButtonNormal}"
+                                     GroupName="MouseDouble"
+                                     Content="{DynamicResource MouseDoubleOff}"
+                                     Checked="MouseDoubleOff"/>
                     </Grid>
 
                     <!--Lambda功能设定-->
