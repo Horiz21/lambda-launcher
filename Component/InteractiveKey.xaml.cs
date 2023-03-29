@@ -56,10 +56,18 @@ namespace LambdaLauncher {
 			// 更新局部keyData信息
 			keyData = Data.keyDatas[keyData.Letter - 'A'];
 
-			// 为所有可调整的可显示元素赋值
+			// 显示字母
 			keyLetter.Content = keyData.Letter == '[' ? 'Λ' : keyData.Letter;
-			keyTitle.Content = keyData.Title;
-			keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
+
+			// 为其他可调整的可显示元素赋值
+			if (Data.Vice) {
+				keyTitle.Content = keyData.ViceTitle;
+				keyIcon.Source = Utilities.GetImageFromPath(keyData.ViceIcon);
+			}
+			else {
+				keyTitle.Content = keyData.Title;
+				keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
+			}
 		}
 
 		public string GetCommand() => keyData.Command;
@@ -90,7 +98,8 @@ namespace LambdaLauncher {
 		/// </summary>
 		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
 			if (Data.InstantAvtice || Data.MouseDouble == false)
-				Utilities.RunCommand(keyData.Command);
+				if (Data.Vice) Utilities.RunCommand(keyData.ViceCommand);
+				else Utilities.RunCommand(keyData.Command);
 		}
 
 		/// <summary>
@@ -98,7 +107,8 @@ namespace LambdaLauncher {
 		/// </summary>
 		private void DoubleClickToRunContentCommand(object sender, RoutedEventArgs e) {
 			if (Data.MouseDouble == true)
-				Utilities.RunCommand(keyData.Command);
+				if (Data.Vice) Utilities.RunCommand(keyData.ViceCommand);
+				else Utilities.RunCommand(keyData.Command);
 		}
 
 		public void Enable(bool isEnabled) {

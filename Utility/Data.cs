@@ -33,6 +33,7 @@ namespace LambdaLauncher.Utility {
 		public static bool MouseDouble { get; set; }
 		public static int LambdaFunction { get; set; }
 		public static bool InstantAvtice { get; set; } = false; // 如果为真，则忽略二次访问设置，直接改为一次访问
+		public static bool Vice { get; set; } = false; // 如果为真，则刷新成第二键设置
 
 		/// <summary>
 		/// 从固定的位置读取数据，产生单行信息和对象信息

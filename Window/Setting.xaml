@@ -143,6 +143,7 @@
                     <ComboBox x:Name="boxLambdaFunction"
                               Grid.Row="5" Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
+                              SelectionChanged="TempChangeLambdaFunction"
                               >
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-None}"/>
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-SwitchDarkMode}"/>

@@ -71,6 +71,10 @@ namespace LambdaLauncher {
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
 		}
 
+		private void TempChangeLambdaFunction(object sender, RoutedEventArgs e) {
+			LambdaFunction = boxLambdaFunction.SelectedIndex;
+		}
+
 		/* 设置鼠标或键盘是单击启用还是双击启用 */
 		private void MouseDoubleOn(object sender, RoutedEventArgs e) =>
 			Data.MouseDouble = MouseDouble = true;

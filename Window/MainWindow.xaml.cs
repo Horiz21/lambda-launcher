@@ -29,6 +29,10 @@ namespace LambdaLauncher {
 		}
 
 		public void Refresh() {
+			for (int i = 0; i < gridRows.Length; ++i) {
+				gridRows[i].Children.Clear();
+			}
+
 			string[] rows = { "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM[" }; // 按键盘顺序存储的三行按键
 
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
@@ -41,9 +45,6 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
-
-		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
 		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
@@ -95,7 +96,6 @@ namespace LambdaLauncher {
 		private void LauncherSettings(object sender, RoutedEventArgs e) {
 			Setting childWindow = new();
 			childWindow.ShowDialog();
-			//Refresh();
 		}
 
 		/// <summary>
@@ -137,5 +137,9 @@ namespace LambdaLauncher {
 				}
 			}
 		}
+
+		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
+
+		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 	}
 }
