@@ -23,15 +23,23 @@ namespace LambdaLauncher {
 		}
 
 		private void MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
-			ContextMenu contextMenu = new ContextMenu();
+			ContextMenu contextMenu = new();
 
-			MenuItem modifyKeySettings = new MenuItem();
-			modifyKeySettings.Header = "编辑启动程序";
+			MenuItem modifyKeySettings = new() {
+				Header = "编辑主按键策略"
+			};
 			modifyKeySettings.Click += ModifyKeySettings;
 			contextMenu.Items.Add(modifyKeySettings);
 
-			MenuItem clearKeySettings = new MenuItem();
-			clearKeySettings.Header = "清空按键内容";
+			MenuItem modifyViceKeySettings = new() {
+				Header = "编辑副按键策略"
+			};
+			modifyViceKeySettings.Click += ModifyViceKeySettings;
+			contextMenu.Items.Add(modifyViceKeySettings);
+
+			MenuItem clearKeySettings = new() {
+				Header = "清空按键内容"
+			};
 			clearKeySettings.Click += ClearKeySettings;
 			contextMenu.Items.Add(clearKeySettings);
 
@@ -39,7 +47,13 @@ namespace LambdaLauncher {
 		}
 
 		private void ModifyKeySettings(object sender, RoutedEventArgs e) {
-			KeySettings childWindow = new KeySettings(keyData.Letter);
+			KeySettings childWindow = new(keyData.Letter);
+			childWindow.ShowDialog();
+			Refresh();
+		}
+
+		private void ModifyViceKeySettings(object sender, RoutedEventArgs e) {
+			KeySettings childWindow = new(keyData.Letter, true);
 			childWindow.ShowDialog();
 			Refresh();
 		}

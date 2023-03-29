@@ -9,25 +9,44 @@ namespace LambdaLauncher {
 	public partial class KeySettings : Window {
 		private InteractiveKey interactiveKey;
 		private KeyData keyData; // 本地KeyData变量
+		private char Letter;
 		private int localLinkType = 0;
 		private string localLink = string.Empty; // 暂时记录原始的链接，使得标签切换走、切换回来该链接仍然暂存着
+		private bool viceMode; // 是否是一个副策略组的实例
 
-		public KeySettings(char Letter) {
+		public KeySettings(char Letter, bool viceMode = false) {
 			// 为局部变量赋值
+			this.Letter = Letter;
 			keyData = Data.keyDatas[Letter - 'A'].DeepCopy();
-			localLink = keyData.Command;
-			localLinkType = keyData.LinkType;
+			this.viceMode = viceMode;
+			if (viceMode) {
+				localLink = keyData.ViceCommand;
+				localLinkType = keyData.ViceLinkType;
+			}
+			else {
+				localLink = keyData.Command;
+				localLinkType = keyData.LinkType;
+			}
 
 			// 初始化窗口并添加预览窗口，并且禁止与该预览窗口交互
 			InitializeComponent();
+
 			interactiveKey = new InteractiveKey(keyData);
-			interactiveKey.keyButton.IsEnabled = false;
+			interactiveKey.ClearContent();
+			interactiveKey.Enable(false);
 			gridInteractiveKey.Children.Add(interactiveKey);
 
 			// 向输入框插入目前已有信息
-			textIcon.Text = keyData.Icon;
-			textLink.Text = keyData.Command;
-			textTitle.Text = keyData.Title;
+			if (viceMode) {
+				textIcon.Text = keyData.ViceIcon;
+				textLink.Text = keyData.ViceCommand;
+				textTitle.Text = keyData.ViceTitle;
+			}
+			else {
+				textIcon.Text = keyData.Icon;
+				textLink.Text = keyData.Command;
+				textTitle.Text = keyData.Title;
+			}
 
 			if (localLinkType == 1) {
 				AddTarget.IsChecked = true;
@@ -107,13 +126,22 @@ namespace LambdaLauncher {
 
 		private void ButtonConfirm(object sender, RoutedEventArgs e) {
 			// 根据填充项修改信息
-			keyData.LinkType = localLinkType;
-			keyData.Title = textTitle.Text;
-			keyData.Command = textLink.Text;
-			keyData.Icon = textIcon.Text;
+			if (viceMode) {
+				keyData.ViceLinkType = localLinkType;
+				keyData.ViceTitle = textTitle.Text;
+				keyData.ViceCommand = textLink.Text;
+				keyData.ViceIcon = textIcon.Text;
+			}
+			else {
+				keyData.LinkType = localLinkType;
+				keyData.Title = textTitle.Text;
+				keyData.Command = textLink.Text;
+				keyData.Icon = textIcon.Text;
+			}
 
 			// 将自己修改后的信息保存回csv文件
 			Data.ModifyAndWrite(keyData);
+			Data.keyDatas[Letter - 'A'] = keyData.DeepCopy();
 
 			// 关闭当前页面
 			Close();

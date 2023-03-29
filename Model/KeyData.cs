@@ -39,7 +39,7 @@ namespace LambdaLauncher.Model {
 		/// </summary>
 		/// <returns>以制表符分割的字符串，记录了一个Key的元素内容</returns>
 		public string GetLlsFormatData() {
-			string[] datas = new string[] { Letter.ToString(), LinkType.ToString(), Title, Command, Icon, ViceLinkType.ToString(), ViceTitle, ViceCommand,ViceIcon };
+			string[] datas = new string[] { LinkType.ToString(), Title, Command, Icon, ViceLinkType.ToString(), ViceTitle, ViceCommand,ViceIcon };
 			return string.Join("\t", datas);
 		}
 
