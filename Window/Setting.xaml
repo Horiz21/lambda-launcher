@@ -140,7 +140,10 @@
 
                     <!--Lambda功能设定-->
                     <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
-                    <ComboBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource ComboBoxNormal}">
+                    <ComboBox x:Name="boxLambdaFunction"
+                              Grid.Row="5" Grid.Column="1"
+                              Style="{DynamicResource ComboBoxNormal}"
+                              >
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-None}"/>
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-SwitchDarkMode}"/>
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKey}"/>

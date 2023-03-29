@@ -24,6 +24,7 @@ namespace LambdaLauncher {
 			// 在设置页面复原当前设置
 			boxLanguage.SelectedIndex = Language;
 			boxTheme.SelectedIndex = Theme;
+			boxLambdaFunction.SelectedIndex = LambdaFunction;
 
 			if (DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
@@ -68,7 +69,6 @@ namespace LambdaLauncher {
 			DarkMode = false;
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
 		}
-
 
 		/* 设置鼠标或键盘是单击启用还是双击启用 */
 		private void MouseDoubleOn(object sender, RoutedEventArgs e) =>
