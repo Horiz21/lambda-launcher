@@ -17,7 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resource\Images\noimg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resource\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\Images\noimg.png" />
   </ItemGroup>
 
   <ItemGroup>

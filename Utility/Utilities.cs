@@ -19,7 +19,10 @@ namespace LambdaLauncher.Utility {
 			bool isExist = File.Exists(path);
 			if (isImage && isExist)
 				return new BitmapImage(new Uri(path));
-			return new BitmapImage();
+			else if(path!=string.Empty){
+				return new BitmapImage(new Uri("pack://application:,,,/Resource/Images/noimg.png"));
+			}
+			return GetEmptyImage();
 		}
 
 		/// <summary>
@@ -32,9 +35,9 @@ namespace LambdaLauncher.Utility {
 
 		// 运行一条cmd命令
 		public static void RunCommand(string target) {
-			ProcessStartInfo startInfo = new ProcessStartInfo();
+			ProcessStartInfo startInfo = new();
 			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = "/C start \"\" \"" + target + "\"";
+			startInfo.Arguments = @"/C start """" """ + target + @"""";
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 
