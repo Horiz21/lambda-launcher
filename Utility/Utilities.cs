@@ -38,6 +38,15 @@ namespace LambdaLauncher.Utility {
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 
+			if (Data.LambdaFunction == 3) {
+				Data.InstantAvtice = Data.Vice = false;
+				MainWindow.Refresh();
+			}
+			else if (Data.LambdaFunction == 4) {
+				Data.InstantAvtice = false;
+				MainWindow.Refresh();
+			}
+
 			Process process = new Process();
 			process.StartInfo = startInfo;
 			process.Start();

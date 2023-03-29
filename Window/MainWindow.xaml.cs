@@ -9,11 +9,11 @@ using System.Windows.Input;
 
 namespace LambdaLauncher {
 	public partial class MainWindow : Window {
-		private InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
-		private UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
+		private static InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
+		private static UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
 
-		private char currentActivedKey; // 上一次按下的字母
-		private bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
+		private static char currentActivedKey; // 上一次按下的字母
+		private static bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 
 		public MainWindow() {
 			Data.LoadData();
@@ -28,7 +28,7 @@ namespace LambdaLauncher {
 			Refresh();
 		}
 
-		public void Refresh() {
+		public static void Refresh() {
 			for (int i = 0; i < gridRows.Length; ++i) {
 				gridRows[i].Children.Clear();
 			}
@@ -55,9 +55,8 @@ namespace LambdaLauncher {
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是……
 				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (Data.InstantAvtice || !Data.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
+				if (Data.InstantAvtice || !Data.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive))
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
-				}
 			}
 			else if (key == "LeftShift" || key == "RightShift") {
 				ActiveLambdaFunction(false);
@@ -105,13 +104,10 @@ namespace LambdaLauncher {
 		private void ActiveLambdaFunction(bool start = true) {
 			if (start) {
 				switch (Data.LambdaFunction) {
-					case 2:
-						// 切换主/副策略组
-						Debug.WriteLine("切换到副策略组了！");
-						break;
 					case 3:
 						// 暂切副策略组并暂开立即响应
 						Data.InstantAvtice = Data.Vice = true;
+						Refresh();
 						break;
 					case 4:
 						// 立即响应
@@ -129,11 +125,13 @@ namespace LambdaLauncher {
 						break;
 					case 2:
 						// 切换到副策略组
-						Debug.WriteLine("切换回主策略组了！");
+						Data.Vice ^= true;
+						Refresh();
 						break;
 					case 3:
 						// 暂切副策略组并暂开立即响应
 						Data.InstantAvtice = Data.Vice = false;
+						Refresh();
 						break;
 					case 4:
 						// 立即响应
