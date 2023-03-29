@@ -1,7 +1,4 @@
-﻿using LambdaLauncher.Model;
-using LambdaLauncher.Utility;
-using System.Diagnostics;
-using System.IO;
+﻿using LambdaLauncher.Utility;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -151,5 +148,13 @@ namespace LambdaLauncher {
 		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
 
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
+
+		private void Menu_OpenWebsite(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void Menu_Exit(object sender, RoutedEventArgs e) {
+
+		}
 	}
 }

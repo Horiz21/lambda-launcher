@@ -16,7 +16,7 @@ namespace LambdaLauncher {
 		private int LambdaFunction = Data.LambdaFunction;
 
 		// 一个工具而已，无需在意
-		string head = @"pack://application:,,,/";
+		string head = "pack://application:,,,/";
 
 		public Setting() {
 			InitializeComponent();

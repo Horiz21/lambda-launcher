@@ -33,6 +33,13 @@ namespace LambdaLauncher.Utility {
 			return new BitmapImage();
 		}
 
+		/// <summary>
+		/// 获取Logo
+		/// </summary>
+		public static BitmapImage GetLogo() {
+			return new BitmapImage(new Uri("pack://application:,,,/Resource/Images/icon.png"));
+		}
+
 		// 运行一条cmd命令
 		public static void RunCommand(string target) {
 			ProcessStartInfo startInfo = new();

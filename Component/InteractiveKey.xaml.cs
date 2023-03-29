@@ -76,15 +76,21 @@ namespace LambdaLauncher {
 			// 为其他可调整的可显示元素赋值
 			if (Data.Vice) {
 				keyTitle.Content = keyData.ViceTitle;
+				//if (keyData.Letter == '[')
+				//	keyIcon.Source = Utilities.GetLogo();
+				//else
 				keyIcon.Source = Utilities.GetImageFromPath(keyData.ViceIcon);
 			}
 			else {
 				keyTitle.Content = keyData.Title;
+				//if (keyData.Letter == '[')
+				//	keyIcon.Source = Utilities.GetLogo();
+				//else
 				keyIcon.Source = Utilities.GetImageFromPath(keyData.Icon);
 			}
 		}
 
-		public string GetCommand() => Data.Vice?keyData.ViceCommand:keyData.Command;
+		public string GetCommand() => Data.Vice ? keyData.ViceCommand : keyData.Command;
 
 		/// <summary>
 		/// 清空一个InteractiveKey除了键盘字母外的所有内容

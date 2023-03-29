@@ -3,13 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
         Title="Lambda Launcher"
         Height="520" Width="1160"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource WindowNormal}"
         KeyUp="KeyUpEvent" KeyDown="KeyDownEvent"
-        MouseRightButtonUp="WindowContextMenu">
+        MouseRightButtonUp="WindowContextMenu"
+        ShowInTaskbar="True">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="打开官网" Click="Menu_OpenWebsite"/>
+            <MenuItem Header="退出" Click="Menu_Exit"/>
+        </ContextMenu>
+    </Window.ContextMenu>
     <!--用于承载所有页面元素的总Gird-->
     <Grid>
         <!--用于实现页面拖拽的顶栏-->
