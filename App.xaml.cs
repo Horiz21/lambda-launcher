@@ -1,5 +1,4 @@
 ﻿using LambdaLauncher.Model;
-using LambdaLauncher.Utility;
 using System;
 using System.IO;
 using System.Windows;
@@ -7,41 +6,26 @@ using System.Windows;
 namespace LambdaLauncher {
 
 	public partial class App : Application {
+
 		protected override void OnStartup(StartupEventArgs e) {
 			base.OnStartup(e);
 			LoadData();  // 读取设置项和按键功能信息
 		}
 
-		public static string[] Languages = new string[3] {
-			"zh_Hans", // 0
-			"zh_Hant", // 1
-			"en",      // 2
-		};
+		public static string[] Languages = new string[3] { "zh_Hans", "zh_Hant", "en" };
+		public static string[] Themes = new string[3] { "bmbo", "cbpk", "dodl" };
+		private static readonly string LlsPath = "../../../Settings/setting.lls";  // 设置文件（.lls)
+		private static string[] keyLlsDatas = new string[28];  // 用于存放1个初始行和27个字母信息（单行形式）
+		public static KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式）
 
-		public static string[] Themes = new string[3] {
-			"bmbo",  // 0
-			"cbpk",  // 1
-			"dodl",  // 2
-		};
-
-		// 设置文件（.lls)
-		private static readonly string LlsPath = "../../../Settings/setting.lls";
-
-		// 按键信息
-		private static string[] keyLlsDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
-
-		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
-
-		// 设置信息
 		public static int Language { get; set; }
-
 		public static int Theme { get; set; }
 		public static bool DarkMode { get; set; }
 		public static bool KeyboardDouble { get; set; }
 		public static bool MouseDouble { get; set; }
 		public static int LambdaFunction { get; set; }
-		public static bool InstantAvtice { get; set; } = false; // 如果为真，则忽略二次访问设置，直接改为一次访问
-		public static bool Vice { get; set; } = false; // 如果为真，则刷新成第二键设置
+		public static bool InstantAvtice { get; set; } = false;  // 如果为真，则忽略二次访问设置，直接改为一次访问
+		public static bool Vice { get; set; } = false;  // 如果为真，则刷新成第二键设置
 
 		/// <summary>
 		/// 从固定的位置读取数据，产生单行信息和对象信息
@@ -88,17 +72,17 @@ namespace LambdaLauncher {
 		/// <summary>
 		/// 储存由Settings类给出的新设置项到文件里
 		/// </summary>
-		public static void SaveLlsSettings(int Language, int Theme, bool DarkMode, bool KeyboardDouble, bool MouseDouble, int LambdaFunction) {
+		public static void SaveLlsSettings(int language, int theme, bool darkMode, bool keyboardDouble, bool mouseDouble, int lambdaFunction) {
 			// 更新本地数据
-			App.Language = Language;
-			App.Theme = Theme;
-			App.DarkMode = DarkMode;
-			App.KeyboardDouble = KeyboardDouble;
-			App.MouseDouble = MouseDouble;
-			App.LambdaFunction = LambdaFunction;
+			Language = language;
+			Theme = theme;
+			DarkMode = darkMode;
+			KeyboardDouble = keyboardDouble;
+			MouseDouble = mouseDouble;
+			LambdaFunction = lambdaFunction;
 
 			// 修改字符串
-			keyLlsDatas[27] = Language + "\t" + Theme + "\t" + (DarkMode ? "1" : "0") + "\t" + (KeyboardDouble ? "1" : "0") + "\t" + (MouseDouble ? "1" : "0") + "\t" + LambdaFunction;
+			keyLlsDatas[27] = string.Join("\t", new string[] { language.ToString(), theme.ToString(), darkMode ? "1" : "0", keyboardDouble ? "1" : "0", mouseDouble ? "1" : "0", lambdaFunction.ToString() });
 
 			// 存储到文件中
 			File.WriteAllLines(LlsPath, keyLlsDatas);
