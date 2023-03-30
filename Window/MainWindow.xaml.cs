@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Forms = System.Windows.Forms;
@@ -43,17 +42,15 @@ namespace LambdaLauncher {
 			gridRows[1] = gridRow2;
 			gridRows[2] = gridRow3;
 
-			ReloadLanguage();
-			ReloadGrid();
-
-			Loaded += Hotkey;
+			ReloadLanguage();  // 加载语言文件
+			ReloadGrid();  // 加载布局
+			Loaded += Hotkey;  // 注册热键
 		}
 
 		private void Hotkey(object sender, RoutedEventArgs e) {
 			// 注册热键 (窗体句柄,热键ID,辅助键,实键)
 			// 辅助键说明: None = 0, Alt = 1, crtl= 2, Shift = 4, Windows = 8
-			RegisterHotKey(this, 123, Key.Q, ModifierKeys.Control);
-			RegisterHotKey(this, 456, Key.W, ModifierKeys.Control);
+			RegisterHotKey(this, 1134419766, Key.Q, ModifierKeys.Control | ModifierKeys.Shift); // 目前是写死的，CtrlShiftQ是显示和隐藏的热键
 
 			// 获取窗口句柄，创建HwndSource实例
 			source = HwndSource.FromHwnd(GetHandle(this));
@@ -194,8 +191,8 @@ namespace LambdaLauncher {
 
 		private void Menu_Exit(object sender, System.EventArgs e) {
 			notifyIcon.Dispose();
-			UnregisterHotKey(this, 123);
-			UnregisterHotKey(this, 456);
+			UnregisterHotKey(this, 11344);
+			UnregisterHotKey(this, 19766);
 			App.Current.Shutdown();
 		}
 
@@ -213,56 +210,38 @@ namespace LambdaLauncher {
 		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
 		// 获取窗口句柄
-		public static IntPtr GetHandle(Window window) {
-			WindowInteropHelper helper = new WindowInteropHelper(window);
-			return helper.Handle;
-		}
+		public static IntPtr GetHandle(Window window) => new WindowInteropHelper(window).Handle;
 
 		// 注册热键
 		public static void RegisterHotKey(Window window, int id, Key key, ModifierKeys modifiers) {
-			IntPtr handle = GetHandle(window);
-
 			// 将Key转换为虚拟键码
 			uint vk = (uint)KeyInterop.VirtualKeyFromKey(key);
 
 			// 将ModifierKeys转换为辅助键的值
 			uint fsModifiers = 0;
-			if ((modifiers & ModifierKeys.Alt) != 0)
-				fsModifiers |= 0x0001;
-			if ((modifiers & ModifierKeys.Control) != 0)
-				fsModifiers |= 0x0002;
-			if ((modifiers & ModifierKeys.Shift) != 0)
-				fsModifiers |= 0x0004;
-			if ((modifiers & ModifierKeys.Windows) != 0)
-				fsModifiers |= 0x0008;
+			if ((modifiers & ModifierKeys.Alt) != 0) fsModifiers |= 0x0001;
+			if ((modifiers & ModifierKeys.Control) != 0) fsModifiers |= 0x0002;
+			if ((modifiers & ModifierKeys.Shift) != 0) fsModifiers |= 0x0004;
+			if ((modifiers & ModifierKeys.Windows) != 0) fsModifiers |= 0x0008;
 
 			// 注册热键
-			RegisterHotKey(handle, id, fsModifiers, vk);
+			RegisterHotKey(GetHandle(window), id, fsModifiers, vk);
 		}
 
 		// 注销热键
-		public static void UnregisterHotKey(Window window, int id) {
-			IntPtr handle = GetHandle(window);
-			UnregisterHotKey(handle, id);
-		}
+		public static void UnregisterHotKey(Window window, int id) => UnregisterHotKey(GetHandle(window), id);
 
 		private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
-			const int WM_HOTKEY = 0x0312;
 			switch (msg) {
-				case WM_HOTKEY:
-					if (wParam.ToInt32() == 123) // 按下Ctrl + Q隐藏
-					{
-						Hide();
-					}
-					else if (wParam.ToInt32() == 456) // 按下Ctrl + W显示
-					{
-						Show();
+				case 0x0312:  // WM_HOTKEY
+					if (wParam.ToInt32() == 1134419766) {
+						if (IsVisible) Hide();
+						else Show();
 					}
 					handled = true;
 					break;
 			}
 			return IntPtr.Zero;
 		}
-
 	}
 }
