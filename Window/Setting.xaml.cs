@@ -46,23 +46,23 @@ namespace LambdaLauncher {
 
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Language = boxLanguage.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[0].Source = new Uri("../Language/" + App.Languages[Language] + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + App.Languages[Language] + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Theme = boxTheme.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[1].Source = new Uri("../Resource/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[1].Source = new Uri("../Properties/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) {
 			DarkMode = true;
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Resource/Themes/DarkMode.xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) {
 			DarkMode = false;
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Resource/Themes/LightMode.xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeLambdaFunction(object sender, RoutedEventArgs e) {

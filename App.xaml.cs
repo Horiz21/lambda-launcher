@@ -9,7 +9,7 @@ namespace LambdaLauncher {
 	public partial class App : Application {
 		protected override void OnStartup(StartupEventArgs e) {
 			base.OnStartup(e);
-			LoadData();
+			LoadData();  // 读取设置项和按键功能信息
 		}
 
 		public static string[] Languages = new string[3] {
