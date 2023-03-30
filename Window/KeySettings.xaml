@@ -13,20 +13,20 @@
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
               Margin="2.5" MouseLeftButtonDown="DragWindow"
-              Background="{DynamicResource Background}"/>
+              Background="{DynamicResource Background}" />
 
         <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="152"/>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="152" />
             </Grid.RowDefinitions>
-            
+
             <!--标题和关闭按钮（操作区域）-->
             <Grid x:Name="gridPanel">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="32" />
                 </Grid.ColumnDefinitions>
                 <Label Content="{DynamicResource KeySettings}"
                    FontSize="16"
@@ -34,86 +34,86 @@
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Stretch"
                    Foreground="{DynamicResource Foreground}"
-                   MouseLeftButtonDown="DragWindow"/>
+                   MouseLeftButtonDown="DragWindow" />
                 <Button Grid.Column="1"
                     Content="×" Height="24" Width="24"
                     HorizontalAlignment="Right" Margin="4"
                     FontSize="24" FontFamily="Noto Sans SC Black"
                     Background="Transparent"
                     Style="{DynamicResource ButtonCancel}"
-                    Click="CloseWindow"/>
+                    Click="CloseWindow" />
             </Grid>
-            
+
             <!--第二行为显示和编辑区域-->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="108"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="108" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="gridInteractiveKey"/>
+                <Grid x:Name="gridInteractiveKey" />
                 <Grid x:Name="gridInput" Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="64"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="64"/>
+                        <ColumnDefinition Width="64" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="64" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.ColumnSpan="3">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <RadioButton x:Name="AddTarget"
                                      Grid.Column="0" Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyType" Content="{DynamicResource AddTarget}"
-                                     Checked="CheckedAddTarget"/>
+                                     Checked="CheckedAddTarget" />
                         <RadioButton x:Name="AddFolder"
                                      Grid.Column="1" Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyType" Content="{DynamicResource AddFolder}"
-                                     Checked="CheckedAddFolder"/>
+                                     Checked="CheckedAddFolder" />
                         <RadioButton x:Name="AddWebsite"
                                      Grid.Column="2" Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyType" Content="{DynamicResource AddWebsite}"
-                                     Checked="CheckedAddWebsite"/>
+                                     Checked="CheckedAddWebsite" />
                         <RadioButton x:Name="PureCommand"
                                      Grid.Column="3" Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyType" Content="{DynamicResource PureCommand}"
-                                     Checked="CheckedPureCommand"/>
+                                     Checked="CheckedPureCommand" />
                     </Grid>
-                    
+
                     <!--输入框Row=1为名称设定-->
                     <Label Content="{DynamicResource KeyTitle}" Grid.Row="1" Grid.Column="0"
-                           Style="{DynamicResource LabelRight}"/>
+                           Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
                          TextChanged="UpdateTitle">
                         <TextBox.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
+                                <Setter Property="CornerRadius" Value="4" />
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    
+
                     <!--输入框Row=2为图标设定-->
                     <Label Content="{DynamicResource KeyIcon}" Grid.Row="3" Grid.Column="0"
-                           Style="{DynamicResource LabelRight}"/>
+                           Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textIcon" Grid.Row="3" Grid.Column="1"
                          FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                          VerticalAlignment="Center"
                          TextChanged="UpdateIcon">
                         <TextBox.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
+                                <Setter Property="CornerRadius" Value="4" />
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
@@ -123,20 +123,20 @@
                         Click="ButtonSelectIcon">
                         <Button.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
+                                <Setter Property="CornerRadius" Value="4" />
                             </Style>
                         </Button.Resources>
                     </Button>
 
                     <!--输入框Row=3为地址设定-->
                     <Label x:Name="labelLink"  Content="{DynamicResource AddTarget}" Grid.Row="2" Grid.Column="0"
-                           Style="{DynamicResource LabelRight}"/>
+                           Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textLink" Grid.Row="2" Grid.Column="1"
                              FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
                              VerticalAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
+                                <Setter Property="CornerRadius" Value="4" />
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
@@ -146,7 +146,7 @@
                         Click="ButtonSelectTarget">
                         <Button.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
+                                <Setter Property="CornerRadius" Value="4" />
                             </Style>
                         </Button.Resources>
                     </Button>
@@ -154,15 +154,15 @@
                     <!--Row=4为确认键和取消键的Grid-->
                     <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
                         <Button x:Name="buttonCancel" Content="{DynamicResource Clear}" FontSize="14"
-                            Style="{DynamicResource ButtonCancel}" Width="80" Height="24" Click="ButtonClear"/>
+                            Style="{DynamicResource ButtonCancel}" Width="80" Height="24" Click="ButtonClear" />
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
-                            Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1" Click="ButtonConfirm"/>
+                            Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1" Click="ButtonConfirm" />
                     </Grid>
                 </Grid>
             </Grid>

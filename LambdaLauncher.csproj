@@ -77,6 +77,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Languages\en.Designer.cs">
+      <DependentUpon>en.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\Languages\zh_Hans.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>zh_Hans.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Languages\en.resx">
+      <LastGenOutput>en.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Languages\zh_Hans.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>zh_Hans.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Resource\Images\exit.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

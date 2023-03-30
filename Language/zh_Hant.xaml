@@ -15,7 +15,7 @@
     <sys:String x:Key="KeyboardDoubleOff">按一下鍵盤觸發</sys:String>
     <sys:String x:Key="MouseDoubleOn">按兩下主鍵觸發</sys:String>
     <sys:String x:Key="MouseDoubleOff">按一下主鍵觸發</sys:String>
-    
+
     <!--Lambda功能-->
     <sys:String x:Key="LambdaFunction-None">不開啟</sys:String>
     <sys:String x:Key="LambdaFunction-SwitchDarkMode">切換日間模式與夜間模式</sys:String>
@@ -23,12 +23,12 @@
     <sys:String x:Key="LambdaFunction-ViceKeyTemp">暫時切換為副按鍵策略組並改成單擊觸發</sys:String>
     <sys:String x:Key="LambdaFunction-SingleClick">單擊觸發</sys:String>
     <sys:String x:Key="LambdaFunction-SettingsMenu">打開設定介面</sys:String>
-    
+
     <!--語言-->
     <sys:String x:Key="zh_Hans">中文（簡體）</sys:String>
     <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
     <sys:String x:Key="en">英語（English）</sys:String>
-    
+
     <!-- 按鍵設定視窗-->
     <sys:String x:Key="KeySettings">按鍵設定</sys:String>
     <sys:String x:Key="KeyTitle">標題</sys:String>
@@ -41,7 +41,7 @@
     <sys:String x:Key="AddFolder">資料夾</sys:String>
     <sys:String x:Key="AddWebsite">網址</sys:String>
     <sys:String x:Key="PureCommand">CMD命令</sys:String>
-    
+
     <!--主題顏色-->
     <sys:String x:Key="ThemePrimaryColor">主題色</sys:String>
     <sys:String x:Key="ThemeAccentColor">強調色</sys:String>
@@ -50,12 +50,12 @@
     <sys:String x:Key="ThemeSuccessColor">成功指示色</sys:String>
     <sys:String x:Key="ThemeWarningColor">警告指示色</sys:String>
     <sys:String x:Key="ThemeErrorColor">錯誤指示色</sys:String>
-    
+
     <!--主題-->
     <sys:String x:Key="bmbo">綠竹</sys:String>
     <sys:String x:Key="cbpk">賽博朋克</sys:String>
     <sys:String x:Key="dodl">塗鴉</sys:String>
-    
+
     <!-- 其他-->
     <sys:String x:Key="On">開啟</sys:String>
     <sys:String x:Key="Off">關閉</sys:String>

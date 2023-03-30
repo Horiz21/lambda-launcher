@@ -1,12 +1,13 @@
 ﻿using LambdaLauncher.Utility;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Diagnostics;
 using Forms = System.Windows.Forms;
 
 namespace LambdaLauncher {
+
 	public partial class MainWindow : Window {
 		private static InteractiveKey[] keys = new InteractiveKey[27]; // 用于存放按钮控件
 		private static UniformGrid[] gridRows = new UniformGrid[3]; // 用于存放三个Grid
@@ -14,6 +15,13 @@ namespace LambdaLauncher {
 		private Forms.NotifyIcon notifyIcon;
 		private static char currentActivedKey; // 上一次按下的字母
 		private static bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
+
+		//private string? menuWebsite = Application.Current.FindResource("MenuWebsite") as string;
+		//private string? menuExit = Application.Current.FindResource("MenuExit") as string;
+		//private string? settings = Application.Current.FindResource("Settings") as string;
+		//private string? keySettings1 = Application.Current.FindResource("KeySettings1") as string;
+		//private string? keySettings2 = Application.Current.FindResource("KeySettings2") as string;
+		//private string? claerKey = Application.Current.FindResource("ClearKey") as string;
 
 		public MainWindow() {
 			Data.LoadData();
@@ -24,21 +32,20 @@ namespace LambdaLauncher {
 			notifyIcon = new Forms.NotifyIcon();
 			notifyIcon.Icon = new System.Drawing.Icon("Resource/icon.ico");
 			notifyIcon.Visible = true;
-			notifyIcon.DoubleClick += NotifyIcon_Click;
+			notifyIcon.DoubleClick += Show;
 			notifyIcon.Text = "Lambda Launcher";
 			notifyIcon.ContextMenuStrip = new Forms.ContextMenuStrip();
-			notifyIcon.ContextMenuStrip.Items.Add("Website", System.Drawing.Image.FromFile("Resource/Images/link.ico"), Menu_OpenWebsite);
-			notifyIcon.ContextMenuStrip.Items.Add("Exit", System.Drawing.Image.FromFile("Resource/Images/exit.ico"), Menu_Exit);
 
 			// 将三行记录在gridRows数组中
 			gridRows[0] = gridRow1;
 			gridRows[1] = gridRow2;
 			gridRows[2] = gridRow3;
 
-			Refresh();
+			ReloadLanguage();
+			ReloadGrid();
 		}
 
-		public static void Refresh() {
+		public static void ReloadGrid() {
 			for (int i = 0; i < gridRows.Length; ++i) {
 				gridRows[i].Children.Clear();
 			}
@@ -54,7 +61,6 @@ namespace LambdaLauncher {
 				}
 			}
 		}
-
 
 		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
@@ -117,12 +123,14 @@ namespace LambdaLauncher {
 					case 3:
 						// 暂切副策略组并暂开立即响应
 						Data.InstantAvtice = Data.Vice = true;
-						Refresh();
+						ReloadGrid();
 						break;
+
 					case 4:
 						// 立即响应
 						Data.InstantAvtice = true;
 						break;
+
 					default:
 						break;
 				}
@@ -133,25 +141,30 @@ namespace LambdaLauncher {
 						// 切换日/夜间模式
 						Data.SwitchDarkMode();
 						break;
+
 					case 2:
 						// 切换到副策略组
 						Data.Vice ^= true;
-						Refresh();
+						ReloadGrid();
 						break;
+
 					case 3:
 						// 暂切副策略组并暂开立即响应
 						Data.InstantAvtice = Data.Vice = false;
-						Refresh();
+						ReloadGrid();
 						break;
+
 					case 4:
 						// 立即响应
 						Data.InstantAvtice = false;
 						break;
+
 					case 5:
 						// 打开设置界面
 						Setting childWindow = new();
 						childWindow.ShowDialog();
 						break;
+
 					default:
 						break;
 				}
@@ -169,6 +182,13 @@ namespace LambdaLauncher {
 			Application.Current.Shutdown();
 		}
 
-		private void NotifyIcon_Click(object sender, System.EventArgs e) => Show();
+		private void Show(object sender, System.EventArgs e) => Show();
+
+		private void ReloadLanguage() {
+			//menuWebsite = Application.Current.FindResource("MenuWebsite") as string;
+			//menuExit = Application.Current.FindResource("MenuExit") as string;
+			notifyIcon.ContextMenuStrip.Items.Add("1", System.Drawing.Image.FromFile("Resource/Images/exit.ico"), Menu_Exit);
+			notifyIcon.ContextMenuStrip.Items.Add("2", System.Drawing.Image.FromFile("Resource/Images/link.ico"), Menu_OpenWebsite);
+		}
 	}
 }

@@ -29,7 +29,7 @@
     <sys:String x:Key="zh_Hans">Chinese (Simplied)</sys:String>
     <sys:String x:Key="zh_Hant">Chinese (Traditional)</sys:String>
     <sys:String x:Key="en">English</sys:String>
-    
+
     <!--按键设置窗口-->
     <sys:String x:Key="KeySettings">Key Settings</sys:String>
     <sys:String x:Key="KeyTitle">Title</sys:String>
@@ -61,4 +61,11 @@
     <!--其他-->
     <sys:String x:Key="On">On</sys:String>
     <sys:String x:Key="Off">Off</sys:String>
+
+    <!--写死在cs里的项目-->
+    <sys:String x:Key="MenuExit">Exit</sys:String>
+    <sys:String x:Key="MenuWebsite">Website</sys:String>
+    <sys:String x:Key="KeySettings1">Setting the primary key function</sys:String>
+    <sys:String x:Key="KeySettings2">Setting the secondary button function</sys:String>
+    <sys:String x:Key="ClearKey">Clear key function setting</sys:String>
 </ResourceDictionary>

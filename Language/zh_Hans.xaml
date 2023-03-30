@@ -61,4 +61,11 @@
     <!--其他-->
     <sys:String x:Key="On">开启</sys:String>
     <sys:String x:Key="Off">关闭</sys:String>
+
+    <!--托盘-->
+    <sys:String x:Key="MenuExit">退出</sys:String>
+    <sys:String x:Key="MenuWebsite">网站</sys:String>
+    <sys:String x:Key="KeySettings1">设置主要按键功能</sys:String>
+    <sys:String x:Key="KeySettings2">设置次要按键功能</sys:String>
+    <sys:String x:Key="ClearKey">清除按键功能设置</sys:String>
 </ResourceDictionary>

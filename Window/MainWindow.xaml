@@ -14,8 +14,8 @@
         ShowInTaskbar="True">
     <Window.ContextMenu>
         <ContextMenu x:Name="TrayIconContextMenu">
-            <MenuItem Header="打开官网" Click="Menu_OpenWebsite"/>
-            <MenuItem Header="退出" Click="Menu_Exit"/>
+            <MenuItem Header="打开官网" Click="Menu_OpenWebsite" />
+            <MenuItem Header="退出" Click="Menu_Exit" />
         </ContextMenu>
     </Window.ContextMenu>
     <!--用于承载所有页面元素的总Gird-->
@@ -23,19 +23,19 @@
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
               Background="{DynamicResource Background}" Height="94"
-              Margin="2.5" MouseLeftButtonDown="DragWindow"/>
+              Margin="2.5" MouseLeftButtonDown="DragWindow" />
         <!--用于存放可显式页面元素的四行一列Grid-->
         <Grid Margin="40,30">
             <Grid.RowDefinitions>
-                <RowDefinition Height="64"/>
-                <RowDefinition Height="132"/>
-                <RowDefinition Height="132"/>
-                <RowDefinition Height="132"/>
+                <RowDefinition Height="64" />
+                <RowDefinition Height="132" />
+                <RowDefinition Height="132" />
+                <RowDefinition Height="132" />
             </Grid.RowDefinitions>
             <Grid Name="gridPanel">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Label Content="Lambda Launcher"
                    FontSize="32"
@@ -43,25 +43,25 @@
                    VerticalContentAlignment="Center"
                    HorizontalAlignment="Stretch"
                    Foreground="{DynamicResource Foreground}"
-                   MouseLeftButtonDown="DragWindow"/>
+                   MouseLeftButtonDown="DragWindow" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="−" Height="48" Width="48"
                     HorizontalAlignment="Right" Margin="8"
                     FontSize="48" FontFamily="Noto Sans SC Black"
                     Background="Transparent"
                     Style="{DynamicResource ButtonConfirm}"
-                    Click="MinimizeWindow"/>
+                    Click="MinimizeWindow" />
                     <Button Content="×" Height="48" Width="48"
                     HorizontalAlignment="Right" Margin="8"
                     FontSize="48" FontFamily="Noto Sans SC Black"
                     Background="Transparent"
                     Style="{DynamicResource ButtonCancel}"
-                        Click="CloseWindow"/>
+                        Click="CloseWindow" />
                 </StackPanel>
             </Grid>
-            <UniformGrid Name="gridRow1" Grid.Row="1" Rows="1" Columns="10" Margin="0"/>
-            <UniformGrid Name="gridRow2" Grid.Row="2" Rows="1" Columns="9" Margin="54,0"/>
-            <UniformGrid Name="gridRow3" Grid.Row="3" Rows="1" Columns="8" Margin="108,0"/>
+            <UniformGrid Name="gridRow1" Grid.Row="1" Rows="1" Columns="10" Margin="0" />
+            <UniformGrid Name="gridRow2" Grid.Row="2" Rows="1" Columns="9" Margin="54,0" />
+            <UniformGrid Name="gridRow3" Grid.Row="3" Rows="1" Columns="8" Margin="108,0" />
         </Grid>
     </Grid>
 </Window>

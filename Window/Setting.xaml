@@ -12,19 +12,19 @@
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
               Margin="2.5" MouseLeftButtonDown="DragWindow"
-              Background="{DynamicResource Background}"/>
+              Background="{DynamicResource Background}" />
         <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="32"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <!--标题和关闭按钮（操作区域）-->
             <Grid x:Name="gridPanel">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="32" />
                 </Grid.ColumnDefinitions>
                 <Label Content="{DynamicResource Settings}"
                        FontSize="16"
@@ -32,141 +32,140 @@
                        VerticalContentAlignment="Center"
                        HorizontalAlignment="Stretch"
                        Foreground="{DynamicResource Foreground}"
-                       MouseLeftButtonDown="DragWindow"/>
+                       MouseLeftButtonDown="DragWindow" />
                 <Button Content="×" Height="24" Width="24"
                         HorizontalAlignment="Left" Margin="4"
                         FontSize="24" FontFamily="Noto Sans SC Black"
                         Background="Transparent"
                         Style="{DynamicResource ButtonCancel}"
-                        Click="CloseWindow" Grid.Column="1"/>
+                        Click="CloseWindow" Grid.Column="1" />
             </Grid>
 
             <!--第二行为显示和编辑区域-->
             <Grid Grid.Row="1">
-                <Grid x:Name="gridInteractiveKey"/>
+                <Grid x:Name="gridInteractiveKey" />
                 <Grid x:Name="gridInput">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="32"/>
-                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="36" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="96"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="96" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <!--语言设定-->
-                    <Label Content="{DynamicResource Language}" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource Language}" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <ComboBox x:Name="boxLanguage"
                               Grid.Row="0"
                               Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeLanguage">
-                        <ComboBoxItem Content="{DynamicResource zh_Hans}"/>
-                        <ComboBoxItem Content="{DynamicResource zh_Hant}"/>
-                        <ComboBoxItem Content="{DynamicResource en}"/>
+                        <ComboBoxItem Content="{DynamicResource zh_Hans}" />
+                        <ComboBoxItem Content="{DynamicResource zh_Hant}" />
+                        <ComboBoxItem Content="{DynamicResource en}" />
                     </ComboBox>
 
                     <!--主题设定-->
-                    <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource Theme}" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <ComboBox x:Name="boxTheme"
                               Grid.Row="1"
                               Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeTheme">
-                        <ComboBoxItem Content="{DynamicResource bmbo}"/>
-                        <ComboBoxItem Content="{DynamicResource cbpk}"/>
-                        <ComboBoxItem Content="{DynamicResource dodl}"/>
+                        <ComboBoxItem Content="{DynamicResource bmbo}" />
+                        <ComboBoxItem Content="{DynamicResource cbpk}" />
+                        <ComboBoxItem Content="{DynamicResource dodl}" />
                     </ComboBox>
 
                     <!--夜间模式设定-->
-                    <Label Content="{DynamicResource DarkMode}" Grid.Row="2" Grid.Column="0"  Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource DarkMode}" Grid.Row="2" Grid.Column="0"  Style="{DynamicResource LabelRight}" />
                     <Grid Grid.Row="2" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <RadioButton x:Name="radioDarkModeOn"
-                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}" Checked="TempChangeDarkModeOn"/>
+                                     Grid.Column="0" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOn}" Checked="TempChangeDarkModeOn" />
                         <RadioButton x:Name="radioDarkModeOff"
-                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}" Checked="TempChangeDarkModeOff"/>
+                                     Grid.Column="1" Style="{DynamicResource RadioButtonNormal}" GroupName="DarkMode" Content="{DynamicResource DarkModeOff}" Checked="TempChangeDarkModeOff" />
                     </Grid>
 
                     <!--键盘模式设定-->
-                    <Label Content="{DynamicResource KeyboardDouble}" Grid.Row="3" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource KeyboardDouble}" Grid.Row="3" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <Grid Grid.Row="3" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <RadioButton x:Name="radioKeyboardDoubleOn"
                                      Grid.Column="0"
                                      Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyboardDouble"
                                      Content="{DynamicResource KeyboardDoubleOn}"
-                                     Checked="KeyboardDoubleOn"/>
+                                     Checked="KeyboardDoubleOn" />
                         <RadioButton x:Name="radioKeyboardDoubleOff"
                                      Grid.Column="1"
                                      Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="KeyboardDouble"
                                      Content="{DynamicResource KeyboardDoubleOff}"
-                                     Checked="KeyboardDoubleOff"/>
+                                     Checked="KeyboardDoubleOff" />
                     </Grid>
 
                     <!--鼠标模式设定-->
-                    <Label Content="{DynamicResource MouseDouble}" Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource MouseDouble}" Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <Grid Grid.Row="4" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <RadioButton x:Name="radioMouseDoubleOn"
                                      Grid.Column="0"
                                      Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="MouseDouble"
                                      Content="{DynamicResource MouseDoubleOn}"
-                                     Checked="MouseDoubleOn"/>
+                                     Checked="MouseDoubleOn" />
                         <RadioButton x:Name="radioMouseDoubleOff"
                                      Grid.Column="1"
                                      Style="{DynamicResource RadioButtonNormal}"
                                      GroupName="MouseDouble"
                                      Content="{DynamicResource MouseDoubleOff}"
-                                     Checked="MouseDoubleOff"/>
+                                     Checked="MouseDoubleOff" />
                     </Grid>
 
                     <!--Lambda功能设定-->
-                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}"/>
+                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <ComboBox x:Name="boxLambdaFunction"
                               Grid.Row="5" Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
-                              SelectionChanged="TempChangeLambdaFunction"
-                              >
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-None}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SwitchDarkMode}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKey}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKeyTemp}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SingleClick}"/>
-                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SettingsMenu}"/>
+                              SelectionChanged="TempChangeLambdaFunction">
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-None}" />
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SwitchDarkMode}" />
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKey}" />
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-ViceKeyTemp}" />
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SingleClick}" />
+                        <ComboBoxItem Content="{DynamicResource LambdaFunction-SettingsMenu}" />
                     </ComboBox>
 
                     <!--Row=3为确认键和取消键的Grid-->
                     <Grid Grid.Row="6" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
                         <Button x:Name="buttonCancel" Content="{DynamicResource Cancle}" FontSize="14"
                                 Style="{DynamicResource ButtonNormal}" Width="80" Height="24"
-                                Click="Cancel"/>
+                                Click="Cancel" />
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
                                 Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1"
-                                Click="Confirm"/>
+                                Click="Confirm" />
                     </Grid>
                 </Grid>
             </Grid>

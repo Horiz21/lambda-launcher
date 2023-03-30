@@ -11,12 +11,12 @@
 
     <!--确认按钮-->
     <Style x:Key="ButtonConfirm" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="Noto Sans SC"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="Noto Sans SC" />
 
         <!--静置背景颜色-->
-        <Setter Property="Background" Value="{DynamicResource SuccessColorBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SuccessColorBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -29,16 +29,16 @@
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessLightColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessLightColorBrush}" />
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessDarkColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource SuccessDarkColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -48,12 +48,12 @@
 
     <!--取消按钮-->
     <Style x:Key="ButtonCancel" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="Noto Sans SC"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="Noto Sans SC" />
 
         <!--静置背景颜色-->
-        <Setter Property="Background" Value="{DynamicResource ErrorColorBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource ErrorColorBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -66,16 +66,16 @@
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorLightColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorLightColorBrush}" />
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorDarkColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ErrorDarkColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -85,12 +85,12 @@
 
     <!--普通按钮-->
     <Style x:Key="ButtonNormal" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="Noto Sans SC"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="Noto Sans SC" />
 
         <!--静置背景颜色-->
-        <Setter Property="Background" Value="{DynamicResource GrayLightColorBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource GrayLightColorBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -103,16 +103,16 @@
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <!--悬浮背景颜色-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayColorBrush}" />
                         </Trigger>
                         <!--按下背景颜色-->
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayDarkColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource GrayDarkColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -122,13 +122,13 @@
 
     <!--下拉框-->
     <Style x:Key="ComboBoxNormal" TargetType="ComboBox">
-        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="Noto Sans SC"/>
-        <Setter Property="Padding" Value="2"/>
-        <Setter Property="Margin" Value="4"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="Noto Sans SC" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <!--单选框-->
@@ -140,11 +140,11 @@
                     <Border x:Name="border"
                             Padding="2" Margin="4,3"
                             CornerRadius="4">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryColorBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="border" Property="Background" Value="{DynamicResource BackgroundStrong}" />
@@ -157,6 +157,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
 </ResourceDictionary>

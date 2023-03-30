@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace LambdaLauncher.Utility {
+
 	internal static class Utilities {
 		private static readonly string[] imageExtensions = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tif", ".ico" };//仅支持六种常见图像格式和一种图标格式
 
@@ -19,7 +20,7 @@ namespace LambdaLauncher.Utility {
 			bool isExist = File.Exists(path);
 			if (isImage && isExist)
 				return new BitmapImage(new Uri(path));
-			else if(path!=string.Empty){
+			else if (path != string.Empty) {
 				return new BitmapImage(new Uri("pack://application:,,,/Resource/Images/noimg.png"));
 			}
 			return GetEmptyImage();
@@ -50,11 +51,11 @@ namespace LambdaLauncher.Utility {
 
 			if (Data.LambdaFunction == 3) {
 				Data.InstantAvtice = Data.Vice = false;
-				MainWindow.Refresh();
+				MainWindow.ReloadGrid();
 			}
 			else if (Data.LambdaFunction == 4) {
 				Data.InstantAvtice = false;
-				MainWindow.Refresh();
+				MainWindow.ReloadGrid();
 			}
 
 			Process process = new Process();

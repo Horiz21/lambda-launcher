@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--主题色-->
     <Color x:Key="PrimaryColor">#357DED</Color>
     <Color x:Key="PrimaryLightColor">#56EEF4</Color>

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace LambdaLauncher {
+
 	public partial class KeySettings : Window {
 		private InteractiveKey interactiveKey;
 		private KeyData keyData; // 本地KeyData变量
@@ -156,11 +157,11 @@ namespace LambdaLauncher {
 		}
 
 		private void CheckedAddWebsite(object sender, RoutedEventArgs e) {
-			ChangeTextLinkAttribute("AddWebsite", 3,false);
+			ChangeTextLinkAttribute("AddWebsite", 3, false);
 		}
 
 		private void CheckedPureCommand(object sender, RoutedEventArgs e) {
-			ChangeTextLinkAttribute("PureCommand", 4,false);
+			ChangeTextLinkAttribute("PureCommand", 4, false);
 		}
 
 		private void ChangeTextLinkAttribute(string reference, int linkType, bool isLongTextBox) {
@@ -182,9 +183,9 @@ namespace LambdaLauncher {
 			localLinkType = linkType;
 			NowInfoWriteLine();
 		}
-		
+
 		private void NowInfoWriteLine() {
-			Debug.WriteLine("现在是选项卡" + localLinkType.ToString() + "，有记录的是选项卡"+keyData.LinkType.ToString()+"，内容为："+localLink);
+			Debug.WriteLine("现在是选项卡" + localLinkType.ToString() + "，有记录的是选项卡" + keyData.LinkType.ToString() + "，内容为：" + localLink);
 		}
 	}
 }

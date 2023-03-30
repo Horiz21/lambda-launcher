@@ -1,15 +1,15 @@
 ﻿<UserControl x:Class="LambdaLauncher.InteractiveKey"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:LambdaLauncher"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="132" d:DesignWidth="108">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="108"/>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="108" />
+            <RowDefinition Height="24" />
         </Grid.RowDefinitions>
         <Button x:Name="keyButton"
                 Grid.Row="0"
@@ -23,11 +23,11 @@
                 MouseRightButtonDown="MouseRightButtonDown">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="8"/>
+                    <Setter Property="CornerRadius" Value="8" />
                 </Style>
                 <Style TargetType="Button">
-                    <Setter Property="Background" Value="{DynamicResource PrimaryColorBrush}"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="{DynamicResource PrimaryColorBrush}" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
@@ -35,14 +35,14 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
                                     <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                                     </Trigger>
                                     <Trigger Property="IsKeyboardFocused" Value="True">
-                                        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -51,7 +51,7 @@
                 </Style>
             </Button.Resources>
             <Grid>
-                <Image x:Name="keyIcon" Margin="8"/>
+                <Image x:Name="keyIcon" Margin="8" />
                 <Label x:Name="keyLetter"
                    Padding="0"
                    Content="Λ"
@@ -61,7 +61,7 @@
                    FontFamily="Rounded Mplus 1c Black"
                    Foreground="{DynamicResource Foreground}"
                    VerticalAlignment="Bottom"
-                   HorizontalAlignment="Left"/>
+                   HorizontalAlignment="Left" />
                 <Label x:Name="keyUnderline"
                    Padding="0"
                    Content=""
@@ -69,7 +69,7 @@
                    HorizontalContentAlignment="Center"
                    FontSize="16" Width="24" Height="24"
                    FontFamily="Rounded Mplus 1c Black"
-                   Foreground="{DynamicResource Foreground}"/>
+                   Foreground="{DynamicResource Foreground}" />
             </Grid>
         </Button>
 
@@ -82,6 +82,6 @@
                VerticalContentAlignment="Top"
                HorizontalContentAlignment="Center"
                FontFamily="Noto Sans SC"
-               Foreground="{DynamicResource Foreground}"/>
+               Foreground="{DynamicResource Foreground}" />
     </Grid>
 </UserControl>

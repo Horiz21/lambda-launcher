@@ -1,13 +1,14 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LambdaLauncher {
+
 	public partial class InteractiveKey : UserControl {
 		private KeyData keyData;
+
 		public InteractiveKey(KeyData keyData) {
 			// 为局部变量赋值
 			this.keyData = keyData;
@@ -96,7 +97,7 @@ namespace LambdaLauncher {
 		/// 清空一个InteractiveKey除了键盘字母外的所有内容
 		/// </summary>
 		public void Clear() {
-			// 1. 清空实际数据   
+			// 1. 清空实际数据
 			keyData.Clear(); // 本地数据
 			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
 			Data.ModifyAndWrite(keyData); // 写回设置

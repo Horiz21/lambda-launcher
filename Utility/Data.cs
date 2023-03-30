@@ -1,11 +1,12 @@
-﻿using System.IO;
-using LambdaLauncher.Model;
-using System.Windows;
+﻿using LambdaLauncher.Model;
 using System;
-using System.Diagnostics;
+using System.IO;
+using System.Windows;
 
 namespace LambdaLauncher.Utility {
+
 	public static class Data {
+
 		public static string[] Languages = new string[3] {
 			"zh_Hans", // 0
 			"zh_Hant", // 1
@@ -23,10 +24,12 @@ namespace LambdaLauncher.Utility {
 
 		// 按键信息
 		private static string[] keyLlsDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
+
 		public static KeyData[] keyDatas = new KeyData[27]; // 用于存放27个字母信息（对象形式）
 
 		// 设置信息
 		public static int Language { get; set; }
+
 		public static int Theme { get; set; }
 		public static bool DarkMode { get; set; }
 		public static bool KeyboardDouble { get; set; }

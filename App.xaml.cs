@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 
-namespace LambdaLauncher
-{
+namespace LambdaLauncher {
+
 	public partial class App : Application {
-    }
+	}
 }

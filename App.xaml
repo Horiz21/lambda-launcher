@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="CurrentLanguage" Source="pack://application:,,,/Language/zh_Hans.xaml" />
+                <ResourceDictionary x:Name="CurrentLanguage" Source="pack://application:,,,/Language/zh_Hant.xaml" />
                 <ResourceDictionary x:Name="CurrentTheme" Source="pack://application:,,,/Resource/Themes/bmbo.xaml" />
                 <ResourceDictionary x:Name="CurrentMode" Source="pack://application:,,,/Resource/Themes/LightMode.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resource/Themes/GlobalColors.xaml" />
