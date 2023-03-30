@@ -14,7 +14,7 @@ namespace LambdaLauncher {
 
 		public static string[] Languages = new string[3] { "zh_Hans", "zh_Hant", "en" };
 		public static string[] Themes = new string[3] { "bmbo", "cbpk", "dodl" };
-		public static KeyData[] KeyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式）
+		public static KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式）
 		private static readonly string LlsPath = "../../../Settings/setting.lls";  // 设置文件（.lls)
 		private static string[] llsFile = new string[28];  // 用于存放1个初始行和27个字母信息（单行形式）
 
@@ -37,7 +37,7 @@ namespace LambdaLauncher {
 			for (int i = 0; i < 27; ++i) {  // 写入字母的相关信息
 				string[] strs = llsFile[i].Split('\t');  // 根据制表符，分割出四个子串
 				char letter = (char)('A' + i);  // 根据子串新建keyData
-				KeyDatas[letter - 'A'] = new KeyData( letter,
+				keyDatas[letter - 'A'] = new KeyData( letter,
 					int.Parse(strs[0]), strs[1], strs[2], strs[3],
 					int.Parse(strs[4]), strs[5], strs[6], strs[7]
 				);

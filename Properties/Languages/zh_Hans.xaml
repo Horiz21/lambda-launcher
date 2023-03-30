@@ -9,6 +9,8 @@
     <sys:String x:Key="KeyboardDouble">键盘触发</sys:String>
     <sys:String x:Key="MouseDouble">鼠标触发</sys:String>
     <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
+    <sys:String x:Key="Hotkey">快捷键</sys:String>
+    <sys:String x:Key="CheckHotkeyAvailability">检查可用性</sys:String>
 
     <sys:String x:Key="DarkModeOn">夜间模式</sys:String>
     <sys:String x:Key="DarkModeOff">日间模式</sys:String>

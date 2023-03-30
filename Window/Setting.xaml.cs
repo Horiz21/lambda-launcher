@@ -85,5 +85,9 @@ namespace LambdaLauncher {
 		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 
 		private void CloseWindow(object sender, RoutedEventArgs e) => Cancel(sender, e);
+
+		private void CheckHotkeyAvailability(object sender, RoutedEventArgs e) {
+
+		}
 	}
 }

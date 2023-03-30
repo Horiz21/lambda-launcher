@@ -53,7 +53,7 @@ namespace LambdaLauncher {
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(App.KeyDatas[c - 'A']);
+					keys[c - 'A'] = new InteractiveKey(App.keyDatas[c - 'A']);
 					if (c == '[') keys[c - 'A'].Enable(false); // 禁止Lambda键响应鼠标
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}

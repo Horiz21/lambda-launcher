@@ -9,6 +9,8 @@
     <sys:String x:Key="KeyboardDouble">Keyboard</sys:String>
     <sys:String x:Key="MouseDouble">Mouse</sys:String>
     <sys:String x:Key="LambdaFunction">Lambda Function</sys:String>
+    <sys:String x:Key="Hotkey">Hotkey</sys:String>
+    <sys:String x:Key="CheckHotkeyAvailability">Check</sys:String>
 
     <sys:String x:Key="DarkModeOn">Dark Mode</sys:String>
     <sys:String x:Key="DarkModeOff">Light Mode</sys:String>

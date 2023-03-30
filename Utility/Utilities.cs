@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 
 namespace LambdaLauncher.Utility {
@@ -38,7 +40,7 @@ namespace LambdaLauncher.Utility {
 		/// 获取Logo
 		/// </summary>
 		public static BitmapImage GetLogo() {
-			return new BitmapImage(new Uri("../Properties/Images/icon.png", 
+			return new BitmapImage(new Uri("../Properties/Images/icon.png",
 				UriKind.Relative));
 		}
 

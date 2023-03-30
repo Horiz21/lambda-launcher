@@ -6,13 +6,21 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="CurrentLanguage" Source="../Properties/Languages/zh_Hans.xaml" />
+                <!--<ResourceDictionary x:Name="CurrentLanguage" Source="../Properties/Languages/zh_Hans.xaml" />
                 <ResourceDictionary x:Name="CurrentTheme" Source="../Properties/Themes/bmbo.xaml" />
                 <ResourceDictionary x:Name="CurrentMode" Source="../Properties/Themes/LightMode.xaml" />
                 <ResourceDictionary Source="../Properties/Themes/GlobalColors.xaml" />
                 <ResourceDictionary Source="../Properties/Styles/Components.xaml" />
                 <ResourceDictionary Source="../Properties/Styles/Windows.xaml" />
-                <ResourceDictionary Source="../Properties/Styles/Borders.xaml" />
+                <ResourceDictionary Source="../Properties/Styles/Borders.xaml" />-->
+
+                <ResourceDictionary x:Name="CurrentLanguage" Source="pack://application:,,,/Properties/Languages/zh_Hans.xaml" />
+                <ResourceDictionary x:Name="CurrentTheme" Source="pack://application:,,,/Properties/Themes/bmbo.xaml" />
+                <ResourceDictionary x:Name="CurrentMode" Source="pack://application:,,,/Properties/Themes/LightMode.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Properties/Themes/GlobalColors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Properties/Styles/Components.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Properties/Styles/Windows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Properties/Styles/Borders.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

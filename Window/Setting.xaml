@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LambdaLauncher"
         mc:Ignorable="d"
-        Title="Setting" Height="290" Width="384"
+        Title="Setting" Height="322" Width="384"
         Style="{DynamicResource WindowNormal}"
         WindowStartupLocation="CenterScreen">
     <Grid>
@@ -46,6 +46,7 @@
                 <Grid x:Name="gridInteractiveKey" />
                 <Grid x:Name="gridInput">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
@@ -152,19 +153,29 @@
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-SettingsMenu}" />
                     </ComboBox>
 
-                    <!--Row=3为确认键和取消键的Grid-->
+                    <!--Lambda功能设定-->
+                    <Label Content="{DynamicResource Hotkey}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <Grid Grid.Row="6" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="84"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="boxHotKey" Grid.Column="0" Style="{DynamicResource TextBoxNormal}"/>
+                        <Button Grid.Column="1" Style="{DynamicResource ButtonNormal}" Content="{DynamicResource CheckHotkeyAvailability}" Click="CheckHotkeyAvailability"/>
+                    </Grid>
+
+                    <Grid Grid.Row="7" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
                         <Button x:Name="buttonCancel" Content="{DynamicResource Cancle}" FontSize="14"
-                                Style="{DynamicResource ButtonNormal}" Width="80" Height="24"
-                                Click="Cancel" />
+                                Style="{DynamicResource ButtonNormal}" Width="96" Height="32"
+                                Click="Cancel"/>
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
-                                Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1"
+                                Style="{DynamicResource ButtonConfirm}" Grid.Column="1" Width="96" Height="32"
                                 Click="Confirm" />
                     </Grid>
                 </Grid>

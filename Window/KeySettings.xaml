@@ -94,62 +94,27 @@
                     <Label Content="{DynamicResource KeyTitle}" Grid.Row="1" Grid.Column="0"
                            Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-                         FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
-                         VerticalAlignment="Center"
-                         TextChanged="UpdateTitle">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                         Style="{DynamicResource TextBoxNormal}" TextChanged="UpdateTitle"/>
 
                     <!--输入框Row=2为图标设定-->
                     <Label Content="{DynamicResource KeyIcon}" Grid.Row="3" Grid.Column="0"
                            Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textIcon" Grid.Row="3" Grid.Column="1"
-                         FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
-                         VerticalAlignment="Center"
-                         TextChanged="UpdateIcon">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                             Style="{DynamicResource TextBoxNormal}" TextChanged="UpdateIcon"/>
+
                     <Button x:Name="iconButton" Grid.Row="3" Grid.Column="2"
-                        Style="{DynamicResource ButtonNormal}"
-                        Content="{DynamicResource Select}" Height="24" Margin="4,0"
-                        Click="ButtonSelectIcon">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        Style="{DynamicResource ButtonNormal}" Content="{DynamicResource Select}"
+                        Click="ButtonSelectIcon"/>
 
                     <!--输入框Row=3为地址设定-->
                     <Label x:Name="labelLink"  Content="{DynamicResource AddTarget}" Grid.Row="2" Grid.Column="0"
                            Style="{DynamicResource LabelRight}" />
                     <TextBox x:Name="textLink" Grid.Row="2" Grid.Column="1"
-                             FontFamily="Noto Sans SC" Padding="2" Margin="4,0"
-                             VerticalAlignment="Center">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                             Style="{DynamicResource TextBoxNormal}" />
+
                     <Button x:Name="linkButton" Grid.Row="2" Grid.Column="2"
-                        Style="{DynamicResource ButtonNormal}"
-                        Content="{DynamicResource Select}" Height="24" Margin="4,0"
-                        Click="ButtonSelectTarget">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                        Style="{DynamicResource ButtonNormal}" Content="{DynamicResource Select}"
+                        Click="ButtonSelectTarget"/>
 
                     <!--Row=4为确认键和取消键的Grid-->
                     <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
@@ -159,10 +124,10 @@
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
                         <Button x:Name="buttonCancel" Content="{DynamicResource Clear}" FontSize="14"
-                            Style="{DynamicResource ButtonCancel}" Width="80" Height="24" Click="ButtonClear" />
+                            Style="{DynamicResource ButtonCancel}" Width="96" Height="32" Click="ButtonClear" />
                         <!--第二个是确认键-->
                         <Button x:Name="buttonConfirm" Content="{DynamicResource Confirm}" FontSize="14"
-                            Style="{DynamicResource ButtonConfirm}" Width="80" Height="24" Grid.Column="1" Click="ButtonConfirm" />
+                            Style="{DynamicResource ButtonConfirm}" Width="96" Height="32" Grid.Column="1" Click="ButtonConfirm" />
                     </Grid>
                 </Grid>
             </Grid>

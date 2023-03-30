@@ -18,7 +18,7 @@ namespace LambdaLauncher {
 		public KeySettings(char Letter, bool viceMode = false) {
 			// 为局部变量赋值
 			this.Letter = Letter;
-			keyData = App.KeyDatas[Letter - 'A'].DeepCopy();
+			keyData = App.keyDatas[Letter - 'A'].DeepCopy();
 			this.viceMode = viceMode;
 			if (viceMode) {
 				localLink = keyData.ViceCommand;
@@ -142,7 +142,7 @@ namespace LambdaLauncher {
 
 			// 将自己修改后的信息保存回csv文件
 			App.ModifyAndWrite(keyData);
-			App.KeyDatas[Letter - 'A'] = keyData.DeepCopy();
+			App.keyDatas[Letter - 'A'] = keyData.DeepCopy();
 
 			// 关闭当前页面
 			Close();
