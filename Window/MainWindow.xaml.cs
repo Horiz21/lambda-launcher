@@ -1,9 +1,13 @@
 ﻿using LambdaLauncher.Utility;
+using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using Forms = System.Windows.Forms;
 
 namespace LambdaLauncher {
@@ -15,7 +19,7 @@ namespace LambdaLauncher {
 		private Forms.NotifyIcon notifyIcon;
 		private static char currentActivedKey; // 上一次按下的字母
 		private static bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
-
+		private HwndSource source;
 		//private string? menuWebsite = Application.Current.FindResource("MenuWebsite") as string;
 		//private string? menuExit = Application.Current.FindResource("MenuExit") as string;
 		//private string? settings = Application.Current.FindResource("Settings") as string;
@@ -41,6 +45,19 @@ namespace LambdaLauncher {
 
 			ReloadLanguage();
 			ReloadGrid();
+
+			Loaded += Hotkey;
+		}
+
+		private void Hotkey(object sender, RoutedEventArgs e) {
+			// 注册热键 (窗体句柄,热键ID,辅助键,实键)
+			// 辅助键说明: None = 0, Alt = 1, crtl= 2, Shift = 4, Windows = 8
+			RegisterHotKey(this, 123, Key.Q, ModifierKeys.Control);
+			RegisterHotKey(this, 456, Key.W, ModifierKeys.Control);
+
+			// 获取窗口句柄，创建HwndSource实例
+			source = HwndSource.FromHwnd(GetHandle(this));
+			source.AddHook(new HwndSourceHook(WndProc));
 		}
 
 		public static void ReloadGrid() {
@@ -63,7 +80,7 @@ namespace LambdaLauncher {
 		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
 		// 键盘按键的（按下并）抬起，相当于按下了某一按钮
-		private new void KeyUpEvent(object sender, KeyEventArgs e) {
+		private new void KeyUpEvent(object sender, System.Windows.Input.KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
@@ -78,7 +95,7 @@ namespace LambdaLauncher {
 		}
 
 		// 键盘的按下，此时将焦点聚焦在一个按钮上，并调整二次访问标记（用于判断是"对打开动作的确认"还是"新切换到一个键"）
-		private new void KeyDownEvent(object sender, KeyEventArgs e) {
+		private new void KeyDownEvent(object sender, System.Windows.Input.KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
@@ -177,7 +194,9 @@ namespace LambdaLauncher {
 
 		private void Menu_Exit(object sender, System.EventArgs e) {
 			notifyIcon.Dispose();
-			Application.Current.Shutdown();
+			UnregisterHotKey(this, 123);
+			UnregisterHotKey(this, 456);
+			App.Current.Shutdown();
 		}
 
 		private void Show(object sender, System.EventArgs e) => Show();
@@ -186,5 +205,64 @@ namespace LambdaLauncher {
 			notifyIcon.ContextMenuStrip.Items.Add("1", System.Drawing.Image.FromFile("Properties/Images/exit.ico"), Menu_Exit);
 			notifyIcon.ContextMenuStrip.Items.Add("2", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
 		}
+
+		[DllImport("user32.dll")]
+		public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+		[DllImport("user32.dll")]
+		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+		// 获取窗口句柄
+		public static IntPtr GetHandle(Window window) {
+			WindowInteropHelper helper = new WindowInteropHelper(window);
+			return helper.Handle;
+		}
+
+		// 注册热键
+		public static void RegisterHotKey(Window window, int id, Key key, ModifierKeys modifiers) {
+			IntPtr handle = GetHandle(window);
+
+			// 将Key转换为虚拟键码
+			uint vk = (uint)KeyInterop.VirtualKeyFromKey(key);
+
+			// 将ModifierKeys转换为辅助键的值
+			uint fsModifiers = 0;
+			if ((modifiers & ModifierKeys.Alt) != 0)
+				fsModifiers |= 0x0001;
+			if ((modifiers & ModifierKeys.Control) != 0)
+				fsModifiers |= 0x0002;
+			if ((modifiers & ModifierKeys.Shift) != 0)
+				fsModifiers |= 0x0004;
+			if ((modifiers & ModifierKeys.Windows) != 0)
+				fsModifiers |= 0x0008;
+
+			// 注册热键
+			RegisterHotKey(handle, id, fsModifiers, vk);
+		}
+
+		// 注销热键
+		public static void UnregisterHotKey(Window window, int id) {
+			IntPtr handle = GetHandle(window);
+			UnregisterHotKey(handle, id);
+		}
+
+		private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
+			const int WM_HOTKEY = 0x0312;
+			switch (msg) {
+				case WM_HOTKEY:
+					if (wParam.ToInt32() == 123) // 按下Ctrl + Q隐藏
+					{
+						Hide();
+					}
+					else if (wParam.ToInt32() == 456) // 按下Ctrl + W显示
+					{
+						Show();
+					}
+					handled = true;
+					break;
+			}
+			return IntPtr.Zero;
+		}
+
 	}
 }
