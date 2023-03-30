@@ -5,12 +5,12 @@ using System.Windows;
 namespace LambdaLauncher {
 
 	public partial class Setting : Window {
-		private new int Language = Data.Language;
-		private int Theme = Data.Theme;
-		private bool DarkMode = Data.DarkMode;
-		private bool KeyboardDouble = Data.KeyboardDouble;
-		private bool MouseDouble = Data.MouseDouble;
-		private int LambdaFunction = Data.LambdaFunction;
+		private new int Language = App.Language;
+		private int Theme = App.Theme;
+		private bool DarkMode = App.DarkMode;
+		private bool KeyboardDouble = App.KeyboardDouble;
+		private bool MouseDouble = App.MouseDouble;
+		private int LambdaFunction = App.LambdaFunction;
 
 		public Setting() {
 			InitializeComponent();
@@ -34,24 +34,24 @@ namespace LambdaLauncher {
 		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
 		/// </summary>
 		private void Confirm(object sender, RoutedEventArgs e) {
-			Data.SaveLlsSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
-			Data.LoadLlsSettings();
+			App.SaveLlsSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
+			App.LoadLlsSettings();
 			Close();
 		}
 
 		private void Cancel(object sender, RoutedEventArgs e) {
-			Data.LoadLlsSettings();
+			App.LoadLlsSettings();
 			Close();
 		}
 
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Language = boxLanguage.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[0].Source = new Uri("../Language/" + Data.Languages[Language] + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[0].Source = new Uri("../Language/" + App.Languages[Language] + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Theme = boxTheme.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[1].Source = new Uri("../Resource/Themes/" + Data.Themes[Theme] + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[1].Source = new Uri("../Resource/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 
@@ -70,16 +70,16 @@ namespace LambdaLauncher {
 		}
 
 		private void MouseDoubleOn(object sender, RoutedEventArgs e) =>
-			Data.MouseDouble = MouseDouble = true;
+			App.MouseDouble = MouseDouble = true;
 
 		private void MouseDoubleOff(object sender, RoutedEventArgs e) =>
-			Data.MouseDouble = MouseDouble = false;
+			App.MouseDouble = MouseDouble = false;
 
 		private void KeyboardDoubleOn(object sender, RoutedEventArgs e) =>
-			Data.KeyboardDouble = KeyboardDouble = true;
+			App.KeyboardDouble = KeyboardDouble = true;
 
 		private void KeyboardDoubleOff(object sender, RoutedEventArgs e) =>
-			Data.KeyboardDouble = KeyboardDouble = false;
+			App.KeyboardDouble = KeyboardDouble = false;
 
 		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 

@@ -69,13 +69,13 @@ namespace LambdaLauncher {
 		/// </summary>
 		private void Refresh() {
 			// 更新局部keyData信息
-			keyData = Data.keyDatas[keyData.Letter - 'A'];
+			keyData = App.keyDatas[keyData.Letter - 'A'];
 
 			// 显示字母
 			keyLetter.Content = keyData.Letter == '[' ? 'Λ' : keyData.Letter;
 
 			// 为其他可调整的可显示元素赋值
-			if (Data.Vice) {
+			if (App.Vice) {
 				keyTitle.Content = keyData.ViceTitle;
 				//if (keyData.Letter == '[')
 				//	keyIcon.Source = Utilities.GetLogo();
@@ -91,7 +91,7 @@ namespace LambdaLauncher {
 			}
 		}
 
-		public string GetCommand() => Data.Vice ? keyData.ViceCommand : keyData.Command;
+		public string GetCommand() => App.Vice ? keyData.ViceCommand : keyData.Command;
 
 		/// <summary>
 		/// 清空一个InteractiveKey除了键盘字母外的所有内容
@@ -99,8 +99,8 @@ namespace LambdaLauncher {
 		public void Clear() {
 			// 1. 清空实际数据
 			keyData.Clear(); // 本地数据
-			Data.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
-			Data.ModifyAndWrite(keyData); // 写回设置
+			App.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
+			App.ModifyAndWrite(keyData); // 写回设置
 
 			// 2. 清空显示内容
 			ClearContent();
@@ -118,8 +118,8 @@ namespace LambdaLauncher {
 		/// 单击鼠标执行命令
 		/// </summary>
 		private void SingleClickToRunContentCommand(object sender, RoutedEventArgs e) {
-			if (Data.InstantAvtice || Data.MouseDouble == false)
-				if (Data.Vice) Utilities.RunCommand(keyData.ViceCommand);
+			if (App.InstantAvtice || App.MouseDouble == false)
+				if (App.Vice) Utilities.RunCommand(keyData.ViceCommand);
 				else Utilities.RunCommand(keyData.Command);
 		}
 
@@ -127,8 +127,8 @@ namespace LambdaLauncher {
 		/// 双击鼠标执行命令
 		/// </summary>
 		private void DoubleClickToRunContentCommand(object sender, RoutedEventArgs e) {
-			if (Data.MouseDouble == true)
-				if (Data.Vice) Utilities.RunCommand(keyData.ViceCommand);
+			if (App.MouseDouble == true)
+				if (App.Vice) Utilities.RunCommand(keyData.ViceCommand);
 				else Utilities.RunCommand(keyData.Command);
 		}
 

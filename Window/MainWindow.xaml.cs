@@ -53,7 +53,7 @@ namespace LambdaLauncher {
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(Data.keyDatas[c - 'A']);
+					keys[c - 'A'] = new InteractiveKey(App.keyDatas[c - 'A']);
 					if (c == '[') keys[c - 'A'].Enable(false); // 禁止Lambda键响应鼠标
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
@@ -69,7 +69,7 @@ namespace LambdaLauncher {
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是……
 				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (Data.InstantAvtice || !Data.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive))
+				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive))
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
 			}
 			else if (key == "LeftShift" || key == "RightShift") {
@@ -117,16 +117,16 @@ namespace LambdaLauncher {
 		/// <param name="start">是否是启动功能的开始阶段</param>
 		private void ActiveLambdaFunction(bool start = true) {
 			if (start) {
-				switch (Data.LambdaFunction) {
+				switch (App.LambdaFunction) {
 					case 3:
 						// 暂切副策略组并暂开立即响应
-						Data.InstantAvtice = Data.Vice = true;
+						App.InstantAvtice = App.Vice = true;
 						ReloadGrid();
 						break;
 
 					case 4:
 						// 立即响应
-						Data.InstantAvtice = true;
+						App.InstantAvtice = true;
 						break;
 
 					default:
@@ -134,27 +134,27 @@ namespace LambdaLauncher {
 				}
 			}
 			else {
-				switch (Data.LambdaFunction) {
+				switch (App.LambdaFunction) {
 					case 1:
 						// 切换日/夜间模式
-						Data.SwitchDarkMode();
+						App.SwitchDarkMode();
 						break;
 
 					case 2:
 						// 切换到副策略组
-						Data.Vice ^= true;
+						App.Vice ^= true;
 						ReloadGrid();
 						break;
 
 					case 3:
 						// 暂切副策略组并暂开立即响应
-						Data.InstantAvtice = Data.Vice = false;
+						App.InstantAvtice = App.Vice = false;
 						ReloadGrid();
 						break;
 
 					case 4:
 						// 立即响应
-						Data.InstantAvtice = false;
+						App.InstantAvtice = false;
 						break;
 
 					case 5:

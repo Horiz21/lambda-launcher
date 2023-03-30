@@ -49,12 +49,12 @@ namespace LambdaLauncher.Utility {
 			startInfo.CreateNoWindow = true;
 			startInfo.UseShellExecute = false;
 
-			if (Data.LambdaFunction == 3) {
-				Data.InstantAvtice = Data.Vice = false;
+			if (App.LambdaFunction == 3) {
+				App.InstantAvtice = App.Vice = false;
 				MainWindow.ReloadGrid();
 			}
-			else if (Data.LambdaFunction == 4) {
-				Data.InstantAvtice = false;
+			else if (App.LambdaFunction == 4) {
+				App.InstantAvtice = false;
 				MainWindow.ReloadGrid();
 			}
 
