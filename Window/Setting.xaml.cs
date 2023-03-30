@@ -51,7 +51,8 @@ namespace LambdaLauncher {
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Theme = boxTheme.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[1].Source = new Uri("../Properties/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
+			Application.Current.Resources.MergedDictionaries[1].Source = new 
+				("../Properties/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
 			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 

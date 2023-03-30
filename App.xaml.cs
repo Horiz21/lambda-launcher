@@ -64,9 +64,9 @@ namespace LambdaLauncher {
 		/// </summary>
 		public static void LoadLlsSettings() {
 			string head = @"pack://application:,,,/";
-			Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Properties/Languages/" + Languages[Language] + ".xaml");
-			Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Properties/Themes/" + Themes[Theme] + ".xaml");
-			Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
+			Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + Languages[Language] + ".xaml", UriKind.Relative);
+			Current.Resources.MergedDictionaries[1].Source = new Uri("../Properties/Themes/" + Themes[Theme] + ".xaml", UriKind.Relative);
+			Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 
 		/// <summary>
@@ -101,14 +101,13 @@ namespace LambdaLauncher {
 		/// 切换当前显示模式（日间/夜间）为另一个（夜间/日间）
 		/// </summary>
 		public static void SwitchDarkMode() {
-			string head = @"pack://application:,,,/";
 			if (DarkMode) {
 				DarkMode = false;
-				Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/LightMode.xaml");
+				Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 			}
 			else {
 				DarkMode = true;
-				Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/DarkMode.xaml");
+				Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
 			}
 			keyLlsDatas[27] = Language + "\t" + Theme + "\t" + (DarkMode ? "1" : "0") + "\t" + (KeyboardDouble ? "1" : "0") + "\t" + (MouseDouble ? "1" : "0") + "\t" + LambdaFunction;
 			File.WriteAllLines(LlsPath, keyLlsDatas);
