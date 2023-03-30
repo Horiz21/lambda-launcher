@@ -20,7 +20,7 @@ namespace LambdaLauncher.Utility {
 		};
 
 		// 设置文件（.lls)
-		private static readonly string LlsPath = @"..\..\..\Settings\setting.lls";
+		private static readonly string LlsPath = "../../../Settings/setting.lls";
 
 		// 按键信息
 		private static string[] keyLlsDatas = new string[28]; // 用于存放1个初始行和27个字母信息（单行形式）
@@ -75,9 +75,9 @@ namespace LambdaLauncher.Utility {
 		/// </summary>
 		public static void LoadLlsSettings() {
 			string head = @"pack://application:,,,/";
-			Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Language/" + Languages[Language] + ".xaml");
-			Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Resource/Themes/" + Themes[Theme] + ".xaml");
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Resource/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
+			Application.Current.Resources.MergedDictionaries[0].Source = new Uri(head + "Properties/Languages/" + Languages[Language] + ".xaml");
+			Application.Current.Resources.MergedDictionaries[1].Source = new Uri(head + "Properties/Themes/" + Themes[Theme] + ".xaml");
+			Application.Current.Resources.MergedDictionaries[2].Source = new Uri(head + "Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml");
 		}
 
 		/// <summary>

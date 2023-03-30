@@ -24,13 +24,11 @@ namespace LambdaLauncher {
 		//private string? claerKey = Application.Current.FindResource("ClearKey") as string;
 
 		public MainWindow() {
-			Data.LoadData();
-
 			InitializeComponent();
 
 			// 托盘图标初始化
 			notifyIcon = new Forms.NotifyIcon();
-			notifyIcon.Icon = new System.Drawing.Icon("Resource/icon.ico");
+			notifyIcon.Icon = new System.Drawing.Icon("Properties/icon.ico");
 			notifyIcon.Visible = true;
 			notifyIcon.DoubleClick += Show;
 			notifyIcon.Text = "Lambda Launcher";
@@ -185,10 +183,8 @@ namespace LambdaLauncher {
 		private void Show(object sender, System.EventArgs e) => Show();
 
 		private void ReloadLanguage() {
-			//menuWebsite = Application.Current.FindResource("MenuWebsite") as string;
-			//menuExit = Application.Current.FindResource("MenuExit") as string;
-			notifyIcon.ContextMenuStrip.Items.Add("1", System.Drawing.Image.FromFile("Resource/Images/exit.ico"), Menu_Exit);
-			notifyIcon.ContextMenuStrip.Items.Add("2", System.Drawing.Image.FromFile("Resource/Images/link.ico"), Menu_OpenWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add("1", System.Drawing.Image.FromFile("Properties/Images/exit.ico"), Menu_Exit);
+			notifyIcon.ContextMenuStrip.Items.Add("2", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
 		}
 	}
 }
