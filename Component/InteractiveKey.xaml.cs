@@ -69,7 +69,7 @@ namespace LambdaLauncher {
 		/// </summary>
 		private void Refresh() {
 			// 更新局部keyData信息
-			keyData = App.keyDatas[keyData.Letter - 'A'];
+			keyData = App.KeyDatas[keyData.Letter - 'A'];
 
 			// 显示字母
 			keyLetter.Content = keyData.Letter == '[' ? 'Λ' : keyData.Letter;
@@ -99,7 +99,7 @@ namespace LambdaLauncher {
 		public void Clear() {
 			// 1. 清空实际数据
 			keyData.Clear(); // 本地数据
-			App.keyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
+			App.KeyDatas[keyData.Letter - 'A'].Clear(); // 全局数据
 			App.ModifyAndWrite(keyData); // 写回设置
 
 			// 2. 清空显示内容

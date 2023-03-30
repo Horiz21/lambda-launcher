@@ -34,13 +34,13 @@ namespace LambdaLauncher {
 		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
 		/// </summary>
 		private void Confirm(object sender, RoutedEventArgs e) {
-			App.SaveLlsSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
-			App.LoadLlsSettings();
+			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
+			App.ReadAndLoadSettings();
 			Close();
 		}
 
 		private void Cancel(object sender, RoutedEventArgs e) {
-			App.LoadLlsSettings();
+			App.ReadAndLoadSettings();
 			Close();
 		}
 
