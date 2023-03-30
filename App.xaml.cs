@@ -63,7 +63,6 @@ namespace LambdaLauncher {
 		/// 加载.lls文件中的设置项
 		/// </summary>
 		public static void LoadLlsSettings() {
-			string head = @"pack://application:,,,/";
 			Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + Languages[Language] + ".xaml", UriKind.Relative);
 			Current.Resources.MergedDictionaries[1].Source = new Uri("../Properties/Themes/" + Themes[Theme] + ".xaml", UriKind.Relative);
 			Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
