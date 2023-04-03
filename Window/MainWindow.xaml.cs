@@ -54,6 +54,7 @@ namespace LambdaLauncher {
 			if (parts.Contains("Ctrl"))  modifier |= ModifierKeys.Control;
 			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;
 			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
+			if (parts.Contains("Win")) modifier |= ModifierKeys.Windows;
 			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
 
 			// 注册热键 (热键ID,修饰键,实键)
@@ -205,8 +206,8 @@ namespace LambdaLauncher {
 		private void Show(object sender, System.EventArgs e) => Show();
 
 		private void ReloadLanguage() {
-			notifyIcon.ContextMenuStrip.Items.Add("1", System.Drawing.Image.FromFile("Properties/Images/exit.ico"), Menu_Exit);
-			notifyIcon.ContextMenuStrip.Items.Add("2", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add("打开网址", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add("退出程序", System.Drawing.Image.FromFile("Properties/Images/exit.ico"), Menu_Exit);
 		}
 
 		[DllImport("user32.dll")]

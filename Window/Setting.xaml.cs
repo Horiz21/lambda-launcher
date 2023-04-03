@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,6 +13,7 @@ namespace LambdaLauncher {
 		private bool MouseDouble = App.MouseDouble;
 		private int LambdaFunction = App.LambdaFunction;
 		private string Hotkey = App.Hotkey;
+		private bool[] Modifier = new bool[4] { false, false, false, false };
 
 		public Setting() {
 			InitializeComponent();
@@ -20,8 +22,8 @@ namespace LambdaLauncher {
 			boxLanguage.SelectedIndex = Language;
 			boxTheme.SelectedIndex = Theme;
 			boxLambdaFunction.SelectedIndex = LambdaFunction;
-			boxHotkey.Text = Hotkey;
 
+			// 复原日夜间、单双击设置
 			if (DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
 
@@ -30,6 +32,26 @@ namespace LambdaLauncher {
 
 			if (MouseDouble) radioMouseDoubleOn.IsChecked = true;
 			else radioMouseDoubleOff.IsChecked = true;
+
+			// 复原快捷键设置
+			string[] parts = App.Hotkey.Split('+');
+			if (parts.Contains("Ctrl")) {
+				Modifier[0] = true;
+				radioCtrl.IsChecked = true;
+			}
+			if (parts.Contains("Alt")) {
+				Modifier[1] = true;
+				radioAlt.IsChecked = true;
+			}
+			if (parts.Contains("Shift")) {
+				Modifier[2] = true;
+				radioShift.IsChecked = true;
+			}
+			if (parts.Contains("Win")) {
+				Modifier[3] = true;
+				radioShift.IsChecked = true;
+			}
+			boxHotkey.Text = parts.Last();
 		}
 
 		private void Cancel(object sender, RoutedEventArgs e) {
@@ -82,33 +104,39 @@ namespace LambdaLauncher {
 		private void CheckHotkeyAvailability(object sender, RoutedEventArgs e) {
 		}
 
-		private void hotkeyInputStart(object sender, System.Windows.Input.KeyEventArgs e) {
-			Hotkey = "";
-			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control)) {
-				Hotkey += "Ctrl+";
-			}
-			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Alt)) {
-				Hotkey += "Alt+";
-			}
-			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift)) {
-				Hotkey += "Shift+";
-			}
-			if (e.Key != Key.LeftShift && e.Key != Key.RightShift
-				&& e.Key != Key.LeftCtrl && e.Key != Key.RightCtrl
-				&& e.Key != Key.LeftAlt && e.Key != Key.RightAlt) {
-				Hotkey += e.Key.ToString();
-			}
-			boxHotkey.Text = Hotkey;
+		/* 热键相关，包含四个辅助按键的选定以及实键的输入 */
+
+		private void HotkeyCtrlChecked(object sender, RoutedEventArgs e) => Modifier[0] = true;
+
+		private void HotkeyCtrlUnchecked(object sender, RoutedEventArgs e) => Modifier[0] = false;
+
+		private void HotkeyAltChecked(object sender, RoutedEventArgs e) => Modifier[1] = true;
+
+		private void HotkeyAltUnchecked(object sender, RoutedEventArgs e) => Modifier[1] = false;
+
+		private void HotkeyShiftChecked(object sender, RoutedEventArgs e) => Modifier[2] = true;
+
+		private void HotkeyShiftUnchecked(object sender, RoutedEventArgs e) => Modifier[2] = false;
+
+		private void HotkeyWinChecked(object sender, RoutedEventArgs e) => Modifier[3] = true;
+
+		private void HotkeyWinUnchecked(object sender, RoutedEventArgs e) => Modifier[3] = false;
+
+		private void hotkeyInputStart(object sender, KeyEventArgs e) {
+			e.Handled = true; // 取消事件的默认操作
+			if (Keyboard.Modifiers == ModifierKeys.None && (e.Key < Key.LeftCtrl || e.Key > Key.RightAlt) && e.Key != Key.LWin && e.Key != Key.RWin) boxHotkey.Text = e.Key.ToString();
+			else boxHotkey.Clear();
 		}
 
 		/// <summary>
 		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
 		/// </summary>
 		private void Confirm(object sender, RoutedEventArgs e) {
-			if (Hotkey.EndsWith('+')) {
-				Hotkey = App.Hotkey;  // 快捷键没有输则会失效，因此并不修改原来的快捷键
+			if (boxHotkey.Text == string.Empty) { // 快捷键没有输则会失效，因此并不修改原来的快捷键
+				Hotkey = App.Hotkey;
 			}
 			string oldHotkey = App.Hotkey;
+			Hotkey = (Modifier[0] ? "Ctrl+" : "") + (Modifier[1] ? "Alt+" : "") + (Modifier[2] ? "Shift+" : "") + (Modifier[3] ? "Windows+" : "") + boxHotkey.Text;
 			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
 			App.ReadAndLoadSettings();
 			if (Hotkey != oldHotkey) {

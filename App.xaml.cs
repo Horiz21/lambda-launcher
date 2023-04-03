@@ -14,8 +14,8 @@ namespace LambdaLauncher {
 
 		public static string[] Languages = new string[3] { "zh_Hans", "zh_Hant", "en" };
 		public static string[] Themes = new string[3] { "bmbo", "cbpk", "dodl" };
-		public static KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式）
-		private static readonly string LlsPath = "../../../Settings/setting.lls";  // 设置文件（.lls)
+		public static KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式
+		private static readonly Uri LlsPath = new Uri(Path.Combine(Directory.GetCurrentDirectory(), @"Properties/Settings/setting.lls"));  // 设置文件（.lls)
 		private static string[] llsFile = new string[28];  // 用于存放1个初始行和27个字母信息（单行形式）
 
 		public static int Language { get; set; }
@@ -32,13 +32,13 @@ namespace LambdaLauncher {
 		/// 从固定的位置读取数据，产生单行信息和对象信息
 		/// </summary>
 		public static void ReadAndLoadData() {
-			llsFile = File.ReadAllLines(LlsPath); // 读取所有数据（包括按键设置和全局设置）
+			llsFile = File.ReadAllLines(LlsPath.LocalPath); // 读取所有数据（包括按键设置和全局设置）
 			ReadAndLoadSettings();  // 加载全局设置
 
 			for (int i = 0; i < 27; ++i) {  // 写入字母的相关信息
 				string[] strs = llsFile[i].Split('\t');  // 根据制表符，分割出四个子串
 				char letter = (char)('A' + i);  // 根据子串新建keyData
-				keyDatas[letter - 'A'] = new KeyData( letter,
+				keyDatas[letter - 'A'] = new KeyData(letter,
 					int.Parse(strs[0]), strs[1], strs[2], strs[3],
 					int.Parse(strs[4]), strs[5], strs[6], strs[7]
 				);
@@ -73,7 +73,7 @@ namespace LambdaLauncher {
 			llsFile[27] = $"{language}\t{theme}\t{(darkMode ? "1" : "0")}\t{(keyboardDouble ? "1" : "0")}\t{(mouseDouble ? "1" : "0")}\t{lambdaFunction}\t{hotKey}";
 
 			// 存储到文件中（Write）
-			File.WriteAllLines(LlsPath, llsFile);
+			File.WriteAllLines(LlsPath.LocalPath, llsFile);
 		}
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace LambdaLauncher {
 		/// <param name="keyData">含修改后信息的KeyData对象</param>
 		public static void ModifyAndWrite(KeyData keyData) {
 			llsFile[keyData.Letter - 'A'] = keyData.GetLlsFormatData();
-			File.WriteAllLines(LlsPath, llsFile);
+			File.WriteAllLines(LlsPath.LocalPath, llsFile);
 		}
 
 		/// <summary>
@@ -94,7 +94,7 @@ namespace LambdaLauncher {
 			else Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 
 			llsFile[27] = $"{Language}\t{Theme}\t{(DarkMode ? "1" : "0")}\t{(KeyboardDouble ? "1" : "0")}\t{(MouseDouble ? "1" : "0")}\t{LambdaFunction}\t{Hotkey}";
-			File.WriteAllLines(LlsPath, llsFile);
+			File.WriteAllLines(LlsPath.LocalPath, llsFile);
 		}
 	}
 }

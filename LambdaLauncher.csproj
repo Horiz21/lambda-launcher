@@ -19,7 +19,7 @@
   <ItemGroup>
     <None Remove="Properties\Images\icon.png" />
     <None Remove="Properties\Images\noimg.png" />
-    <None Remove="Settings\setting.lls" />
+    <None Remove="Properties\Settings\setting.lls" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,9 +44,9 @@
     <Resource Include="Properties\Images\noimg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Settings\setting.lls">
+    <EmbeddedResource Include="Properties\Settings\setting.lls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

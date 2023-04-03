@@ -164,6 +164,35 @@
         </Setter>
     </Style>
 
+    <!--复选框-->
+    <Style x:Key="CheckBoxNormal" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border x:Name="border"
+                            Padding="2" Margin="4"
+                            CornerRadius="4"
+                            BorderBrush="{DynamicResource GrayColorBrush}"
+                            BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource PrimaryColorBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource BackgroundStrong}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--输入框-->
     <Style x:Key="TextBoxNormal" TargetType="TextBox">
         <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
