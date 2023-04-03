@@ -45,10 +45,14 @@ namespace LambdaLauncher {
 
 			ReloadLanguage();  // 加载语言文件
 			ReloadGrid();  // 加载布局
-			Loaded += Hotkey;  // 注册热键
+			Loaded += HotkeyAfterLoad;  // 注册热键
 		}
 
-		public void Hotkey(object sender, RoutedEventArgs e) {
+		public void HotkeyAfterLoad(object sender, RoutedEventArgs e) {
+			Hotkey(sender, e);
+		}
+
+		public bool Hotkey(object sender, RoutedEventArgs e) {
 			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
 			ModifierKeys modifier = ModifierKeys.None;
 			if (parts.Contains("Ctrl"))  modifier |= ModifierKeys.Control;
@@ -58,11 +62,14 @@ namespace LambdaLauncher {
 			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
 
 			// 注册热键 (热键ID,修饰键,实键)
-			RegisterHotKey(1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
+			bool success = RegisterHotKey(1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
 
 			// 获取窗口句柄，创建HwndSource实例
 			source = HwndSource.FromHwnd(GetHandle(this));
 			source.AddHook(new HwndSourceHook(WndProc));
+
+			// 返回是否成功注册
+			return success;
 		}
 
 		public static void ReloadGrid() {
@@ -220,7 +227,7 @@ namespace LambdaLauncher {
 		public static IntPtr GetHandle(Window window) => new WindowInteropHelper(window).Handle;
 
 		// 注册热键
-		public void RegisterHotKey(int id, Key key, ModifierKeys modifiers) {
+		public bool RegisterHotKey(int id, Key key, ModifierKeys modifiers) {
 			// 将Key转换为虚拟键码
 			uint vk = (uint)KeyInterop.VirtualKeyFromKey(key);
 
@@ -232,7 +239,7 @@ namespace LambdaLauncher {
 			if ((modifiers & ModifierKeys.Windows) != 0) fsModifiers |= 0x0008;
 
 			// 注册热键
-			RegisterHotKey(GetHandle(this), id, fsModifiers, vk);
+			return RegisterHotKey(GetHandle(this), id, fsModifiers, vk);
 		}
 
 		// 注销热键

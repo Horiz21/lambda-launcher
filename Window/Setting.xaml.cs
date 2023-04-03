@@ -49,7 +49,7 @@ namespace LambdaLauncher {
 			}
 			if (parts.Contains("Win")) {
 				Modifier[3] = true;
-				radioShift.IsChecked = true;
+				radioWin.IsChecked = true;
 			}
 			boxHotkey.Text = parts.Last();
 		}
@@ -136,13 +136,18 @@ namespace LambdaLauncher {
 				Hotkey = App.Hotkey;
 			}
 			string oldHotkey = App.Hotkey;
-			Hotkey = (Modifier[0] ? "Ctrl+" : "") + (Modifier[1] ? "Alt+" : "") + (Modifier[2] ? "Shift+" : "") + (Modifier[3] ? "Windows+" : "") + boxHotkey.Text;
+			Hotkey = (Modifier[0] ? "Ctrl+" : "") + (Modifier[1] ? "Alt+" : "") + (Modifier[2] ? "Shift+" : "") + (Modifier[3] ? "Win+" : "") + boxHotkey.Text;
 			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
 			App.ReadAndLoadSettings();
 			if (Hotkey != oldHotkey) {
 				MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 				mainWindow.UnregisterHotKey(1134419766);
-				mainWindow.Hotkey(sender, e);
+				if(!mainWindow.Hotkey(sender, e)) { // 如果快捷键已经被占用，则恢复原始快捷键
+					App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, oldHotkey);
+					App.ReadAndLoadSettings();
+					mainWindow.Hotkey(sender, e);
+					MessageBox.Show("快捷键已经被占用，因此恢复了旧快捷键！");
+				}
 			}
 			Close();
 		}
