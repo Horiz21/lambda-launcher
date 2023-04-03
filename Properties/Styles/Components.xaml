@@ -27,7 +27,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True"
                             CornerRadius="4"
-                            Margin="4,3">
+                            Margin="4">
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
@@ -65,7 +65,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True"
                             CornerRadius="4"
-                            Margin="4,3">
+                            Margin="4">
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
@@ -103,7 +103,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             SnapsToDevicePixels="True"
                             CornerRadius="4"
-                            Margin="4,3">
+                            Margin="4">
                         <TextBlock Text="{TemplateBinding Content}"
                                    Foreground="{TemplateBinding Foreground}"
                                    VerticalAlignment="Center"
@@ -128,7 +128,7 @@
     <Style x:Key="ComboBoxNormal" TargetType="ComboBox">
         <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
         <Setter Property="Background" Value="{DynamicResource BackgroundStrong}" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontFamily" Value="Noto Sans SC" />
         <Setter Property="Padding" Value="2" />
         <Setter Property="Margin" Value="4" />
@@ -142,7 +142,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
                     <Border x:Name="border"
-                            Padding="2" Margin="4,3"
+                            Padding="2" Margin="4"
                             CornerRadius="4"
                             BorderBrush="{DynamicResource GrayColorBrush}"
                             BorderThickness="1">

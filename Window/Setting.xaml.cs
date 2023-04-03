@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Text;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace LambdaLauncher {
@@ -108,8 +105,17 @@ namespace LambdaLauncher {
 		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
 		/// </summary>
 		private void Confirm(object sender, RoutedEventArgs e) {
+			if (Hotkey.EndsWith('+')) {
+				Hotkey = App.Hotkey;  // 快捷键没有输则会失效，因此并不修改原来的快捷键
+			}
+			string oldHotkey = App.Hotkey;
 			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
 			App.ReadAndLoadSettings();
+			if (Hotkey != oldHotkey) {
+				MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+				mainWindow.UnregisterHotKey(1134419766);
+				mainWindow.Hotkey(sender, e);
+			}
 			Close();
 		}
 	}

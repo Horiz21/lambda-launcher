@@ -48,7 +48,7 @@ namespace LambdaLauncher {
 			Loaded += Hotkey;  // 注册热键
 		}
 
-		private void Hotkey(object sender, RoutedEventArgs e) {
+		public void Hotkey(object sender, RoutedEventArgs e) {
 			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
 			ModifierKeys modifier = ModifierKeys.None;
 			if (parts.Contains("Ctrl"))  modifier |= ModifierKeys.Control;
@@ -56,8 +56,8 @@ namespace LambdaLauncher {
 			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
 			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
 
-			// 注册热键 (窗体句柄,热键ID,修饰键,实键)
-			RegisterHotKey(this, 1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
+			// 注册热键 (热键ID,修饰键,实键)
+			RegisterHotKey(1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
 
 			// 获取窗口句柄，创建HwndSource实例
 			source = HwndSource.FromHwnd(GetHandle(this));
@@ -198,8 +198,7 @@ namespace LambdaLauncher {
 
 		private void Menu_Exit(object sender, System.EventArgs e) {
 			notifyIcon.Dispose();
-			UnregisterHotKey(this, 11344);
-			UnregisterHotKey(this, 19766);
+			UnregisterHotKey(1134419766);
 			App.Current.Shutdown();
 		}
 
@@ -220,7 +219,7 @@ namespace LambdaLauncher {
 		public static IntPtr GetHandle(Window window) => new WindowInteropHelper(window).Handle;
 
 		// 注册热键
-		public static void RegisterHotKey(Window window, int id, Key key, ModifierKeys modifiers) {
+		public void RegisterHotKey(int id, Key key, ModifierKeys modifiers) {
 			// 将Key转换为虚拟键码
 			uint vk = (uint)KeyInterop.VirtualKeyFromKey(key);
 
@@ -232,11 +231,11 @@ namespace LambdaLauncher {
 			if ((modifiers & ModifierKeys.Windows) != 0) fsModifiers |= 0x0008;
 
 			// 注册热键
-			RegisterHotKey(GetHandle(window), id, fsModifiers, vk);
+			RegisterHotKey(GetHandle(this), id, fsModifiers, vk);
 		}
 
 		// 注销热键
-		public static void UnregisterHotKey(Window window, int id) => UnregisterHotKey(GetHandle(window), id);
+		public void UnregisterHotKey(int id) => UnregisterHotKey(GetHandle(this), id);
 
 		private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
 			switch (msg) {
