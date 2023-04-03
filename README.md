@@ -36,7 +36,7 @@ Me myself.
 ## Acknowledgements
 
 - My girlfriend. She is one of my aesthetic directors.
-- @Hamazon59. He is the first person to starred this project.
+- @HAmazon59. He is the first person to starred this project.
 - Smashicons. Whose image is used to show that the icon doesn't exist.
 - ColorHexa, which I use as a color matching tool.
 - ChatGPT. Although it is not too smart, it has helped me a lot.
