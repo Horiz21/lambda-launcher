@@ -1,15 +1,35 @@
 ﻿using LambdaLauncher.Model;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows;
 
 namespace LambdaLauncher {
 
 	public partial class App : Application {
 
+		private const string AppName = "LambdaLauncher";
+		private Mutex _mutex;
+
 		protected override void OnStartup(StartupEventArgs e) {
+			_mutex = new Mutex(true, AppName, out var createdNew);
+			if (!createdNew) {
+				// 应用程序实例已经存在，退出新实例
+				MessageBox.Show("已有一个Lambda Launcher在运行了！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+				Current.Shutdown();
+				return;
+			}
+
 			base.OnStartup(e);
 			ReadAndLoadData();  // 读取和加载全局设置、按键设置
+		}
+
+		protected override void OnExit(ExitEventArgs e) {
+			// 释放互斥锁
+			_mutex.ReleaseMutex();
+			_mutex.Dispose();
+
+			base.OnExit(e);
 		}
 
 		public static string[] Languages = new string[3] { "zh_Hans", "zh_Hant", "en" };
