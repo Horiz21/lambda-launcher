@@ -160,7 +160,9 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="84"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="boxHotKey" Grid.Column="0" Style="{DynamicResource TextBoxNormal}"/>
+                        <TextBox x:Name="boxHotkey" 
+                                 Grid.Column="0" Style="{DynamicResource TextBoxNormal}"
+                                 PreviewKeyDown="hotkeyInputStart"/>
                         <Button Grid.Column="1" Style="{DynamicResource ButtonNormal}" Content="{DynamicResource CheckHotkeyAvailability}" Click="CheckHotkeyAvailability"/>
                     </Grid>
 

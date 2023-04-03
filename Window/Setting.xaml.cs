@@ -1,6 +1,9 @@
-﻿using LambdaLauncher.Utility;
-using System;
+﻿using System;
+using System.Diagnostics;
+using System.Text;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace LambdaLauncher {
 
@@ -11,6 +14,7 @@ namespace LambdaLauncher {
 		private bool KeyboardDouble = App.KeyboardDouble;
 		private bool MouseDouble = App.MouseDouble;
 		private int LambdaFunction = App.LambdaFunction;
+		private string Hotkey = App.Hotkey;
 
 		public Setting() {
 			InitializeComponent();
@@ -19,6 +23,7 @@ namespace LambdaLauncher {
 			boxLanguage.SelectedIndex = Language;
 			boxTheme.SelectedIndex = Theme;
 			boxLambdaFunction.SelectedIndex = LambdaFunction;
+			boxHotkey.Text = Hotkey;
 
 			if (DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
@@ -30,15 +35,6 @@ namespace LambdaLauncher {
 			else radioMouseDoubleOff.IsChecked = true;
 		}
 
-		/// <summary>
-		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
-		/// </summary>
-		private void Confirm(object sender, RoutedEventArgs e) {
-			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction);
-			App.ReadAndLoadSettings();
-			Close();
-		}
-
 		private void Cancel(object sender, RoutedEventArgs e) {
 			App.ReadAndLoadSettings();
 			Close();
@@ -46,24 +42,24 @@ namespace LambdaLauncher {
 
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Language = boxLanguage.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + App.Languages[Language] + ".xaml", UriKind.Relative);
+			App.Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + App.Languages[Language] + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
 			Theme = boxTheme.SelectedIndex;
-			Application.Current.Resources.MergedDictionaries[1].Source = new 
+			App.Current.Resources.MergedDictionaries[1].Source = new
 				("../Properties/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
+			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) {
 			DarkMode = true;
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
+			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) {
 			DarkMode = false;
-			Application.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
+			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeLambdaFunction(object sender, RoutedEventArgs e) {
@@ -82,12 +78,39 @@ namespace LambdaLauncher {
 		private void KeyboardDoubleOff(object sender, RoutedEventArgs e) =>
 			App.KeyboardDouble = KeyboardDouble = false;
 
-		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
+		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
 		private void CloseWindow(object sender, RoutedEventArgs e) => Cancel(sender, e);
 
 		private void CheckHotkeyAvailability(object sender, RoutedEventArgs e) {
+		}
 
+		private void hotkeyInputStart(object sender, System.Windows.Input.KeyEventArgs e) {
+			Hotkey = "";
+			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control)) {
+				Hotkey += "Ctrl+";
+			}
+			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Alt)) {
+				Hotkey += "Alt+";
+			}
+			if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Shift)) {
+				Hotkey += "Shift+";
+			}
+			if (e.Key != Key.LeftShift && e.Key != Key.RightShift
+				&& e.Key != Key.LeftCtrl && e.Key != Key.RightCtrl
+				&& e.Key != Key.LeftAlt && e.Key != Key.RightAlt) {
+				Hotkey += e.Key.ToString();
+			}
+			boxHotkey.Text = Hotkey;
+		}
+
+		/// <summary>
+		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
+		/// </summary>
+		private void Confirm(object sender, RoutedEventArgs e) {
+			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
+			App.ReadAndLoadSettings();
+			Close();
 		}
 	}
 }

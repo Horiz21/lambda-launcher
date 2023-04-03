@@ -24,6 +24,7 @@ namespace LambdaLauncher {
 		public static bool KeyboardDouble { get; set; }
 		public static bool MouseDouble { get; set; }
 		public static int LambdaFunction { get; set; }
+		public static string Hotkey { get; set; }
 		public static bool InstantAvtice { get; set; } = false;  // 如果为真，则忽略二次访问设置，直接改为一次访问
 		public static bool Vice { get; set; } = false;  // 如果为真，则刷新成第二键设置
 
@@ -56,6 +57,7 @@ namespace LambdaLauncher {
 			KeyboardDouble = settings[3] == "1";
 			MouseDouble = settings[4] == "1";
 			LambdaFunction = int.Parse(settings[5]);
+			Hotkey = settings[6];
 
 			// 加载所使用的资源文件（Load）
 			Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + Languages[Language] + ".xaml", UriKind.Relative);
@@ -66,9 +68,9 @@ namespace LambdaLauncher {
 		/// <summary>
 		/// 储存由Settings类给出的新设置项到变量和文件里
 		/// </summary>
-		public static void SaveAndWriteSettings(int language, int theme, bool darkMode, bool keyboardDouble, bool mouseDouble, int lambdaFunction) {
+		public static void SaveAndWriteSettings(int language, int theme, bool darkMode, bool keyboardDouble, bool mouseDouble, int lambdaFunction, string hotKey) {
 			// 保存到变量里（Save）并修改字符串
-			llsFile[27] = $"{language}\t{theme}\t{(darkMode ? "1" : "0")}\t{(keyboardDouble ? "1" : "0")}\t{(mouseDouble ? "1" : "0")}\t{lambdaFunction}";
+			llsFile[27] = $"{language}\t{theme}\t{(darkMode ? "1" : "0")}\t{(keyboardDouble ? "1" : "0")}\t{(mouseDouble ? "1" : "0")}\t{lambdaFunction}\t{hotKey}";
 
 			// 存储到文件中（Write）
 			File.WriteAllLines(LlsPath, llsFile);
@@ -91,7 +93,7 @@ namespace LambdaLauncher {
 			if (DarkMode) Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
 			else Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 
-			llsFile[27] = $"{Language}\t{Theme}\t{(DarkMode ? "1" : "0")}\t{(KeyboardDouble ? "1" : "0")}\t{(MouseDouble ? "1" : "0")}\t{LambdaFunction}";
+			llsFile[27] = $"{Language}\t{Theme}\t{(DarkMode ? "1" : "0")}\t{(KeyboardDouble ? "1" : "0")}\t{(MouseDouble ? "1" : "0")}\t{LambdaFunction}\t{Hotkey}";
 			File.WriteAllLines(LlsPath, llsFile);
 		}
 	}

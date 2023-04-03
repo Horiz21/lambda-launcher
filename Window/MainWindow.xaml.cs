@@ -1,6 +1,7 @@
 ﻿using LambdaLauncher.Utility;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,9 +49,15 @@ namespace LambdaLauncher {
 		}
 
 		private void Hotkey(object sender, RoutedEventArgs e) {
-			// 注册热键 (窗体句柄,热键ID,辅助键,实键)
-			// 辅助键说明: None = 0, Alt = 1, crtl= 2, Shift = 4, Windows = 8
-			RegisterHotKey(this, 1134419766, Key.Q, ModifierKeys.Control | ModifierKeys.Shift); // 目前是写死的，CtrlShiftQ是显示和隐藏的热键
+			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
+			ModifierKeys modifier = ModifierKeys.None;
+			if (parts.Contains("Ctrl"))  modifier |= ModifierKeys.Control;
+			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;
+			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
+			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
+
+			// 注册热键 (窗体句柄,热键ID,修饰键,实键)
+			RegisterHotKey(this, 1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
 
 			// 获取窗口句柄，创建HwndSource实例
 			source = HwndSource.FromHwnd(GetHandle(this));
