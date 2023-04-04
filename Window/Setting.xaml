@@ -34,12 +34,10 @@
                        HorizontalAlignment="Stretch"
                        Foreground="{DynamicResource Foreground}"
                        MouseLeftButtonDown="DragWindow" />
-                <Button Content="×" Height="24" Width="24"
-                        HorizontalAlignment="Left" Margin="4"
-                        FontSize="24" FontFamily="Noto Sans SC Black"
-                        Background="Transparent"
-                        Style="{DynamicResource ButtonCancel}"
-                        Click="CloseWindow" Grid.Column="1" />
+                <Button Style="{DynamicResource ButtonCancel}"
+                        Click="CloseWindow" Grid.Column="1">
+                    <Label Content="×" FontSize="16" Style="{DynamicResource LabelSymbol}"/>
+                </Button>
             </Grid>
 
             <!--第二行为显示和编辑区域-->
@@ -79,7 +77,7 @@
                               Grid.Row="1"
                               Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
-                              SelectionChanged="TempChangeTheme">
+                              SelectionChanged="TempChangeTheme" SelectedIndex="0">
                         <ComboBoxItem Content="{DynamicResource bmbo}" />
                         <ComboBoxItem Content="{DynamicResource cbpk}" />
                         <ComboBoxItem Content="{DynamicResource dodl}" />

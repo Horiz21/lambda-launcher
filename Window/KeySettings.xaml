@@ -36,13 +36,10 @@
                    HorizontalAlignment="Stretch"
                    Foreground="{DynamicResource Foreground}"
                    MouseLeftButtonDown="DragWindow" />
-                <Button Grid.Column="1"
-                    Content="×" Height="24" Width="24"
-                    HorizontalAlignment="Right" Margin="4"
-                    FontSize="24" FontFamily="Noto Sans SC Black"
-                    Background="Transparent"
-                    Style="{DynamicResource ButtonCancel}"
-                    Click="CloseWindow" />
+                <Button Style="{DynamicResource ButtonCancel}"
+                        Click="CloseWindow" Grid.Column="1">
+                    <Label Content="×" FontSize="16" Style="{DynamicResource LabelSymbol}"/>
+                </Button>
             </Grid>
 
             <!--第二行为显示和编辑区域-->

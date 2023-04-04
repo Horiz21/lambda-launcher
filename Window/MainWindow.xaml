@@ -44,18 +44,18 @@
                    Foreground="{DynamicResource Foreground}"
                    MouseLeftButtonDown="DragWindow" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="−" Height="48" Width="48"
-                    HorizontalAlignment="Right" Margin="8"
-                    FontSize="48" FontFamily="Noto Sans SC Black"
-                    Background="Transparent"
-                    Style="{DynamicResource ButtonConfirm}"
-                    Click="MinimizeWindow" />
-                    <Button Content="×" Height="48" Width="48"
-                    HorizontalAlignment="Right" Margin="8"
-                    FontSize="48" FontFamily="Noto Sans SC Black"
-                    Background="Transparent"
-                    Style="{DynamicResource ButtonCancel}"
-                        Click="CloseWindow" />
+                    <Button Height="48" Width="48" Margin="8"
+                            Style="{DynamicResource ButtonConfirm}"
+                            Click="MinimizeWindow">
+                        <Label Content="－" FontSize="24"
+                               Style="{DynamicResource LabelSymbol}"/>
+                    </Button>
+                    <Button Height="48" Width="48" Margin="8"
+                            Style="{DynamicResource ButtonCancel}"
+                            Click="CloseWindow">
+                        <Label Content="×" FontSize="24"
+                               Style="{DynamicResource LabelSymbol}"/>
+                    </Button>
                 </StackPanel>
             </Grid>
             <UniformGrid Name="gridRow1" Grid.Row="1" Rows="1" Columns="10" Margin="0" />
