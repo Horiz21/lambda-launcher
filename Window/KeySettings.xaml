@@ -29,13 +29,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="32" />
                 </Grid.ColumnDefinitions>
-                <Label Content="{DynamicResource KeySettings}"
-                   FontSize="16"
-                   FontFamily="Noto Sans SC Black"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Stretch"
-                   Foreground="{DynamicResource Foreground}"
-                   MouseLeftButtonDown="DragWindow" />
+                <Label Content="{DynamicResource KeySettings}" Style="{DynamicResource LabelL}"
+                       MouseLeftButtonDown="DragWindow" />
                 <Button Style="{DynamicResource ButtonCancel}"
                         Click="CloseWindow" Grid.Column="1">
                     <Label Content="×" FontSize="16" Style="{DynamicResource LabelSymbol}"/>

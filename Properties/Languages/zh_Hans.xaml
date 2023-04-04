@@ -39,7 +39,7 @@
     <sys:String x:Key="Select">选择</sys:String>
     <sys:String x:Key="Confirm">确认</sys:String>
     <sys:String x:Key="Clear">清空</sys:String>
-    <sys:String x:Key="Cancle">取消</sys:String>
+    <sys:String x:Key="Cancel">取消</sys:String>
 
     <sys:String x:Key="AddTarget">目标</sys:String>
     <sys:String x:Key="AddFolder">文件夹</sys:String>

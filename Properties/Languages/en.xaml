@@ -39,7 +39,7 @@
     <sys:String x:Key="Select">Select</sys:String>
     <sys:String x:Key="Confirm">Confirm</sys:String>
     <sys:String x:Key="Clear">Clear</sys:String>
-    <sys:String x:Key="Cancle">Cancle</sys:String>
+    <sys:String x:Key="Cancel">Cancel</sys:String>
 
     <sys:String x:Key="AddTarget">Target</sys:String>
     <sys:String x:Key="AddFolder">Folder</sys:String>

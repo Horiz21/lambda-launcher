@@ -17,13 +17,23 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    
+
+    <!--L文字的Label-->
+    <Style x:Key="LabelL" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource SansBlack}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Padding" Value="4,0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
     <!--M文字的Label-->
     <Style x:Key="LabelM" TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource Sans}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Padding" Value="2,0"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
@@ -298,29 +308,21 @@
 
     <!--输入框-->
     <Style x:Key="TextBoxNormal" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource Foreground}"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundStrong}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontFamily" Value="Noto Sans SC"/>
-        <Setter Property="Padding" Value="2"/>
-        <Setter Property="Margin" Value="4,0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
+                    <Border Background="{DynamicResource BackgroundStrong}"
                             BorderBrush="{DynamicResource GrayColorBrush}"
                             BorderThickness="1"
                             SnapsToDevicePixels="True"
-                            Padding="2"
-                            CornerRadius="4">
+                            CornerRadius="4"
+                            Margin="4">
                         <TextBlock Text="{TemplateBinding Text}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                                   Foreground="{DynamicResource Foreground}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Stretch"
+                                   FontFamily="{StaticResource Sans}" FontSize="12"
+                                   Padding="4,0"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

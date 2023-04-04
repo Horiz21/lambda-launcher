@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -142,7 +143,7 @@ namespace LambdaLauncher {
 			if (Hotkey != oldHotkey) {
 				MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 				mainWindow.UnregisterHotKey(1134419766);
-				if(!mainWindow.Hotkey(sender, e)) { // 如果快捷键已经被占用，则恢复原始快捷键
+				if (!mainWindow.Hotkey(sender, e)) { // 如果快捷键已经被占用，则恢复原始快捷键
 					App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, oldHotkey);
 					App.ReadAndLoadSettings();
 					mainWindow.Hotkey(sender, e);
@@ -150,6 +151,17 @@ namespace LambdaLauncher {
 				}
 			}
 			Close();
+		}
+
+		private CultureInfo oldCultureInfo; // 记录之前的输入法，在焦点进入快捷键区时切换为英文输入法，离开时切换回旧输入法
+
+		private void KeyboardToEnglish(object sender, KeyboardFocusChangedEventArgs e) {
+			oldCultureInfo = InputLanguageManager.Current.CurrentInputLanguage;
+			InputLanguageManager.Current.CurrentInputLanguage = new CultureInfo("en-US");
+		}
+
+		private void KeyboardBack(object sender, KeyboardFocusChangedEventArgs e) {
+			InputLanguageManager.Current.CurrentInputLanguage = oldCultureInfo;
 		}
 	}
 }

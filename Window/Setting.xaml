@@ -27,12 +27,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="32" />
                 </Grid.ColumnDefinitions>
-                <Label Content="{DynamicResource Settings}"
-                       FontSize="16"
-                       FontFamily="Noto Sans SC Black"
-                       VerticalContentAlignment="Center"
-                       HorizontalAlignment="Stretch"
-                       Foreground="{DynamicResource Foreground}"
+                <Label Content="{DynamicResource Settings}" Style="{DynamicResource LabelL}"
                        MouseLeftButtonDown="DragWindow" />
                 <Button Style="{DynamicResource ButtonCancel}"
                         Click="CloseWindow" Grid.Column="1">
@@ -77,7 +72,7 @@
                               Grid.Row="1"
                               Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
-                              SelectionChanged="TempChangeTheme" SelectedIndex="0">
+                              SelectionChanged="TempChangeTheme">
                         <ComboBoxItem Content="{DynamicResource bmbo}" />
                         <ComboBoxItem Content="{DynamicResource cbpk}" />
                         <ComboBoxItem Content="{DynamicResource dodl}" />
@@ -179,7 +174,8 @@
                                      Checked="HotkeyWinChecked" Unchecked="HotkeyWinUnchecked"
                                      Content="Win"/>
                         <TextBox x:Name="boxHotkey" Grid.Column="4"
-                                 Style="{DynamicResource TextBoxNormal}" PreviewKeyDown="hotkeyInputStart"/>
+                                 Style="{DynamicResource TextBoxNormal}" PreviewKeyDown="hotkeyInputStart"
+                                 PreviewGotKeyboardFocus="KeyboardToEnglish" PreviewLostKeyboardFocus="KeyboardBack"/>
                     </Grid>
 
                     <Grid Grid.Row="7" Grid.Column="1">
@@ -188,7 +184,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--第一个是取消键-->
-                        <Button x:Name="buttonCancel" Content="{DynamicResource Cancle}" FontSize="14"
+                        <Button x:Name="buttonCancel" Content="{DynamicResource Cancel}" FontSize="14"
                                 Style="{DynamicResource ButtonNormal}" Width="96" Height="32"
                                 Click="Cancel"/>
                         <!--第二个是确认键-->
