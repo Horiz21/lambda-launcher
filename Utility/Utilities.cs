@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 
 namespace LambdaLauncher.Utility {
@@ -44,13 +42,17 @@ namespace LambdaLauncher.Utility {
 				UriKind.Relative));
 		}
 
-		// 运行一条cmd命令
+		/// <summary>
+		/// 运行一条cmd命令，然后隐藏主程序界面
+		/// </summary>
+		/// <param name="target">目标指令</param>
 		public static void RunCommand(string target) {
-			ProcessStartInfo startInfo = new();
-			startInfo.FileName = "cmd.exe";
-			startInfo.Arguments = @"/C start """" """ + target + @"""";
-			startInfo.CreateNoWindow = true;
-			startInfo.UseShellExecute = false;
+			ProcessStartInfo startInfo = new() {
+				FileName = "cmd.exe",
+				Arguments = @"/C start """" """ + target + @"""",
+				CreateNoWindow = true,
+				UseShellExecute = false
+			};
 
 			if (App.LambdaFunction == 3) {
 				App.InstantAvtice = App.Vice = false;
@@ -61,9 +63,11 @@ namespace LambdaLauncher.Utility {
 				MainWindow.ReloadGrid();
 			}
 
-			Process process = new Process();
-			process.StartInfo = startInfo;
-			process.Start();
+			Process process = new() {
+				StartInfo = startInfo
+			};
+			if (process.Start())
+				App.Current.MainWindow.Hide(); // 若运行一条指令，则隐藏程序界面
 		}
 	}
 }
