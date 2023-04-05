@@ -55,7 +55,7 @@ namespace LambdaLauncher {
 		public bool Hotkey(object sender, RoutedEventArgs e) {
 			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
 			ModifierKeys modifier = ModifierKeys.None;
-			if (parts.Contains("Ctrl"))  modifier |= ModifierKeys.Control;
+			if (parts.Contains("Ctrl")) modifier |= ModifierKeys.Control;
 			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;
 			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
 			if (parts.Contains("Win")) modifier |= ModifierKeys.Windows;
@@ -92,14 +92,17 @@ namespace LambdaLauncher {
 		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
 		// 键盘按键的（按下并）抬起，相当于按下了某一按钮
-		private new void KeyUpEvent(object sender, System.Windows.Input.KeyEventArgs e) {
+		private new void KeyUpEvent(object sender, KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是……
 				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive))
+				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
+					currentActivedKey = '\0';
+					isSameActive = false; // 删除激活信息，这样下次打开界面的时候就不会有残留信息
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
+				}
 			}
 			else if (key == "LeftShift" || key == "RightShift") {
 				ActiveLambdaFunction(false);
@@ -107,13 +110,13 @@ namespace LambdaLauncher {
 		}
 
 		// 键盘的按下，此时将焦点聚焦在一个按钮上，并调整二次访问标记（用于判断是"对打开动作的确认"还是"新切换到一个键"）
-		private new void KeyDownEvent(object sender, System.Windows.Input.KeyEventArgs e) {
+		private new void KeyDownEvent(object sender, KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母，则模拟悬浮该按钮（但不按下）的样式
 				if (letter >= 'A' && letter <= 'Z') {
-					Keyboard.Focus(keys[letter - 'A'].keyButton);
+					keys[letter - 'A'].keyButton.Focus();
 					isSameActive = currentActivedKey == letter;
 					currentActivedKey = letter;
 				}
@@ -198,19 +201,31 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void CloseWindow(object sender, RoutedEventArgs e) => Hide();
+		private void HideMe(object sender, RoutedEventArgs e) {
+			HideMe();
+		}
+
+		private void HideMe() {
+			Hide();
+		}
 
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
-		private void Menu_OpenWebsite(object sender, System.EventArgs e) => Process.Start("explorer.exe", "https://github.com/Horiz21/lambda-launcher");
+		private void Menu_OpenWebsite(object sender, EventArgs e) => Process.Start("explorer.exe", "https://github.com/Horiz21/lambda-launcher");
 
-		private void Menu_Exit(object sender, System.EventArgs e) {
+		private void Menu_Exit(object sender, EventArgs e) {
 			notifyIcon.Dispose();
 			UnregisterHotKey(1134419766);
 			App.Current.Shutdown();
 		}
 
-		private void Show(object sender, System.EventArgs e) => Show();
+		private void Show(object sender, EventArgs e) {
+			Show();
+		}
+
+		private void ShowMe() {
+			Show();
+		}
 
 		private void ReloadLanguage() {
 			notifyIcon.ContextMenuStrip.Items.Add("打开网址", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
@@ -249,8 +264,8 @@ namespace LambdaLauncher {
 			switch (msg) {
 				case 0x0312:  // WM_HOTKEY
 					if (wParam.ToInt32() == 1134419766) {
-						if (IsVisible) Hide();
-						else Show();
+						if (IsVisible) HideMe();
+						else ShowMe();
 					}
 					handled = true;
 					break;

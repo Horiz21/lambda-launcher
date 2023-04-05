@@ -1,8 +1,8 @@
 1	腾讯会议			0			
 1	PowerShell			0			
-1	Code			0			
-1	SS Tap			0			
-1	Notepad 3			0			
+1	Code	C:\Users\Frankie\AppData\Local\Programs\Microsoft VS Code\Code.exe		0			
+1	SS Tap	C:\Software\SSTap\SSTap.exe		0			
+1	Notepad 3	C:\ProgramData\Microsoft\Windows\Start Menu\Programs\记事本 Notepad3.lnk		0			
 1	Photoshop			0			
 1	Illustrator			0			
 1	Bandicam			0			
@@ -14,15 +14,15 @@
 1	Prompt			0			
 1	PowerPoint			0			
 1	Excel			0			
-1	Chrome			0			
-4	休眠			0			
+1	Chrome	C:\Users\Frankie\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Google Chrome.lnk		0			
+4	休眠	"shutdown -h"		0			
 1	Block Bench			0			
 1	画图	mspaint		0	策略2		
-1	知云文献翻译		C:\Users\Frankie\Pictures\2021070913523000_c.jpg	0			
+1	知云文献翻译			0			
 1	Studio			0			
-1	Edge (IP)			0			
+1	Edge	C:\Users\Frankie\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge.lnk		0			
 1	PyCharm			0			
 3	学习强国	www.xuexi.cn		3	科技强国	www.hamaster.top	
-2	Wallpaper文件夹	C:\Users\Frankie\Pictures\Wallpaper		0			
+2				0			
 0	Lambda Launcher			0	Vice Mode		
-0	2	0	1	1	0	Ctrl+T
+0	2	0	1	1	4	Shift+Back

@@ -52,7 +52,7 @@
                     </Button>
                     <Button Height="48" Width="48" Margin="8"
                             Style="{DynamicResource ButtonCancel}"
-                            Click="CloseWindow">
+                            Click="HideMe">
                         <Label Content="×" FontSize="24"
                                Style="{DynamicResource LabelSymbol}"/>
                     </Button>
