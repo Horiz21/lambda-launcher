@@ -1,47 +1,52 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <!--全域設定-->
-    <sys:String x:Key="Settings">全域設定</sys:String>
+    <!--全局設置-->
+    <sys:String x:Key="Settings">全局設置</sys:String>
+
     <sys:String x:Key="Language">語言</sys:String>
+    <sys:String x:Key="zh_Hans">中文（簡體）</sys:String>
+    <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
+    <sys:String x:Key="en">英文（English）</sys:String>
+
     <sys:String x:Key="Theme">主題</sys:String>
+    <sys:String x:Key="bmbo">綠竹</sys:String>
+    <sys:String x:Key="cbpk">賽博朋克</sys:String>
+    <sys:String x:Key="dodl">塗鴉</sys:String>
+
     <sys:String x:Key="DarkMode">顯示模式</sys:String>
-    <sys:String x:Key="KeyboardDouble">鍵盤觸發</sys:String>
-    <sys:String x:Key="MouseDouble">滑鼠觸發</sys:String>
-    <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
-    <sys:String x:Key="Hotkey">熱鍵</sys:String>
-    <sys:String x:Key="CheckHotkeyAvailability">檢查可用性</sys:String>
-    
     <sys:String x:Key="DarkModeOn">夜間模式</sys:String>
     <sys:String x:Key="DarkModeOff">日間模式</sys:String>
-    <sys:String x:Key="KeyboardDoubleOn">按兩下鍵盤觸發</sys:String>
-    <sys:String x:Key="KeyboardDoubleOff">按一下鍵盤觸發</sys:String>
-    <sys:String x:Key="MouseDoubleOn">按兩下主鍵觸發</sys:String>
-    <sys:String x:Key="MouseDoubleOff">按一下主鍵觸發</sys:String>
 
-    <!--Lambda功能-->
+    <sys:String x:Key="KeyboardDouble">鍵盤觸發</sys:String>
+    <sys:String x:Key="KeyboardDoubleOn">雙擊鍵盤觸發</sys:String>
+    <sys:String x:Key="KeyboardDoubleOff">單擊鍵盤觸發</sys:String>
+
+    <sys:String x:Key="MouseDouble">鼠標觸發</sys:String>
+    <sys:String x:Key="MouseDoubleOn">雙擊主鍵觸發</sys:String>
+    <sys:String x:Key="MouseDoubleOff">單擊主鍵觸發</sys:String>
+
+    <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
     <sys:String x:Key="LambdaFunction-None">不開啟</sys:String>
     <sys:String x:Key="LambdaFunction-SwitchDarkMode">切換日間模式與夜間模式</sys:String>
     <sys:String x:Key="LambdaFunction-ViceKey">切換主按鍵策略組與副按鍵策略組</sys:String>
-    <sys:String x:Key="LambdaFunction-ViceKeyTemp">暫時切換為副按鍵策略組並改成單擊觸發</sys:String>
-    <sys:String x:Key="LambdaFunction-SingleClick">單擊觸發</sys:String>
-    <sys:String x:Key="LambdaFunction-SettingsMenu">打開設定介面</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKeyTemp">暫時切換為副按鍵策略組並單擊觸發按鍵</sys:String>
+    <sys:String x:Key="LambdaFunction-SingleClick">單擊觸發按鍵</sys:String>
+    <sys:String x:Key="LambdaFunction-SettingsMenu">打開設置界面</sys:String>
 
-    <!--語言-->
-    <sys:String x:Key="zh_Hans">中文（簡體）</sys:String>
-    <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
-    <sys:String x:Key="en">英語（English）</sys:String>
+    <sys:String x:Key="Hotkey">快捷鍵</sys:String>
 
-    <!-- 按鍵設定視窗-->
-    <sys:String x:Key="KeySettings">按鍵設定</sys:String>
+    <!--按鍵設置-->
+    <sys:String x:Key="KeySettings">按鍵設置</sys:String>
     <sys:String x:Key="KeyTitle">標題</sys:String>
     <sys:String x:Key="KeyIcon">圖標</sys:String>
     <sys:String x:Key="Select">選擇</sys:String>
     <sys:String x:Key="Confirm">確認</sys:String>
     <sys:String x:Key="Clear">清空</sys:String>
     <sys:String x:Key="Cancel">取消</sys:String>
+
     <sys:String x:Key="AddTarget">目標</sys:String>
-    <sys:String x:Key="AddFolder">資料夾</sys:String>
+    <sys:String x:Key="AddFolder">文件夾</sys:String>
     <sys:String x:Key="AddWebsite">網址</sys:String>
     <sys:String x:Key="PureCommand">CMD命令</sys:String>
 
@@ -54,12 +59,21 @@
     <sys:String x:Key="ThemeWarningColor">警告指示色</sys:String>
     <sys:String x:Key="ThemeErrorColor">錯誤指示色</sys:String>
 
-    <!--主題-->
-    <sys:String x:Key="bmbo">綠竹</sys:String>
-    <sys:String x:Key="cbpk">賽博朋克</sys:String>
-    <sys:String x:Key="dodl">塗鴉</sys:String>
-
-    <!-- 其他-->
+    <!--通用-->
     <sys:String x:Key="On">開啟</sys:String>
     <sys:String x:Key="Off">關閉</sys:String>
+
+    <!--托盤-->
+    <sys:String x:Key="MenuExit">退出</sys:String>
+    <sys:String x:Key="MenuWebsite">網站</sys:String>
+    <sys:String x:Key="KeySettings1">設置主要按鍵功能</sys:String>
+    <sys:String x:Key="KeySettings2">設置次要按鍵功能</sys:String>
+    <sys:String x:Key="ClearKey">清除按鍵功能設置</sys:String>
+
+    <!--異常-->
+    <sys:String x:Key="MultipleInstanceError">多實例異常</sys:String>
+    <sys:String x:Key="MultipleInstanceErrorTip">已經有一個Lambda Launcher正在運行，無法創建另一個進程！</sys:String>
+    <sys:String x:Key="HotkeyConflictError">熱鍵衝突異常</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip1">當前設置熱鍵在程序啟動前已被其他進程佔用，請前往設置頁面重新配置！</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip2">熱鍵設置失敗！該熱鍵組合目前已被其他進程佔用，已恢復為歷史設置！</sys:String>
 </ResourceDictionary>

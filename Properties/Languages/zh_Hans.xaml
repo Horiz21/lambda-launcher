@@ -3,23 +3,30 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <!--全局设置-->
     <sys:String x:Key="Settings">全局设置</sys:String>
-    <sys:String x:Key="Language">语言</sys:String>
-    <sys:String x:Key="Theme">主题</sys:String>
-    <sys:String x:Key="DarkMode">显示模式</sys:String>
-    <sys:String x:Key="KeyboardDouble">键盘触发</sys:String>
-    <sys:String x:Key="MouseDouble">鼠标触发</sys:String>
-    <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
-    <sys:String x:Key="Hotkey">快捷键</sys:String>
-    <sys:String x:Key="CheckHotkeyAvailability">检查可用性</sys:String>
 
+    <sys:String x:Key="Language">语言</sys:String>
+    <sys:String x:Key="zh_Hans">中文（简体）</sys:String>
+    <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
+    <sys:String x:Key="en">英文（English）</sys:String>
+
+    <sys:String x:Key="Theme">主题</sys:String>
+    <sys:String x:Key="bmbo">绿竹</sys:String>
+    <sys:String x:Key="cbpk">赛博朋克</sys:String>
+    <sys:String x:Key="dodl">涂鸦</sys:String>
+
+    <sys:String x:Key="DarkMode">显示模式</sys:String>
     <sys:String x:Key="DarkModeOn">夜间模式</sys:String>
     <sys:String x:Key="DarkModeOff">日间模式</sys:String>
+
+    <sys:String x:Key="KeyboardDouble">键盘触发</sys:String>
     <sys:String x:Key="KeyboardDoubleOn">双击键盘触发</sys:String>
     <sys:String x:Key="KeyboardDoubleOff">单击键盘触发</sys:String>
+
+    <sys:String x:Key="MouseDouble">鼠标触发</sys:String>
     <sys:String x:Key="MouseDoubleOn">双击主键触发</sys:String>
     <sys:String x:Key="MouseDoubleOff">单击主键触发</sys:String>
 
-    <!--Lambda功能-->
+    <sys:String x:Key="LambdaFunction">Lambda功能</sys:String>
     <sys:String x:Key="LambdaFunction-None">不开启</sys:String>
     <sys:String x:Key="LambdaFunction-SwitchDarkMode">切换日间模式与夜间模式</sys:String>
     <sys:String x:Key="LambdaFunction-ViceKey">切换主按键策略组与副按键策略组</sys:String>
@@ -27,12 +34,9 @@
     <sys:String x:Key="LambdaFunction-SingleClick">单击触发按键</sys:String>
     <sys:String x:Key="LambdaFunction-SettingsMenu">打开设置界面</sys:String>
 
-    <!--语言-->
-    <sys:String x:Key="zh_Hans">中文（简体）</sys:String>
-    <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
-    <sys:String x:Key="en">英文（English）</sys:String>
+    <sys:String x:Key="Hotkey">快捷键</sys:String>
 
-    <!--按键设置窗口-->
+    <!--按键设置-->
     <sys:String x:Key="KeySettings">按键设置</sys:String>
     <sys:String x:Key="KeyTitle">标题</sys:String>
     <sys:String x:Key="KeyIcon">图标</sys:String>
@@ -55,12 +59,7 @@
     <sys:String x:Key="ThemeWarningColor">警告指示色</sys:String>
     <sys:String x:Key="ThemeErrorColor">错误指示色</sys:String>
 
-    <!--主题-->
-    <sys:String x:Key="bmbo">绿竹</sys:String>
-    <sys:String x:Key="cbpk">赛博朋克</sys:String>
-    <sys:String x:Key="dodl">涂鸦</sys:String>
-
-    <!--其他-->
+    <!--通用-->
     <sys:String x:Key="On">开启</sys:String>
     <sys:String x:Key="Off">关闭</sys:String>
 
@@ -70,4 +69,11 @@
     <sys:String x:Key="KeySettings1">设置主要按键功能</sys:String>
     <sys:String x:Key="KeySettings2">设置次要按键功能</sys:String>
     <sys:String x:Key="ClearKey">清除按键功能设置</sys:String>
+
+    <!--异常-->
+    <sys:String x:Key="MultipleInstanceError">多实例异常</sys:String>
+    <sys:String x:Key="MultipleInstanceErrorTip">已经有一个Lambda Launcher正在运行，无法创建另一个进程！</sys:String>
+    <sys:String x:Key="HotkeyConflictError">热键冲突异常</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip1">当前设置热键在程序启动前已被其他进程占用，请前往设置页面重新配置！</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip2">热键设置失败！该热键组合目前已被其他进程占用，已恢复为历史设置！</sys:String>
 </ResourceDictionary>

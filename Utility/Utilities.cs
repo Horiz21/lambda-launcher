@@ -38,8 +38,7 @@ namespace LambdaLauncher.Utility {
 		/// 获取Logo
 		/// </summary>
 		public static BitmapImage GetLogo() {
-			return new BitmapImage(new Uri("../Properties/Images/icon.png",
-				UriKind.Relative));
+			return new BitmapImage(new Uri("../Properties/Images/icon.png", UriKind.Relative));
 		}
 
 		/// <summary>

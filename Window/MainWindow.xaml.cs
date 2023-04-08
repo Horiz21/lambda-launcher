@@ -20,12 +20,6 @@ namespace LambdaLauncher {
 		private static char currentActivedKey; // 上一次按下的字母
 		private static bool isSameActive; // 二次访问标记，是否已经预先按下（致使这是第二次按下）
 		private HwndSource source;
-		//private string? menuWebsite = Application.Current.FindResource("MenuWebsite") as string;
-		//private string? menuExit = Application.Current.FindResource("MenuExit") as string;
-		//private string? settings = Application.Current.FindResource("Settings") as string;
-		//private string? keySettings1 = Application.Current.FindResource("KeySettings1") as string;
-		//private string? keySettings2 = Application.Current.FindResource("KeySettings2") as string;
-		//private string? claerKey = Application.Current.FindResource("ClearKey") as string;
 
 		public MainWindow() {
 			InitializeComponent();
@@ -45,31 +39,8 @@ namespace LambdaLauncher {
 
 			ReloadLanguage();  // 加载语言文件
 			ReloadGrid();  // 加载布局
+
 			Loaded += HotkeyAfterLoad;  // 注册热键
-		}
-
-		public void HotkeyAfterLoad(object sender, RoutedEventArgs e) {
-			Hotkey(sender, e);
-		}
-
-		public bool Hotkey(object sender, RoutedEventArgs e) {
-			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
-			ModifierKeys modifier = ModifierKeys.None;
-			if (parts.Contains("Ctrl")) modifier |= ModifierKeys.Control;
-			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;
-			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
-			if (parts.Contains("Win")) modifier |= ModifierKeys.Windows;
-			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
-
-			// 注册热键 (热键ID,修饰键,实键)
-			bool success = RegisterHotKey(1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
-
-			// 获取窗口句柄，创建HwndSource实例
-			source = HwndSource.FromHwnd(GetHandle(this));
-			source.AddHook(new HwndSourceHook(WndProc));
-
-			// 返回是否成功注册
-			return success;
 		}
 
 		public static void ReloadGrid() {
@@ -89,27 +60,11 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+		#region 键盘事件（按键响应、Lambda功能）
 
-		// 键盘按键的（按下并）抬起，相当于按下了某一按钮
-		private new void KeyUpEvent(object sender, KeyEventArgs e) {
-			string key = e.Key.ToString(); // 获取按下的按键名称
-			if (key.Length == 1) {// 键入单个符号，可能是字母
-				char letter = char.Parse(key);
-				// 判断是否是字母，若是字母则判断是否是……
-				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
-					currentActivedKey = '\0';
-					isSameActive = false; // 删除激活信息，这样下次打开界面的时候就不会有残留信息
-					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
-				}
-			}
-			else if (key == "LeftShift" || key == "RightShift") {
-				ActiveLambdaFunction(false);
-			}
-		}
-
-		// 键盘的按下，此时将焦点聚焦在一个按钮上，并调整二次访问标记（用于判断是"对打开动作的确认"还是"新切换到一个键"）
+		/// <summary>
+		/// 键盘的按下，此时将焦点聚焦在一个按钮上，并调整二次访问标记（用于判断是"对打开动作的确认"还是"新切换到一个键"）
+		/// </summary>
 		private new void KeyDownEvent(object sender, KeyEventArgs e) {
 			string key = e.Key.ToString(); // 获取按下的按键名称
 			if (key.Length == 1) {// 键入单个符号，可能是字母
@@ -126,21 +81,24 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void WindowContextMenu(object sender, MouseButtonEventArgs e) {
-			ContextMenu contextMenu = new();
-
-			MenuItem settingMenuItem = new() {
-				Header = "设置"
-			};
-			settingMenuItem.Click += LauncherSettings;
-			contextMenu.Items.Add(settingMenuItem);
-
-			ContextMenuService.SetContextMenu(this, contextMenu);
-		}
-
-		private void LauncherSettings(object sender, RoutedEventArgs e) {
-			Setting childWindow = new();
-			childWindow.ShowDialog();
+		/// <summary>
+		/// 键盘按键的（按下并）抬起，相当于按下了某一按钮
+		/// </summary>
+		private new void KeyUpEvent(object sender, KeyEventArgs e) {
+			string key = e.Key.ToString(); // 获取按下的按键名称
+			if (key.Length == 1) {// 键入单个符号，可能是字母
+				char letter = char.Parse(key);
+				// 判断是否是字母，若是字母则判断是否是……
+				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
+				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
+					currentActivedKey = '\0';
+					isSameActive = false; // 删除激活信息，这样下次打开界面的时候就不会有残留信息
+					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
+				}
+			}
+			else if (key == "LeftShift" || key == "RightShift") {
+				ActiveLambdaFunction(false);
+			}
 		}
 
 		/// <summary>
@@ -201,42 +159,95 @@ namespace LambdaLauncher {
 			}
 		}
 
-		private void HideMe(object sender, RoutedEventArgs e) {
-			HideMe();
-		}
+		#endregion 键盘事件（按键响应、Lambda功能）
 
-		private void HideMe() {
-			Hide();
-		}
+		#region 窗口显示/隐藏/拖动/最小化
+
+		private void Show(object sender, EventArgs e) => Show();
+
+		private void Hide(object sender, RoutedEventArgs e) => Hide();
 
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
-		private void Menu_OpenWebsite(object sender, EventArgs e) => Process.Start("explorer.exe", "https://github.com/Horiz21/lambda-launcher");
+		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
-		private void Menu_Exit(object sender, EventArgs e) {
+		#endregion 窗口显示/隐藏/拖动/最小化
+
+		#region 上下文菜单语言设置
+
+		private void MenuWebsite(object sender, EventArgs e) {
+			Process.Start("explorer.exe", "https://github.com/Horiz21/lambda-launcher");
+		}
+
+		private void MenuExit(object sender, EventArgs e) {
 			notifyIcon.Dispose();
 			UnregisterHotKey(1134419766);
 			App.Current.Shutdown();
 		}
 
-		private void Show(object sender, EventArgs e) {
-			Show();
+		private void LauncherSettings(object sender, RoutedEventArgs e) {
+			Setting childWindow = new();
+			childWindow.ShowDialog();
 		}
 
-		private void ShowMe() {
-			Show();
+		#endregion 上下文菜单语言设置
+
+		#region 语言设置
+
+		public void ReloadLanguage() {
+			// 1. 任务栏语言设置
+			notifyIcon.ContextMenuStrip.Items.Clear();
+			notifyIcon.ContextMenuStrip.Items.Add((string)Application.Current.FindResource("MenuWebsite"), System.Drawing.Image.FromFile("Properties/Images/link.ico"), MenuWebsite);
+			notifyIcon.ContextMenuStrip.Items.Add((string)Application.Current.FindResource("MenuExit"), System.Drawing.Image.FromFile("Properties/Images/exit.ico"), MenuExit);
+
+			// 2. 主界面右键菜单语言设置
+			ContextMenu contextMenu = new();
+			MenuItem settingMenuItem = new() { Header = (string)Application.Current.FindResource("Settings") };
+			settingMenuItem.Click += LauncherSettings;
+			contextMenu.Items.Add(settingMenuItem);
+			this.ContextMenu = contextMenu;
+
+			// 3. 按键右键菜单语言设置
+			foreach (var key in keys) {
+				if (key != null) key.MakeMenu();
+			}
 		}
 
-		private void ReloadLanguage() {
-			notifyIcon.ContextMenuStrip.Items.Add("打开网址", System.Drawing.Image.FromFile("Properties/Images/link.ico"), Menu_OpenWebsite);
-			notifyIcon.ContextMenuStrip.Items.Add("退出程序", System.Drawing.Image.FromFile("Properties/Images/exit.ico"), Menu_Exit);
-		}
+		#endregion 语言设置
+
+		#region 热键设置
 
 		[DllImport("user32.dll")]
 		public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 
 		[DllImport("user32.dll")]
 		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+		public void HotkeyAfterLoad(object sender, RoutedEventArgs e) {
+			if (!Hotkey(sender, e)) { // 快捷键被占用时抛出提示
+				MessageBox.Show((string)Application.Current.FindResource("HotkeyConflictErrorTip1"), (string)Application.Current.FindResource("HotkeyConflictError"));
+			}
+		}
+
+		public bool Hotkey(object sender, RoutedEventArgs e) {
+			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
+			ModifierKeys modifier = ModifierKeys.None;
+			if (parts.Contains("Ctrl")) modifier |= ModifierKeys.Control;
+			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;
+			if (parts.Contains("Shift")) modifier |= ModifierKeys.Shift;
+			if (parts.Contains("Win")) modifier |= ModifierKeys.Windows;
+			string actualKey = parts.Last();  // 排除修饰键以外的就是实键
+
+			// 注册热键 (热键ID,修饰键,实键)
+			bool success = RegisterHotKey(1134419766, (Key)Enum.Parse(typeof(Key), actualKey), modifier);
+
+			// 获取窗口句柄，创建HwndSource实例
+			source = HwndSource.FromHwnd(GetHandle(this));
+			source.AddHook(new HwndSourceHook(WndProc));
+
+			// 返回是否成功注册
+			return success;
+		}
 
 		// 获取窗口句柄
 		public static IntPtr GetHandle(Window window) => new WindowInteropHelper(window).Handle;
@@ -264,13 +275,15 @@ namespace LambdaLauncher {
 			switch (msg) {
 				case 0x0312:  // WM_HOTKEY
 					if (wParam.ToInt32() == 1134419766) {
-						if (IsVisible) HideMe();
-						else ShowMe();
+						if (IsVisible) Hide();
+						else Show();
 					}
 					handled = true;
 					break;
 			}
 			return IntPtr.Zero;
 		}
+
+		#endregion 热键设置
 	}
 }

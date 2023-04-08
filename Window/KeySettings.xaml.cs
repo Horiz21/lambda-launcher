@@ -165,7 +165,6 @@ namespace LambdaLauncher {
 		}
 
 		private void ChangeTextLinkAttribute(string reference, int linkType, bool isLongTextBox) {
-			Debug.WriteLine("检测到选项卡切换到" + linkType.ToString());
 			labelLink.SetResourceReference(ContentProperty, reference);
 			if (isLongTextBox) {
 				textLink.SetValue(Grid.ColumnSpanProperty, 1);
@@ -181,11 +180,6 @@ namespace LambdaLauncher {
 			else
 				textLink.Text = string.Empty;
 			localLinkType = linkType;
-			NowInfoWriteLine();
-		}
-
-		private void NowInfoWriteLine() {
-			Debug.WriteLine("现在是选项卡" + localLinkType.ToString() + "，有记录的是选项卡" + keyData.LinkType.ToString() + "，内容为：" + localLink);
 		}
 	}
 }

@@ -140,16 +140,25 @@ namespace LambdaLauncher {
 			Hotkey = (Modifier[0] ? "Ctrl+" : "") + (Modifier[1] ? "Alt+" : "") + (Modifier[2] ? "Shift+" : "") + (Modifier[3] ? "Win+" : "") + boxHotkey.Text;
 			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
 			App.ReadAndLoadSettings();
+
+			// 当前正在运行的主界面对象
+			MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+			// 修改语言
+			mainWindow.ReloadLanguage();
+
+			// 修改热键
 			if (Hotkey != oldHotkey) {
-				MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 				mainWindow.UnregisterHotKey(1134419766);
 				if (!mainWindow.Hotkey(sender, e)) { // 如果快捷键已经被占用，则恢复原始快捷键
 					App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, oldHotkey);
 					App.ReadAndLoadSettings();
 					mainWindow.Hotkey(sender, e);
-					MessageBox.Show("快捷键已经被占用，因此恢复了旧快捷键！");
+					MessageBox.Show((string)Application.Current.FindResource("HotkeyConflictErrorTip2"), (string)Application.Current.FindResource("HotkeyConflictError"));
 				}
 			}
+
+			// 关闭窗口
 			Close();
 		}
 

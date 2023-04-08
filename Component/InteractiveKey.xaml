@@ -19,8 +19,7 @@
                 Click="SingleClickToRunContentCommand"
                 MouseDoubleClick="DoubleClickToRunContentCommand"
                 HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Bottom"
-                MouseRightButtonDown="MouseRightButtonDown">
+                VerticalContentAlignment="Bottom">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="8" />

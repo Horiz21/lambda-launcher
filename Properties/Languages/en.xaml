@@ -1,38 +1,42 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <!--全局设置-->
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--Global Settings-->
     <sys:String x:Key="Settings">Launcher Settings</sys:String>
+
     <sys:String x:Key="Language">Language</sys:String>
-    <sys:String x:Key="Theme">Theme</sys:String>
-    <sys:String x:Key="DarkMode">Display</sys:String>
-    <sys:String x:Key="KeyboardDouble">Keyboard</sys:String>
-    <sys:String x:Key="MouseDouble">Mouse</sys:String>
-    <sys:String x:Key="LambdaFunction">Lambda Function</sys:String>
-    <sys:String x:Key="Hotkey">Hotkey</sys:String>
-    <sys:String x:Key="CheckHotkeyAvailability">Check</sys:String>
-
-    <sys:String x:Key="DarkModeOn">Dark Mode</sys:String>
-    <sys:String x:Key="DarkModeOff">Light Mode</sys:String>
-    <sys:String x:Key="KeyboardDoubleOn">Double Click</sys:String>
-    <sys:String x:Key="KeyboardDoubleOff">Single Click</sys:String>
-    <sys:String x:Key="MouseDoubleOn">Double Click</sys:String>
-    <sys:String x:Key="MouseDoubleOff">Single Click</sys:String>
-
-    <!--Lambda功能-->
-    <sys:String x:Key="LambdaFunction-None">None</sys:String>
-    <sys:String x:Key="LambdaFunction-SwitchDarkMode">Switch between Dark Mode and Light Mode</sys:String>
-    <sys:String x:Key="LambdaFunction-ViceKey">Switch between Primary Keys and Secondary Keys</sys:String>
-    <sys:String x:Key="LambdaFunction-ViceKeyTemp">Temporarily switch to Secondary Keys and trigger the key by single click</sys:String>
-    <sys:String x:Key="LambdaFunction-SingleClick">Trigger key by single click</sys:String>
-    <sys:String x:Key="LambdaFunction-SettingsMenu">Open settings menu</sys:String>
-
-    <!--语言-->
-    <sys:String x:Key="zh_Hans">Chinese (Simplied)</sys:String>
+    <sys:String x:Key="zh_Hans">Chinese (Simplified)</sys:String>
     <sys:String x:Key="zh_Hant">Chinese (Traditional)</sys:String>
     <sys:String x:Key="en">English</sys:String>
 
-    <!--按键设置窗口-->
+    <sys:String x:Key="Theme">Theme</sys:String>
+    <sys:String x:Key="bmbo">Bamboo</sys:String>
+    <sys:String x:Key="cbpk">Cyberpunk</sys:String>
+    <sys:String x:Key="dodl">Doodle</sys:String>
+
+    <sys:String x:Key="DarkMode">Display mode</sys:String>
+    <sys:String x:Key="DarkModeOn">Dark Mode</sys:String>
+    <sys:String x:Key="DarkModeOff">Light Mode</sys:String>
+
+    <sys:String x:Key="KeyboardDouble">Keyboard trigger</sys:String>
+    <sys:String x:Key="KeyboardDoubleOn">Double-clicking</sys:String>
+    <sys:String x:Key="KeyboardDoubleOff">Single-clicking</sys:String>
+
+    <sys:String x:Key="MouseDouble">Mouse trigger</sys:String>
+    <sys:String x:Key="MouseDoubleOn">Double-clicking</sys:String>
+    <sys:String x:Key="MouseDoubleOff">Single-clicking</sys:String>
+
+    <sys:String x:Key="LambdaFunction">Lambda function</sys:String>
+    <sys:String x:Key="LambdaFunction-None">Off</sys:String>
+    <sys:String x:Key="LambdaFunction-SwitchDarkMode">Switch between light/dark mode</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKey">Switch between the primary key group and the secondary key group</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKeyTemp">Temporarily switch to the secondary key group and set to single-click mode</sys:String>
+    <sys:String x:Key="LambdaFunction-SingleClick">Single-click to trigger the key</sys:String>
+    <sys:String x:Key="LambdaFunction-SettingsMenu">Open this Launcher Setting window</sys:String>
+
+    <sys:String x:Key="Hotkey">Hotkey</sys:String>
+
+    <!--Key setting-->
     <sys:String x:Key="KeySettings">Key Settings</sys:String>
     <sys:String x:Key="KeyTitle">Title</sys:String>
     <sys:String x:Key="KeyIcon">Icon</sys:String>
@@ -44,30 +48,32 @@
     <sys:String x:Key="AddTarget">Target</sys:String>
     <sys:String x:Key="AddFolder">Folder</sys:String>
     <sys:String x:Key="AddWebsite">Website</sys:String>
-    <sys:String x:Key="PureCommand">Command</sys:String>
+    <sys:String x:Key="PureCommand">CMD command</sys:String>
 
-    <!--主题窗口-->
-    <sys:String x:Key="ThemePrimaryColor">Primary Color</sys:String>
-    <sys:String x:Key="ThemeAccentColor">Accent Color</sys:String>
-    <sys:String x:Key="ThemeDarkColor">Text Color</sys:String>
-    <sys:String x:Key="ThemeLightColor">Background Color</sys:String>
-    <sys:String x:Key="ThemeSuccessColor">Success Indicator Color</sys:String>
-    <sys:String x:Key="ThemeWarningColor">Warning Indicator Color</sys:String>
-    <sys:String x:Key="ThemeErrorColor">Error Indicator Color</sys:String>
+    <!--Theme color-->
+    <sys:String x:Key="ThemePrimaryColor">Theme color</sys:String>
+    <sys:String x:Key="ThemeAccentColor">Accent color</sys:String>
+    <sys:String x:Key="ThemeDarkColor">Foreground color</sys:String>
+    <sys:String x:Key="ThemeLightColor">Background color</sys:String>
+    <sys:String x:Key="ThemeSuccessColor">Success indicator color</sys:String>
+    <sys:String x:Key="ThemeWarningColor">Warning indicator color</sys:String>
+    <sys:String x:Key="ThemeErrorColor">Error indicator color</sys:String>
 
-    <!--主题-->
-    <sys:String x:Key="bmbo">Bamboo</sys:String>
-    <sys:String x:Key="cbpk">Cyberpunk</sys:String>
-    <sys:String x:Key="dodl">Doodle</sys:String>
-
-    <!--其他-->
+    <!--General-->
     <sys:String x:Key="On">On</sys:String>
     <sys:String x:Key="Off">Off</sys:String>
 
-    <!--写死在cs里的项目-->
+    <!--Tray-->
     <sys:String x:Key="MenuExit">Exit</sys:String>
-    <sys:String x:Key="MenuWebsite">Website</sys:String>
-    <sys:String x:Key="KeySettings1">Setting the primary key function</sys:String>
-    <sys:String x:Key="KeySettings2">Setting the secondary button function</sys:String>
-    <sys:String x:Key="ClearKey">Clear key function setting</sys:String>
+    <sys:String x:Key="MenuWebsite">Website (GitHub)</sys:String>
+    <sys:String x:Key="KeySettings1">The primary key settings</sys:String>
+    <sys:String x:Key="KeySettings2">The secondary key settings</sys:String>
+    <sys:String x:Key="ClearKey">Clear key settings</sys:String>
+
+    <!--Exception-->
+    <sys:String x:Key="MultipleInstanceError">Multiple instance error</sys:String>
+    <sys:String x:Key="MultipleInstanceErrorTip">There is already a Lambda Launcher running, cannot create another process!</sys:String>
+    <sys:String x:Key="HotkeyConflictError">Hotkey conflict error</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip1">The currently set hotkey has been occupied by other processes, please check the launcher settings and reconfigure!</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip2">Hotkey setting failed! This hotkey scheme is currently occupied by another process, so your hotkey settings has been restored to the historical setting!</sys:String>
 </ResourceDictionary>
