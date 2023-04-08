@@ -14,6 +14,11 @@
     <sys:String x:Key="bmbo">綠竹</sys:String>
     <sys:String x:Key="cbpk">賽博朋克</sys:String>
     <sys:String x:Key="dodl">塗鴉</sys:String>
+    <sys:String x:Key="xwhs">玄武湖櫻</sys:String>
+    <sys:String x:Key="sfsr">柔和日出</sys:String>
+    <sys:String x:Key="dstr">沙漠旅人</sys:String>
+    <sys:String x:Key="aztl">蔚藍暮光</sys:String>
+    <sys:String x:Key="cnlt">肉桂拿鐵</sys:String>
 
     <sys:String x:Key="DarkMode">顯示模式</sys:String>
     <sys:String x:Key="DarkModeOn">夜間模式</sys:String>

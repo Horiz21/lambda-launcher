@@ -77,6 +77,11 @@
                         <ComboBoxItem Content="{DynamicResource bmbo}" />
                         <ComboBoxItem Content="{DynamicResource cbpk}" />
                         <ComboBoxItem Content="{DynamicResource dodl}" />
+                        <ComboBoxItem Content="{DynamicResource xwhs}" />
+                        <ComboBoxItem Content="{DynamicResource sfsr}" />
+                        <ComboBoxItem Content="{DynamicResource dstr}" />
+                        <ComboBoxItem Content="{DynamicResource aztl}" />
+                        <ComboBoxItem Content="{DynamicResource cnlt}" />
                     </ComboBox>
 
                     <!--夜间模式设定-->

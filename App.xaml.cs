@@ -33,7 +33,7 @@ namespace LambdaLauncher {
 		}
 
 		public static string[] Languages = new string[4] { "zh_Hans", "zh_Hant", "en", "jp" };
-		public static string[] Themes = new string[3] { "bmbo", "cbpk", "dodl" };
+		public static string[] Themes = new string[8] { "bmbo", "cbpk", "dodl", "xwhs", "sfsr", "dstr", "aztl", "cnlt" };
 		public static KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式
 		private static readonly Uri LlsPath = new Uri(Path.Combine(Directory.GetCurrentDirectory(), @"Properties/Settings/setting.lls"));  // 设置文件（.lls)
 		private static string[] llsFile = new string[28];  // 用于存放1个初始行和27个字母信息（单行形式）
