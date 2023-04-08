@@ -15,19 +15,23 @@ Lambda Launcher is a WPF application inspired by MaxLauncher, and is dedicated t
 
 ### Main Window
 
-![Main Window](Screenshots/V0317-Main-Menu.png)
+![Main Window](Screenshots/V0408-MainMenu.png)
 
 ### Key Settings
 
-![Key Settings](Screenshots/V0317-KeySetting.png)
+![Key Settings](Screenshots/V0408-KeySetting.png)
 
 ### Multi-Language
 
-![Multi-Language](Screenshots/V0317-Multi-language.png)
+![Multi-Language](Screenshots/V0408-MultiLanguage.png)
 
-### More Themes
+### 8 Well-Designed Themes
 
-![More Themes](Screenshots/V0317-Theme.png)
+![More Themes](Screenshots/V0408-Theme.png)
+
+### Dark Mode
+
+![Dark Mode](Screenshots/V0408-DarkMode.png)
 
 ## Developer
 
