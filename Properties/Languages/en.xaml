@@ -8,6 +8,7 @@
     <sys:String x:Key="zh_Hans">Chinese (Simplified)</sys:String>
     <sys:String x:Key="zh_Hant">Chinese (Traditional)</sys:String>
     <sys:String x:Key="en">English</sys:String>
+    <sys:String x:Key="jp">Japanese</sys:String>
 
     <sys:String x:Key="Theme">Theme</sys:String>
     <sys:String x:Key="bmbo">Bamboo</sys:String>
