@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--グローバル設定-->
+    <sys:String x:Key="Settings">ランチャー設定</sys:String>
+
+    <sys:String x:Key="Language">言語</sys:String>
+    <sys:String x:Key="zh_Hans">中国語 (簡体字)</sys:String>
+    <sys:String x:Key="zh_Hant">中国語 (繁体字)</sys:String>
+    <sys:String x:Key="en">英語 (English)</sys:String>
+    <sys:String x:Key="jp">日本語</sys:String>
+
+    <sys:String x:Key="Theme">テーマ</sys:String>
+    <sys:String x:Key="bmbo">緑の竹</sys:String>
+    <sys:String x:Key="cbpk">サイバーパンク</sys:String>
+    <sys:String x:Key="dodl">落書き</sys:String>
+
+    <sys:String x:Key="DarkMode">表示モード</sys:String>
+    <sys:String x:Key="DarkModeOn">ダークモード</sys:String>
+    <sys:String x:Key="DarkModeOff">デイモード</sys:String>
+
+    <sys:String x:Key="KeyboardDouble">キーボード</sys:String>
+    <sys:String x:Key="KeyboardDoubleOn">ダブルクリック</sys:String>
+    <sys:String x:Key="KeyboardDoubleOff">シングルクリック</sys:String>
+
+    <sys:String x:Key="MouseDouble">マウス</sys:String>
+    <sys:String x:Key="MouseDoubleOn">ダブルクリック</sys:String>
+    <sys:String x:Key="MouseDoubleOff">シングルクリック</sys:String>
+
+    <sys:String x:Key="LambdaFunction">ラムダ関数</sys:String>
+    <sys:String x:Key="LambdaFunction-None">使用しません</sys:String>
+    <sys:String x:Key="LambdaFunction-SwitchDarkMode">デイモードとナイトモードを切り替える</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKey">プライマリ キー ポリシー グループとセカンダリ キー ポリシー グループを切り替える</sys:String>
+    <sys:String x:Key="LambdaFunction-ViceKeyTemp">一時的に2番目のキー機能グループに切り替え、シングルクリック トリガー キーに切り替えます</sys:String>
+    <sys:String x:Key="LambdaFunction-SingleClick">シングルクリック トリガー ボタン</sys:String>
+    <sys:String x:Key="LambdaFunction-SettingsMenu">この設定インターフェイスを開く</sys:String>
+
+    <sys:String x:Key="Hotkey">ショートカット キー</sys:String>
+
+    <!--キー設定-->
+    <sys:String x:Key="KeySettings">キー設定</sys:String>
+    <sys:String x:Key="KeyTitle">タイトル</sys:String>
+    <sys:String x:Key="KeyIcon">アイコン</sys:String>
+    <sys:String x:Key="Select">選択</sys:String>
+    <sys:String x:Key="Confirm">確認</sys:String>
+    <sys:String x:Key="Clear">クリア</sys:String>
+    <sys:String x:Key="Cancel">キャンセル</sys:String>
+
+    <sys:String x:Key="AddTarget">ターゲット</sys:String>
+    <sys:String x:Key="AddFolder">フォルダ</sys:String>
+    <sys:String x:Key="AddWebsite">URL</sys:String>
+    <sys:String x:Key="PureCommand">CMD コマンド</sys:String>
+
+    <!--テーマカラー-->
+    <sys:String x:Key="ThemePrimaryColor">テーマの色</sys:String>
+    <sys:String x:Key="ThemeAccentColor">アクセント カラー</sys:String>
+    <sys:String x:Key="ThemeDarkColor">前景色</sys:String>
+    <sys:String x:Key="ThemeLightColor">背景色</sys:String>
+    <sys:String x:Key="ThemeSuccessColor">成功インジケータの色</sys:String>
+    <sys:String x:Key="ThemeWarningColor">警告インジケータの色</sys:String>
+    <sys:String x:Key="ThemeErrorColor">異常インジケーターの色</sys:String>
+
+    <!--一般-->
+    <sys:String x:Key="On">オン</sys:String>
+    <sys:String x:Key="Off">オフ</sys:String>
+
+    <!--トレイ-->
+    <sys:String x:Key="MenuExit">終了</sys:String>
+    <sys:String x:Key="MenuWebsite">ウェブサイト</sys:String>
+    <sys:String x:Key="KeySettings1">1番目のキー機能を設定</sys:String>
+    <sys:String x:Key="KeySettings2">2番目のキー機能を設定</sys:String>
+    <sys:String x:Key="ClearKey">キー機能設定のクリア</sys:String>
+
+    <!--例外-->
+    <sys:String x:Key="MultipleInstanceError">複数のプログラムが開かれました</sys:String>
+    <sys:String x:Key="MultipleInstanceErrorTip">このプログラムは既に実行されており、別のプロセスを作成できません!</sys:String>
+    <sys:String x:Key="HotkeyConflictError">ホットキー競合の異常</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip1">現在設定されているホットキーは、プログラムが開始する前に他のプロセスによって占有されています。設定ページに移動して再設定してください!</sys:String>
+    <sys:String x:Key="HotkeyConflictErrorTip2">ホットキーの設定に失敗しました! このホットキーの組み合わせは、現在別のプロセスによって占有されており、履歴設定に復元されました!</sys:String>
+</ResourceDictionary>

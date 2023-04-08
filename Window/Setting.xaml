@@ -64,6 +64,7 @@
                         <ComboBoxItem Content="{DynamicResource zh_Hans}" />
                         <ComboBoxItem Content="{DynamicResource zh_Hant}" />
                         <ComboBoxItem Content="{DynamicResource en}" />
+                        <ComboBoxItem Content="{DynamicResource jp}" />
                     </ComboBox>
 
                     <!--主题设定-->

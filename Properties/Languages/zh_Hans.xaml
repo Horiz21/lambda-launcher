@@ -8,6 +8,7 @@
     <sys:String x:Key="zh_Hans">中文（简体）</sys:String>
     <sys:String x:Key="zh_Hant">中文（繁體）</sys:String>
     <sys:String x:Key="en">英文（English）</sys:String>
+    <sys:String x:Key="jp">日语（日本語）</sys:String>
 
     <sys:String x:Key="Theme">主题</sys:String>
     <sys:String x:Key="bmbo">绿竹</sys:String>
