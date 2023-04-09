@@ -13,8 +13,7 @@
     <Grid>
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="47"
-              Margin="2.5" MouseLeftButtonDown="DragWindow"
-              Background="{DynamicResource Background}" />
+              MouseLeftButtonDown="DragWindow" Background="Transparent" />
 
         <!--用于存放可显示页面元素的两行Grid-->
         <Grid Margin="20,15">

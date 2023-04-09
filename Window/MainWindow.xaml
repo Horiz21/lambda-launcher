@@ -15,8 +15,8 @@
     <Grid x:Name="gridRoot">
         <!--用于实现页面拖拽的顶栏-->
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top"
-              Background="{DynamicResource Background}" Height="94"
-              Margin="2.5" MouseLeftButtonDown="DragWindow" />
+              Background="Transparent" Height="94"
+              MouseLeftButtonDown="DragWindow" />
         <!--用于存放可显式页面元素的四行一列Grid-->
         <Grid Margin="40,30">
             <Grid.RowDefinitions>
