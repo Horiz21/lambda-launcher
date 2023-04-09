@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LambdaLauncher"
         mc:Ignorable="d"
-        Title="Setting" Height="322" Width="404"
+        Title="{DynamicResource Settings}" Height="322" Width="404"
         Style="{DynamicResource WindowNormal}"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="True">
