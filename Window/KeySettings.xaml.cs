@@ -1,7 +1,6 @@
 ﻿using LambdaLauncher.Model;
 using LambdaLauncher.Utility;
 using Microsoft.Win32;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -49,10 +48,7 @@ namespace LambdaLauncher {
 				textTitle.Text = keyData.Title;
 			}
 
-			if (localLinkType == 1) {
-				AddTarget.IsChecked = true;
-			}
-			else if (localLinkType == 2) {
+			if (localLinkType == 2) {
 				AddFolder.IsChecked = true;
 			}
 			else if (localLinkType == 3) {
@@ -61,11 +57,10 @@ namespace LambdaLauncher {
 			else if (localLinkType == 4) {
 				PureCommand.IsChecked = true;
 			}
+			else {  // 如果是未设置的或者确实是首项，则选首项
+				AddTarget.IsChecked = true;
+			}
 		}
-
-		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
-
-		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
 
 		// 如果textTitle的内容更新，则实时更新预览窗口的keyTitle
 		private void UpdateTitle(object sender, TextChangedEventArgs e) {
@@ -181,5 +176,13 @@ namespace LambdaLauncher {
 				textLink.Text = string.Empty;
 			localLinkType = linkType;
 		}
+
+		#region 界面控制相关代码
+
+		private void CloseWindow(object sender, RoutedEventArgs e) => Close();
+
+		private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
+
+		#endregion 界面控制相关代码
 	}
 }

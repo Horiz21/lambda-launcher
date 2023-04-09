@@ -54,10 +54,11 @@ namespace LambdaLauncher {
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
 					keys[c - 'A'] = new InteractiveKey(App.keyDatas[c - 'A']);
-					if (c == '[') keys[c - 'A'].Enable(false); // 禁止Lambda键响应鼠标
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}
+
+			keys[26].Enable(false); // 禁止Lambda键响应鼠标
 		}
 
 		#region 键盘事件（按键响应、Lambda功能）
@@ -170,6 +171,8 @@ namespace LambdaLauncher {
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
 		private void MinimizeWindow(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+
+		private void Activate(object sender, EventArgs e) => ReloadGrid();  // HACK
 
 		#endregion 窗口显示/隐藏/拖动/最小化
 
@@ -285,5 +288,7 @@ namespace LambdaLauncher {
 		}
 
 		#endregion 热键设置
+
+
 	}
 }
