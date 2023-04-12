@@ -44,8 +44,12 @@ namespace LambdaLauncher {
 			config.ReadAndLoadSettings();
 		}
 
+		public static void ExportSettings(string path) {
+			config.SaveAndWriteSettings(path);
+		}
+
 		public static void ChangeSetting() {
-			config.SaveAndWriteSettings();
+			config.SaveAndWriteSettings(LlsPath.LocalPath);
 			config.ReadAndLoadSettings();
 		}
 	}

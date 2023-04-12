@@ -14,7 +14,7 @@ namespace LambdaLauncher.Model {
 		public static string[] Languages = new string[4] { "zh_Hans", "zh_Hant", "en", "jp" };
 		public static string[] Themes = new string[8] { "bmbo", "cbpk", "dodl", "xwhs", "sfsr", "dstr", "aztl", "cnlt" };
 
-		private string path;
+		private readonly string path;
 		public string[] llsFile = new string[28];  // 用于存放1个初始行和27个字母信息（单行形式）
 		public KeyData[] keyDatas = new KeyData[27];  // 用于存放27个字母信息（对象形式）
 		public int Language { get; set; }
@@ -71,9 +71,9 @@ namespace LambdaLauncher.Model {
 		}
 
 		/// <summary>
-		/// 储存所有当前设置项到变量和文件里，该方法仅会被App调用，因此路径一定为默认路径
+		/// 储存所有当前设置项到变量和文件"path"里
 		/// </summary>
-		public void SaveAndWriteSettings() {
+		public void SaveAndWriteSettings(string path) {
 			// 保存到变量里（Save）并修改字符串
 			llsFile[27] = string.Join("\t", Language, Theme, DarkMode ? "1" : "0", KeyboardDouble ? "1" : "0", MouseDouble ? "1" : "0", LambdaFunction, Hotkey);
 

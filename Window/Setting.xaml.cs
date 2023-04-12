@@ -187,20 +187,37 @@ namespace LambdaLauncher {
 
 		#region 配置文件导入/导出
 
+		/// <summary>
+		/// 导入配置文件，并加载其中设置
+		/// </summary>
 		private void Import(object sender, RoutedEventArgs e) {
-			OpenFileDialog? openFileDialog = new() { Filter = "LLS File|*lls" };
+			OpenFileDialog openFileDialog = new() { Filter = "LLS File|*lls" };
 			if (openFileDialog.ShowDialog() == true) {
 				if (Path.GetExtension(openFileDialog.FileName) == ".lls") {
 					App.ImportSettings(openFileDialog.FileName);
 				}
 				else MessageBox.Show((string)Application.Current.FindResource("FileExtensionErrorTip"), (string)Application.Current.FindResource("FileExtensionError"));
 			}
-			else {
-				MessageBox.Show((string)Application.Current.FindResource("FileOpenFailedErrorTip"), (string)Application.Current.FindResource("FileOpenFailedError"));
-			}
 		}
 
+		/// <summary>
+		/// 导出当前配置App.config为配置文件
+		/// </summary>
 		private void Export(object sender, RoutedEventArgs e) {
+			SaveFileDialog saveFileDialog = new() { Filter = "LLS Files|*.lls" };
+			if (saveFileDialog.ShowDialog() == true) {
+				string path = saveFileDialog.FileName;
+				if (File.Exists(path)) {
+					MessageBoxResult result = MessageBox.Show("该文件已存在，是否要替换？", "确认", MessageBoxButton.YesNo);
+					if (result != MessageBoxResult.Yes) {
+						return;
+					}
+				}
+				else {
+					using (File.Create(path)) {}
+				}
+				App.ExportSettings(path);
+			}
 		}
 
 		#endregion 配置文件导入/导出
