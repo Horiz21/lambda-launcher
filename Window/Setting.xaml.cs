@@ -16,28 +16,29 @@ namespace LambdaLauncher {
 
 		public Setting() {
 			InitializeComponent();
+			DisplaySettings();  // 复原除快捷键外的其他设置
+			DisplayHotkey(); // 复原快捷键设置
+		}
 
-			// 在设置页面复原当前设置
-			boxLanguage.SelectedIndex = oldConfig.Language;
-			boxTheme.SelectedIndex = oldConfig.Theme;
-			boxLambdaFunction.SelectedIndex = oldConfig.LambdaFunction;
+		private void DisplaySettings() {
+			// 复原语言、主题、功能等设置
+			boxLanguage.SelectedIndex = App.config.Language;
+			boxTheme.SelectedIndex = App.config.Theme;
+			boxLambdaFunction.SelectedIndex = App.config.LambdaFunction;
 
 			// 复原日夜间、单双击设置
-			if (oldConfig.DarkMode) radioDarkModeOn.IsChecked = true;
+			if (App.config.DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
 
-			if (oldConfig.KeyboardDouble) radioKeyboardDoubleOn.IsChecked = true;
+			if (App.config.KeyboardDouble) radioKeyboardDoubleOn.IsChecked = true;
 			else radioKeyboardDoubleOff.IsChecked = true;
 
-			if (oldConfig.MouseDouble) radioMouseDoubleOn.IsChecked = true;
+			if (App.config.MouseDouble) radioMouseDoubleOn.IsChecked = true;
 			else radioMouseDoubleOff.IsChecked = true;
-
-			// 复原快捷键设置
-			DisplayHotkey();
 		}
 
 		private void DisplayHotkey() {
-			string[] parts = oldConfig.Hotkey.Split('+');
+			string[] parts = App.config.Hotkey.Split('+');
 			if (parts.Contains("Ctrl")) {
 				Modifier[0] = true;
 				radioCtrl.IsChecked = true;
@@ -195,6 +196,8 @@ namespace LambdaLauncher {
 			if (openFileDialog.ShowDialog() == true) {
 				if (Path.GetExtension(openFileDialog.FileName) == ".lls") {
 					App.ImportSettings(openFileDialog.FileName);
+					DisplaySettings();
+					DisplayHotkey();
 				}
 				else MessageBox.Show((string)Application.Current.FindResource("FileExtensionErrorTip"), (string)Application.Current.FindResource("FileExtensionError"));
 			}
@@ -207,15 +210,8 @@ namespace LambdaLauncher {
 			SaveFileDialog saveFileDialog = new() { Filter = "LLS Files|*.lls" };
 			if (saveFileDialog.ShowDialog() == true) {
 				string path = saveFileDialog.FileName;
-				if (File.Exists(path)) {
-					MessageBoxResult result = MessageBox.Show("该文件已存在，是否要替换？", "确认", MessageBoxButton.YesNo);
-					if (result != MessageBoxResult.Yes) {
-						return;
-					}
-				}
-				else {
-					using (File.Create(path)) {}
-				}
+				if (!File.Exists(path))
+					using (File.Create(path)) { }
 				App.ExportSettings(path);
 			}
 		}
