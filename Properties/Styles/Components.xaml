@@ -152,6 +152,39 @@
         </Setter>
     </Style>
 
+    <!--普通按钮+12号小字-->
+    <Style x:Key="ButtonNormalS" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <!--静置背景颜色-->
+                    <Border x:Name="ButtonBorder"
+                            Background="{DynamicResource GrayColorBrush}"
+                            BorderThickness="0"
+                            CornerRadius="4"
+                            Margin="4">
+                        <Label Content="{TemplateBinding Content}"
+                               Style="{DynamicResource LabelS}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--悬浮背景颜色-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource GrayLightColorBrush}"/>
+                        </Trigger>
+                        <!--按下背景颜色-->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder"
+                                    Property="Background"
+                                    Value="{DynamicResource GrayDarkColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--用于下拉框的ToggleButton（只有右侧有圆角）-->
     <Style x:Key="ToggleButtonForComboBox" TargetType="ToggleButton">
         <Setter Property="Template">

@@ -53,12 +53,12 @@ namespace LambdaLauncher.Utility {
 				UseShellExecute = false
 			};
 
-			if (App.LambdaFunction == 3) {
-				App.InstantAvtice = App.Vice = false;
+			if (App.config.LambdaFunction == 3) {
+				App.config.InstantAvtice = App.config.Vice = false;
 				MainWindow.ReloadGrid();
 			}
-			else if (App.LambdaFunction == 4) {
-				App.InstantAvtice = false;
+			else if (App.config.LambdaFunction == 4) {
+				App.config.InstantAvtice = false;
 				MainWindow.ReloadGrid();
 			}
 

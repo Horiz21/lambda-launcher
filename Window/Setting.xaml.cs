@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LambdaLauncher.Model;
+using Microsoft.Win32;
+using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -7,35 +10,34 @@ using System.Windows.Input;
 namespace LambdaLauncher {
 
 	public partial class Setting : Window {
-		private new int Language = App.Language;
-		private int Theme = App.Theme;
-		private bool DarkMode = App.DarkMode;
-		private bool KeyboardDouble = App.KeyboardDouble;
-		private bool MouseDouble = App.MouseDouble;
-		private int LambdaFunction = App.LambdaFunction;
-		private string Hotkey = App.Hotkey;
+		private Config oldConfig = App.config.DeepCopy();  // 暂时储存旧config
+
 		private bool[] Modifier = new bool[4] { false, false, false, false };
 
 		public Setting() {
 			InitializeComponent();
 
 			// 在设置页面复原当前设置
-			boxLanguage.SelectedIndex = Language;
-			boxTheme.SelectedIndex = Theme;
-			boxLambdaFunction.SelectedIndex = LambdaFunction;
+			boxLanguage.SelectedIndex = oldConfig.Language;
+			boxTheme.SelectedIndex = oldConfig.Theme;
+			boxLambdaFunction.SelectedIndex = oldConfig.LambdaFunction;
 
 			// 复原日夜间、单双击设置
-			if (DarkMode) radioDarkModeOn.IsChecked = true;
+			if (oldConfig.DarkMode) radioDarkModeOn.IsChecked = true;
 			else radioDarkModeOff.IsChecked = true;
 
-			if (KeyboardDouble) radioKeyboardDoubleOn.IsChecked = true;
+			if (oldConfig.KeyboardDouble) radioKeyboardDoubleOn.IsChecked = true;
 			else radioKeyboardDoubleOff.IsChecked = true;
 
-			if (MouseDouble) radioMouseDoubleOn.IsChecked = true;
+			if (oldConfig.MouseDouble) radioMouseDoubleOn.IsChecked = true;
 			else radioMouseDoubleOff.IsChecked = true;
 
 			// 复原快捷键设置
-			string[] parts = App.Hotkey.Split('+');
+			DisplayHotkey();
+		}
+
+		private void DisplayHotkey() {
+			string[] parts = oldConfig.Hotkey.Split('+');
 			if (parts.Contains("Ctrl")) {
 				Modifier[0] = true;
 				radioCtrl.IsChecked = true;
@@ -55,48 +57,43 @@ namespace LambdaLauncher {
 			boxHotkey.Text = parts.Last();
 		}
 
-		private void Cancel(object sender, RoutedEventArgs e) {
-			App.ReadAndLoadSettings();
-			Close();
-		}
-
 		private void TempChangeLanguage(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
-			Language = boxLanguage.SelectedIndex;
-			App.Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + App.Languages[Language] + ".xaml", UriKind.Relative);
+			App.config.Language = boxLanguage.SelectedIndex;
+			App.Current.Resources.MergedDictionaries[0].Source = new Uri("../Properties/Languages/" + Config.Languages[App.config.Language] + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeTheme(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
-			Theme = boxTheme.SelectedIndex;
+			App.config.Theme = boxTheme.SelectedIndex;
 			App.Current.Resources.MergedDictionaries[1].Source = new
-				("../Properties/Themes/" + App.Themes[Theme] + ".xaml", UriKind.Relative);
-			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
+				("../Properties/Themes/" + Config.Themes[App.config.Theme] + ".xaml", UriKind.Relative);
+			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/" + (App.config.DarkMode ? "DarkMode" : "LightMode") + ".xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOn(object sender, RoutedEventArgs e) {
-			DarkMode = true;
+			App.config.DarkMode = true;
 			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/DarkMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeDarkModeOff(object sender, RoutedEventArgs e) {
-			DarkMode = false;
+			App.config.DarkMode = false;
 			App.Current.Resources.MergedDictionaries[2].Source = new Uri("../Properties/Themes/LightMode.xaml", UriKind.Relative);
 		}
 
 		private void TempChangeLambdaFunction(object sender, RoutedEventArgs e) {
-			LambdaFunction = boxLambdaFunction.SelectedIndex;
+			App.config.LambdaFunction = boxLambdaFunction.SelectedIndex;
 		}
 
 		private void MouseDoubleOn(object sender, RoutedEventArgs e) =>
-			App.MouseDouble = MouseDouble = true;
+			App.config.MouseDouble = true;
 
 		private void MouseDoubleOff(object sender, RoutedEventArgs e) =>
-			App.MouseDouble = MouseDouble = false;
+			App.config.MouseDouble = false;
 
 		private void KeyboardDoubleOn(object sender, RoutedEventArgs e) =>
-			App.KeyboardDouble = KeyboardDouble = true;
+			App.config.KeyboardDouble = true;
 
 		private void KeyboardDoubleOff(object sender, RoutedEventArgs e) =>
-			App.KeyboardDouble = KeyboardDouble = false;
+			App.config.KeyboardDouble = false;
 
 		private void DragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
@@ -129,38 +126,53 @@ namespace LambdaLauncher {
 			else boxHotkey.Clear();
 		}
 
+		#region 确认/取消操作
+
 		/// <summary>
-		/// 确认更新，则通过Data，将当前界面所有信息写回lls配置文件，然后重新读取设置
+		/// 确认更新，则将App.config里所有的信息切实写回lls配置文件，然后加载新设置
 		/// </summary>
 		private void Confirm(object sender, RoutedEventArgs e) {
-			if (boxHotkey.Text == string.Empty) { // 快捷键没有输则会失效，因此并不修改原来的快捷键
-				Hotkey = App.Hotkey;
-			}
-			string oldHotkey = App.Hotkey;
-			Hotkey = (Modifier[0] ? "Ctrl+" : "") + (Modifier[1] ? "Alt+" : "") + (Modifier[2] ? "Shift+" : "") + (Modifier[3] ? "Win+" : "") + boxHotkey.Text;
-			App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, Hotkey);
-			App.ReadAndLoadSettings();
-
 			// 当前正在运行的主界面对象
 			MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+			// 若快捷键未键入，则不退出并要求键入快捷键
+			if (boxHotkey.Text == string.Empty) {
+				MessageBox.Show("[TODO]不允许没有快捷键实键");
+				return;
+			}
+
+			// 若快捷键被修改，则尝试修改快捷键；若修改失败则要求重新键入快捷键
+			App.config.Hotkey = string.Join("+", Modifier[0] ? "Ctrl" : "", Modifier[1] ? "Alt" : "", Modifier[2] ? "Shift" : "", Modifier[3] ? "Win" : "", boxHotkey.Text);
+			if (App.config.Hotkey != oldConfig.Hotkey) {
+				mainWindow.UnregisterHotKey(1134419766);
+				if (!mainWindow.Hotkey(sender, e)) {
+					MessageBox.Show((string)Application.Current.FindResource("HotkeyConflictErrorTip2"), (string)Application.Current.FindResource("HotkeyConflictError"));
+					App.config.Hotkey = oldConfig.Hotkey;
+					mainWindow.Hotkey(sender, e);
+					DisplayHotkey();
+					return;
+				}
+			}
+
+			// 存储所有设置项，并立即应用到界面中
+			App.ChangeSetting();
 
 			// 修改语言
 			mainWindow.ReloadLanguage();
 
-			// 修改热键
-			if (Hotkey != oldHotkey) {
-				mainWindow.UnregisterHotKey(1134419766);
-				if (!mainWindow.Hotkey(sender, e)) { // 如果快捷键已经被占用，则恢复原始快捷键
-					App.SaveAndWriteSettings(Language, Theme, DarkMode, KeyboardDouble, MouseDouble, LambdaFunction, oldHotkey);
-					App.ReadAndLoadSettings();
-					mainWindow.Hotkey(sender, e);
-					MessageBox.Show((string)Application.Current.FindResource("HotkeyConflictErrorTip2"), (string)Application.Current.FindResource("HotkeyConflictError"));
-				}
-			}
-
 			// 关闭窗口
 			Close();
 		}
+
+		/// <summary>
+		/// 确认更新，则将App.config重置为oldConfig，不改变lls文件内容并加载旧设置
+		/// </summary>
+		private void Cancel(object sender, RoutedEventArgs e) {
+			App.RestoreSettings(oldConfig);
+			Close();
+		}
+
+		#endregion 确认/取消操作
 
 		private CultureInfo oldCultureInfo; // 记录之前的输入法，在焦点进入快捷键区时切换为英文输入法，离开时切换回旧输入法
 
@@ -172,5 +184,25 @@ namespace LambdaLauncher {
 		private void KeyboardBack(object sender, KeyboardFocusChangedEventArgs e) {
 			InputLanguageManager.Current.CurrentInputLanguage = oldCultureInfo;
 		}
+
+		#region 配置文件导入/导出
+
+		private void Import(object sender, RoutedEventArgs e) {
+			OpenFileDialog? openFileDialog = new() { Filter = "LLS File|*lls" };
+			if (openFileDialog.ShowDialog() == true) {
+				if (Path.GetExtension(openFileDialog.FileName) == ".lls") {
+					App.ImportSettings(openFileDialog.FileName);
+				}
+				else MessageBox.Show((string)Application.Current.FindResource("FileExtensionErrorTip"), (string)Application.Current.FindResource("FileExtensionError"));
+			}
+			else {
+				MessageBox.Show((string)Application.Current.FindResource("FileOpenFailedErrorTip"), (string)Application.Current.FindResource("FileOpenFailedError"));
+			}
+		}
+
+		private void Export(object sender, RoutedEventArgs e) {
+		}
+
+		#endregion 配置文件导入/导出
 	}
 }

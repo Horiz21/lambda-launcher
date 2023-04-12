@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LambdaLauncher"
         mc:Ignorable="d"
-        Title="{DynamicResource Settings}" Height="322" Width="404"
+        Title="{DynamicResource Settings}" Height="386" Width="404"
         Style="{DynamicResource WindowNormal}"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="True">
@@ -39,6 +39,8 @@
                 <Grid x:Name="gridInteractiveKey" />
                 <Grid x:Name="gridInput">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="32" />
+                        <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
                         <RowDefinition Height="32" />
@@ -139,9 +141,9 @@
                     </Grid>
 
                     <!--Lambda功能设定-->
-                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelRight}" />
+                    <Label Content="{DynamicResource LambdaFunction}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource LabelRight}" />
                     <ComboBox x:Name="boxLambdaFunction"
-                              Grid.Row="5" Grid.Column="1"
+                              Grid.Row="6" Grid.Column="1"
                               Style="{DynamicResource ComboBoxNormal}"
                               SelectionChanged="TempChangeLambdaFunction">
                         <ComboBoxItem Content="{DynamicResource LambdaFunction-None}" />
@@ -153,8 +155,8 @@
                     </ComboBox>
 
                     <!--Lambda功能设定-->
-                    <Label Content="{DynamicResource Hotkey}" Grid.Row="6" Grid.Column="0" Style="{DynamicResource LabelRight}" />
-                    <Grid Grid.Row="6" Grid.Column="1">
+                    <Label Content="{DynamicResource Hotkey}" Grid.Row="7" Grid.Column="0" Style="{DynamicResource LabelRight}" />
+                    <Grid Grid.Row="7" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -183,7 +185,19 @@
                                  PreviewGotKeyboardFocus="KeyboardToEnglish" PreviewLostKeyboardFocus="KeyboardBack"/>
                     </Grid>
 
-                    <Grid Grid.Row="7" Grid.Column="1">
+                    <Label Content="{DynamicResource ConfigOperation}" Grid.Row="8" Grid.Column="0" Style="{DynamicResource LabelRight}" />
+                    <Grid Grid.Row="8" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="buttonImport" Content="{DynamicResource ConfigImport}"
+                                Style="{DynamicResource ButtonNormalS}" Height="32" Click="Import"/>
+                        <Button x:Name="buttonExport" Content="{DynamicResource ConfigExport}"
+                                Style="{DynamicResource ButtonNormalS}" Grid.Column="1" Height="32" Click="Export" />
+                    </Grid>
+
+                    <Grid Grid.Row="9" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />

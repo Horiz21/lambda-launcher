@@ -53,7 +53,7 @@ namespace LambdaLauncher {
 			// 将每一个字母加入行中，并且把整个interactiveKey加入keys[]数组中
 			for (int i = 0; i < 3; ++i) {
 				foreach (char c in rows[i]) {
-					keys[c - 'A'] = new InteractiveKey(App.keyDatas[c - 'A']);
+					keys[c - 'A'] = new InteractiveKey(App.config.keyDatas[c - 'A']);
 					gridRows[i].Children.Add(keys[c - 'A']);
 				}
 			}
@@ -91,7 +91,7 @@ namespace LambdaLauncher {
 				char letter = char.Parse(key);
 				// 判断是否是字母，若是字母则判断是否是……
 				// 立即访问？一次按下模式的按下？二次按下模式的第二次按下？是的话，则执行命令内容
-				if (App.InstantAvtice || !App.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
+				if (App.config.InstantAvtice || !App.config.KeyboardDouble || (letter >= 'A' && letter <= 'Z' && isSameActive)) {
 					currentActivedKey = '\0';
 					isSameActive = false; // 删除激活信息，这样下次打开界面的时候就不会有残留信息
 					Utilities.RunCommand(keys[letter - 'A'].GetCommand());
@@ -108,16 +108,16 @@ namespace LambdaLauncher {
 		/// <param name="start">是否是启动功能的开始阶段</param>
 		private void ActiveLambdaFunction(bool start = true) {
 			if (start) {
-				switch (App.LambdaFunction) {
+				switch (App.config.LambdaFunction) {
 					case 3:
 						// 暂切副策略组并暂开立即响应
-						App.InstantAvtice = App.Vice = true;
+						App.config.InstantAvtice = App.config.Vice = true;
 						ReloadGrid();
 						break;
 
 					case 4:
 						// 立即响应
-						App.InstantAvtice = true;
+						App.config.InstantAvtice = true;
 						break;
 
 					default:
@@ -125,27 +125,27 @@ namespace LambdaLauncher {
 				}
 			}
 			else {
-				switch (App.LambdaFunction) {
+				switch (App.config.LambdaFunction) {
 					case 1:
 						// 切换日/夜间模式
-						App.SwitchDarkMode();
+						App.config.SwitchDarkMode();
 						break;
 
 					case 2:
 						// 切换到副策略组
-						App.Vice ^= true;
+						App.config.Vice ^= true;
 						ReloadGrid();
 						break;
 
 					case 3:
 						// 暂切副策略组并暂开立即响应
-						App.InstantAvtice = App.Vice = false;
+						App.config.InstantAvtice = App.config.Vice = false;
 						ReloadGrid();
 						break;
 
 					case 4:
 						// 立即响应
-						App.InstantAvtice = false;
+						App.config.InstantAvtice = false;
 						break;
 
 					case 5:
@@ -233,7 +233,7 @@ namespace LambdaLauncher {
 		}
 
 		public bool Hotkey(object sender, RoutedEventArgs e) {
-			string[] parts = App.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
+			string[] parts = App.config.Hotkey.Split('+');  // 以“+”为界分割快捷键的每个部分
 			ModifierKeys modifier = ModifierKeys.None;
 			if (parts.Contains("Ctrl")) modifier |= ModifierKeys.Control;
 			if (parts.Contains("Alt")) modifier |= ModifierKeys.Alt;

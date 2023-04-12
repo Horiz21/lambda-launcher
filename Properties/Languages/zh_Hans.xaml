@@ -40,6 +40,10 @@
     <sys:String x:Key="LambdaFunction-SingleClick">单击触发按键</sys:String>
     <sys:String x:Key="LambdaFunction-SettingsMenu">打开设置界面</sys:String>
 
+    <sys:String x:Key="ConfigOperation">配置文件</sys:String>
+    <sys:String x:Key="ConfigImport">导入配置</sys:String>
+    <sys:String x:Key="ConfigExport">导出配置</sys:String>
+
     <sys:String x:Key="Hotkey">快捷键</sys:String>
 
     <!--按键设置-->
@@ -82,4 +86,8 @@
     <sys:String x:Key="HotkeyConflictError">热键冲突异常</sys:String>
     <sys:String x:Key="HotkeyConflictErrorTip1">当前设置热键在程序启动前已被其他进程占用，请前往设置页面重新配置！</sys:String>
     <sys:String x:Key="HotkeyConflictErrorTip2">热键设置失败！该热键组合目前已被其他进程占用，已恢复为历史设置！</sys:String>
+    <sys:String x:Key="FileExtensionError">文件类型异常</sys:String>
+    <sys:String x:Key="FileExtensionErrorTip">文件类型异常！请确认打开文件为程序指定类型！</sys:String>
+    <sys:String x:Key="FileOpenFailedError">文件打开失败</sys:String>
+    <sys:String x:Key="FileOpenFailedErrorTip">文件打开失败！可能是不存在或已被占用，请确认文件状态！</sys:String>
 </ResourceDictionary>
